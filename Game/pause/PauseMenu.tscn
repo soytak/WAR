@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://dss3fec3hncs7"]
+
+[ext_resource type="Script" uid="uid://bf1e7icugvqcq" path="res://Game/pause/pauseMenu.gd" id="1_1klir"]
+[ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="2_337in"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1klir")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -321.5
+offset_top = -224.5
+offset_right = 321.5
+offset_bottom = 224.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="unpause" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_337in")
+text = "Go Back"
+
+[node name="exit" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_337in")
+text = "Exit"
+
+[node name="bg" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="button_down" from="Panel/VBoxContainer/unpause" to="." method="_on_unpause_button_pressed"]
+[connection signal="button_down" from="Panel/VBoxContainer/exit" to="." method="_on_exit_button_pressed"]

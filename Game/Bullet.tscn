@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck0kxnv3xfed0"]
+
+[ext_resource type="Script" uid="uid://cl3kwe0qijuvn" path="res://Game/bullet.gd" id="1_4s4u5"]
+[ext_resource type="Texture2D" uid="uid://b0sghw05p0iy3" path="res://Game/text/costume1 (1) (1).png" id="2_7281b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4s4u5"]
+size = Vector2(22, 8)
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_4s4u5")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_7281b")
+
+[node name="Area2D" type="Area2D" parent="." groups=["bulletHurtbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4s4u5")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
