@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dss3fec3hncs7" path="res://Game/pause/PauseMenu.tscn" id="2_8kptf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8aveg"]
-size = Vector2(1920, 203)
+size = Vector2(1920, 204.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogjlr"]
 size = Vector2(168, 1488)
@@ -17,11 +17,11 @@ script = ExtResource("1_8kptf")
 [node name="Area2D" type="Area2D" parent="deadzone" groups=["deadzone"]]
 
 [node name="bottom" type="CollisionShape2D" parent="deadzone/Area2D"]
-position = Vector2(960, 1179)
+position = Vector2(960, 1182.13)
 shape = SubResource("RectangleShape2D_8aveg")
 
 [node name="top" type="CollisionShape2D" parent="deadzone/Area2D"]
-position = Vector2(960, -106.5)
+position = Vector2(960, -102.75)
 shape = SubResource("RectangleShape2D_8aveg")
 
 [node name="left" type="CollisionShape2D" parent="deadzone/Area2D"]
@@ -34,7 +34,13 @@ shape = SubResource("RectangleShape2D_ogjlr")
 
 [node name="players" type="Node2D" parent="."]
 
-[node name="pauseMenu" parent="." instance=ExtResource("2_8kptf")]
-visible = false
+[node name="intermissionCover" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1912.0
+offset_bottom = 1072.0
 
 [node name="intermissions" type="Node2D" parent="."]
+
+[node name="pauseMenu" parent="." instance=ExtResource("2_8kptf")]
+visible = false

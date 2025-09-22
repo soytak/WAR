@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt7ak1jog524q"]
 
-[ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_c7keu"]
 [ext_resource type="Script" uid="uid://b42o1jcfn1r3e" path="res://Game/intermission/intermission.gd" id="1_ftabm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftabm"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ftabm"]
 size = Vector2(1000, 100)
@@ -23,6 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ftabm")
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Panel"]
 layout_mode = 2
@@ -31,24 +33,29 @@ offset_bottom = 1080.0
 drag_area_margin_begin = 100
 drag_area_margin_end = 1000
 
-[node name="TextureButton" type="TextureButton" parent="Panel/HSplitContainer"]
+[node name="Left" type="MarginContainer" parent="Panel/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="Panel/HSplitContainer/Left"]
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_ftabm")
+stretch_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer"]
+[node name="Right" type="MarginContainer" parent="Panel/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Right"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/CenterContainer"]
+[node name="UpgradeContainer" type="GridContainer" parent="Panel/HSplitContainer/Right/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Speed" type="CheckButton" parent="Panel/HSplitContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_c7keu")
-text = "Speed"
-
-[node name="Rotation Speed" type="CheckButton" parent="Panel/HSplitContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("1_c7keu")
-text = "Rotation speed"
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bywnih0qq23rv"]
+
+[ext_resource type="Texture2D" uid="uid://cvmp8uorbkr7i" path="res://Textures/cursor.png" id="1_5l68f"]
+[ext_resource type="Script" uid="uid://b2cfxt1h1x0dy" path="res://cursor.gd" id="2_e4vdg"]
+
+[node name="Cursor" type="TextureRect"]
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("1_5l68f")
+expand_mode = 1
+script = ExtResource("2_e4vdg")

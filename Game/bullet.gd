@@ -1,13 +1,13 @@
 extends Node2D
 
-@export var speed = 500
+var speed = 500
 var playerNode = Node
 
 func _ready():
 	pass
 	
 func _physics_process(delta):
-	var direction = transform.x
+	var direction = transform.x.normalized()
 	var move_vec = direction * speed
 	global_position += move_vec * delta
 

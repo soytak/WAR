@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 global="*res://global.gd"
 musicManager="*res://Manager/musicManager.gd"
+cursorManager="*res://cursorManager.tscn"
 
 [display]
 
