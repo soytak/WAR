@@ -19,7 +19,7 @@ func set_hue(shift_amount):
 func get_input():
 	rotation_direction = Input.get_axis(global.getInputFromInputs(inputs, "left"), global.getInputFromInputs(inputs, "right"))
 	velocity = transform.x * Input.get_axis(global.getInputFromInputs(inputs, "backward"), global.getInputFromInputs(inputs, "foward")) * speed
-	if Input.is_action_pressed(global.getInputFromInputs(inputs, "shoot")) and reload_timer <= 0: # Renamed for clarity
+	if Input.is_action_pressed(global.getInputFromInputs(inputs, "shoot")) and reload_timer <= 0:
 		spawn_bullet()
 
 func spawn_bullet():
@@ -44,7 +44,7 @@ func _physics_process(delta):
 		reload = 0.8 - upgradeUpgraded(0.1)
 	if global.playersData[player-1].upgradesState.fasterTank:
 		speed = 550 + upgradeUpgraded(50)
-	if global.playersData[player-1].upgradesState.fasterBullets:
+	if global.playersData[player-1].upgradesState.fasterTankRotation:
 		rotation_speed = 3.5 + upgradeUpgraded(0.5)
 
 	reload_timer -= delta
@@ -58,6 +58,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var bullet_node = area.get_parent()
 		if bullet_node.playerNode != self:
 			$Area2D/CollisionShape2D.set_deferred("disabled", true)
+			global.playersData[player-1].state = global.playerStates.DEAD
 			hide()
 
 func setColor(color: Color) -> void:

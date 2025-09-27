@@ -22,10 +22,9 @@ func onUpgradeSelect(dispName: StringName):
 			break
 
 
-
-
 func _on_visibility_changed() -> void:
 	if visible:
+		%Lives.text = "Lives: " + str(global.playersData[player-1].lives)
 		%Right.show()
 		finished = false
 	else:

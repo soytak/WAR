@@ -3,9 +3,19 @@ extends Node2D
 var speed = 500
 var playerNode = Node
 
+var shotSound = preload("res://SFX/shot.mp3")
+var musicPlayer: AudioStreamPlayer
+
 func _ready():
-	pass
-	
+	musicPlayer = AudioStreamPlayer.new()
+	add_child(musicPlayer)
+	musicPlayer.bus = "Master"
+	musicPlayer.volume_db = 1
+	musicPlayer.autoplay = false
+	musicPlayer.stream_paused = true
+	musicPlayer.stream = shotSound
+	musicPlayer.play()
+
 func _physics_process(delta):
 	var direction = transform.x.normalized()
 	var move_vec = direction * speed

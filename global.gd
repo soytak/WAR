@@ -27,6 +27,7 @@ var upgrades: Array[Upgrade] = [
 
 
 var playersData: Array[PlayerData] = []
+var activePlayer = 4
 
 func _ready() -> void:
 	for i in range(4):

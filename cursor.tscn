@@ -6,6 +6,7 @@
 [node name="Cursor" type="TextureRect"]
 offset_right = 100.0
 offset_bottom = 100.0
+mouse_filter = 2
 texture = ExtResource("1_5l68f")
 expand_mode = 1
 script = ExtResource("2_e4vdg")

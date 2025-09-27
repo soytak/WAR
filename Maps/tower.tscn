@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://c67aysa3asosk"]
+
+[ext_resource type="Texture2D" uid="uid://cy3g6fou6e2gs" path="res://Maps/tower.png" id="1_h5c7w"]
+
+[node name="Tower" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.563626, 0.563626, 0.563626, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_h5c7w")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(252, 80)
+polygon = PackedVector2Array(45, 0, 1372, 0, 1445, 73, 1445, 847, 1372, 920, 44, 920, -29, 846, -29, 74, 45, 0, 44, 36, 44, 73, 7, 73, 7, 386, 44, 386, 44, 534, 7, 534, 7, 847, 44, 847, 44, 884, 401, 884, 401, 847, 549, 847, 549, 884, 863, 884, 863, 847, 1011, 847, 1011, 884, 1372, 884, 1372, 847, 1409, 847, 1409, 534, 1372, 534, 1372, 386, 1409, 386, 1409, 73, 1372, 73, 1372, 36, 1011, 36, 1011, 73, 863, 73, 863, 36, 549, 36, 549, 73, 401, 73, 401, 36, 44, 36)
+
+[node name="spawn" type="Node2D" parent="."]
+
+[node name="1" type="CollisionPolygon2D" parent="spawn"]
+polygon = PackedVector2Array(1437, 300, 1437, 790, 446, 801, 476, 266)

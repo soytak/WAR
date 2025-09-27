@@ -3,6 +3,9 @@ extends Control
 @export var parallax_strength: Vector2 = Vector2(20, 20)
 
 func _ready() -> void:
+	playMusic()
+
+func playMusic() -> void:
 	if randi_range(1,100) == 1:
 		musicManager.play_music(preload("res://Vocals/463-163.wav"))
 		return
@@ -14,8 +17,13 @@ func _ready() -> void:
 		return
 	musicManager.play_music(preload("res://Musics/Title.mp3"))
 
+
 func _process(delta):
 	var viewport_center = get_viewport_rect().size / 2
 	var mouse_offset = (get_viewport().get_mouse_position() - viewport_center) / viewport_center
-	$Panel.position = mouse_offset * parallax_strength * -0.7
+	$BG.position = mouse_offset * parallax_strength * -0.7 - Vector2(50,50)
 	position = mouse_offset * parallax_strength * 0.3
+
+
+func _on_controls_goal_pressed() -> void:
+	$controls_goal.show()

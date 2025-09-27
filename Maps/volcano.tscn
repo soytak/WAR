@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://7e0j5leyftip"]
+
+[ext_resource type="Texture2D" uid="uid://ct4fbo7aj8xqc" path="res://Maps/volcano.png" id="1_hdjnc"]
+
+[node name="Volcano" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.563626, 0.563626, 0.563626, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_hdjnc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(95, 156)
+polygon = PackedVector2Array(-95, 369, 145, 335, 385, 397, 625, 345, 862, 368, 1105, 345, 1345, 397, 1585, 335, 1825, 369, 1825, 399, 1585, 433, 1346, 427, 1104, 375, 863, 398, 625, 375, 385, 427, 145, 434, -95, 399)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(704, 702)
+polygon = PackedVector2Array(242, -702, 270, -702, 305, -462, 299, -224, 286, -163, 298, -100, 302, 139, 271, 378, 242, 378, 208, 138, 223, 71, 217, 18, 254, -165, 218, -342, 222, -400, 208, -462)
+
+[node name="spawn" type="Node2D" parent="."]
+position = Vector2(-4, 14)
+
+[node name="1" type="CollisionPolygon2D" parent="spawn"]
+position = Vector2(147, 7)
+polygon = PackedVector2Array(505, 107, 505, 363, 97, 363, 97, 107)
+
+[node name="2" type="CollisionPolygon2D" parent="spawn"]
+position = Vector2(1135, 621)
+polygon = PackedVector2Array(505, 107, 505, 363, 97, 363, 97, 107)
+
+[node name="3" type="CollisionPolygon2D" parent="spawn"]
+position = Vector2(193, 600)
+polygon = PackedVector2Array(505, 107, 505, 363, 97, 363, 97, 107)
+
+[node name="4" type="CollisionPolygon2D" parent="spawn"]
+position = Vector2(1153, -13)
+polygon = PackedVector2Array(505, 107, 505, 363, 97, 363, 97, 107)

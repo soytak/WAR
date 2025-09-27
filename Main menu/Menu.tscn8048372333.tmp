@@ -1,0 +1,144 @@
+[gd_scene load_steps=11 format=3 uid="uid://btpkkbmnel5s3"]
+
+[ext_resource type="Texture2D" uid="uid://dwi3trt58vixu" path="res://Game/text/costume1 (1).png" id="1_6m0gq"]
+[ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_t3fg1"]
+[ext_resource type="Script" uid="uid://h7apm5lnpr41" path="res://Main menu/menu.gd" id="1_xds3s"]
+[ext_resource type="Script" uid="uid://jn6lj2l1yil6" path="res://Main menu/buttonsr.gd" id="3_xds3s"]
+[ext_resource type="Script" uid="uid://bwqyc4xint3pl" path="res://Main menu/Controls_goal.gd" id="5_3j7fk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3j7fk"]
+texture = ExtResource("1_6m0gq")
+modulate_color = Color(1, 1, 1, 0.145098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xds3s"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsikn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny5mr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri0r6"]
+bg_color = Color(1, 1, 1, 0.643137)
+shadow_size = 5
+shadow_offset = Vector2(20, 20)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xds3s")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3j7fk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -993.0
+offset_top = -156.0
+offset_right = 81.0
+offset_bottom = 688.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 40
+script = ExtResource("3_xds3s")
+
+[node name="fight" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_t3fg1")
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_xds3s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nsikn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ny5mr")
+text = "Fight"
+
+[node name="Controls_goal" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_t3fg1")
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_xds3s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nsikn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ny5mr")
+text = "Controls / goal"
+
+[node name="quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_t3fg1")
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_xds3s")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nsikn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ny5mr")
+text = "Exit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -634.5
+offset_right = 634.5
+offset_bottom = 332.0
+grow_horizontal = 2
+tooltip_text = "*do not do it at home"
+theme_override_font_sizes/normal_font_size = 200
+text = "WAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -679.5
+offset_top = -321.0
+offset_right = 679.5
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ri0r6")
+script = ExtResource("5_3j7fk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="instruction" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 700)
+layout_mode = 2
+theme = ExtResource("1_t3fg1")
+theme_override_font_sizes/normal_font_size = 50
+text = "asd
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+theme = ExtResource("1_t3fg1")
+theme_override_font_sizes/normal_font_size = 50
+text = "Press Right with any player to go to next slide"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/fight" to="VBoxContainer" method="_on_fight_pressed"]
+[connection signal="pressed" from="VBoxContainer/Controls_goal" to="VBoxContainer" method="_on_controls_goal_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="VBoxContainer" method="_on_quit_pressed"]

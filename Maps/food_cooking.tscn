@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqkwffuxrgd28"]
+
+[ext_resource type="Texture2D" uid="uid://d18x1jncb7pqm" path="res://Maps/food_cooking.png" id="1_gdt77"]
+
+[node name="Food_cooking" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.563626, 0.563626, 0.563626, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_gdt77")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(258, -264)
+polygon = PackedVector2Array(45, 262, 723, 262, 723, 414, 45, 414)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(1180, 367)
+polygon = PackedVector2Array(92, 104, 470, 104, 470, 253, 92, 253)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(188, 338)
+polygon = PackedVector2Array(92, 104, 470, 104, 470, 253, 92, 253)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-91, 826)
+polygon = PackedVector2Array(92, 104, 470, 104, 470, 253, 92, 253)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(686, 630)
+polygon = PackedVector2Array(175, -83, 324, -83, 324, 295, 175, 295)
+
+[node name="spawn" type="Node2D" parent="."]
+position = Vector2(-4, 14)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="spawn"]
+polygon = PackedVector2Array(232, 64, 255, 196, 707, 193, 1068, 193, 1106, 7, 1538, 45, 1652, 409, 878, 428, 722, 398, 232, 394, 225, 618, 707, 645, 828, 956, 1071, 948, 1071, 694, 1706, 648, 1706, 424, 1580, 16, 1911, 16, 1888, 1023, 806, 1024, 464, 1021, 449, 842, 76, 827, 60, 38)

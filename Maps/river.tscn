@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://crforys3dflon"]
+
+[ext_resource type="Texture2D" uid="uid://b80sayw2lmbkp" path="res://Maps/river.png" id="1_8a7td"]
+
+[node name="River" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.563626, 0.563626, 0.563626, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_8a7td")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(734, 6)
+polygon = PackedVector2Array(-15, -6, 807, -6, 645, 674, -109, 674)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(687, 847)
+polygon = PackedVector2Array(17, 113, 722, 113, 746, 384, 14, 305)
+
+[node name="spawn" type="Node2D" parent="."]
+position = Vector2(-4, 14)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="spawn"]
+polygon = PackedVector2Array(666, 16, 569, 458, 584.234, 679.274, 1377.71, 694.768, 1580, 16, 1911, 16, 1888, 1023, 1483, 1023, 1446, 908, 711, 912, 670, 1041, 50, 1046, 60, 38)

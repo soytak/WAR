@@ -12,6 +12,8 @@ size = Vector2(168, 1488)
 [node name="Battlefield" type="Node2D"]
 script = ExtResource("1_8kptf")
 
+[node name="map" type="Node2D" parent="."]
+
 [node name="deadzone" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="deadzone" groups=["deadzone"]]
@@ -29,6 +31,26 @@ position = Vector2(-84, 536)
 shape = SubResource("RectangleShape2D_ogjlr")
 
 [node name="right" type="CollisionShape2D" parent="deadzone/Area2D"]
+position = Vector2(2004, 536)
+shape = SubResource("RectangleShape2D_ogjlr")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="deadzone"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="bottom" type="CollisionShape2D" parent="deadzone/StaticBody2D"]
+position = Vector2(960, 1182.13)
+shape = SubResource("RectangleShape2D_8aveg")
+
+[node name="top" type="CollisionShape2D" parent="deadzone/StaticBody2D"]
+position = Vector2(960, -102.75)
+shape = SubResource("RectangleShape2D_8aveg")
+
+[node name="left" type="CollisionShape2D" parent="deadzone/StaticBody2D"]
+position = Vector2(-84, 536)
+shape = SubResource("RectangleShape2D_ogjlr")
+
+[node name="right" type="CollisionShape2D" parent="deadzone/StaticBody2D"]
 position = Vector2(2004, 536)
 shape = SubResource("RectangleShape2D_ogjlr")
 

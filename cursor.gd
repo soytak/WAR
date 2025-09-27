@@ -4,7 +4,6 @@ var player: int
 var speed: int = 10
 
 func _ready() -> void:
-	print(player)
 	self_modulate = global.playersColors[player - 1]
 
 func _process(delta: float) -> void:
@@ -21,15 +20,22 @@ func _process(delta: float) -> void:
 	if press:
 		_simulate_global_click()
 
+func _input(event):
+	if event is InputEventMouseButton: 
+		#print(event.position)
+		pass
+	
 func _simulate_global_click() -> void:
+	var clickPos = position + size / 2
+	#clickPos -= get_viewport().get_camera_2d().global_position
 	var click_press := InputEventMouseButton.new()
 	click_press.button_index = MOUSE_BUTTON_LEFT
 	click_press.pressed = true
-	click_press.position = position + size / 2
+	click_press.position = clickPos
 	Input.parse_input_event(click_press)
-	print(click_press.position)
+	
 	var click_release := InputEventMouseButton.new()
 	click_release.button_index = MOUSE_BUTTON_LEFT
 	click_release.pressed = false
-	click_release.position = position + size / 2
+	click_release.position = clickPos
 	Input.parse_input_event(click_release)

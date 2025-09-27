@@ -4,6 +4,8 @@ extends Control
 @onready var exit_button = $Panel/VBoxContainer/exit
 @onready var dim_rect = $bg
 
+var mainMenu = preload("res://Main menu/Menu.tscn")
+
 var hue_shift : float = 0.0
 
 func _ready() -> void:
@@ -13,7 +15,6 @@ func _ready() -> void:
 
 func show_menu() -> void:
 	show()
-	print(2)
 	var screen_size = get_viewport_rect().size
 	var screen_width = get_viewport_rect().size.x
 	position = Vector2(-size.x/2, screen_size.y / 2 - size.y / 2)
@@ -45,4 +46,5 @@ func _on_unpause_button_pressed() -> void:
 	hide_menu()
 
 func _on_exit_button_pressed() -> void:
-	get_tree().quit()
+	get_parent().unpause_game()
+	get_tree().change_scene_to_packed(mainMenu)

@@ -1,19 +1,43 @@
 extends Node2D
 
+#todo
+#if number, player spawn
+#good end message
+
 var player = preload("res://Game/Player.tscn")
 var intermission = preload("res://Game/intermission/intermission.tscn")
+var winningScreen = preload("res://Winning menu/Winning menu.tscn")
 @onready var pause_menu = $pauseMenu
 var tanks: Array = []
-const playerNb: int = 4
+
+enum gameStates {IN_FIGHT, INTERMISSION}
+var gameState = gameStates.IN_FIGHT
+
+var spawn
 
 func _ready() -> void:
 	cursorManager.disableCursors()
-	for i in range(playerNb):
+	
+	for player in global.playersData:
+		player.reset(player)
+	
+	var maps = [preload("res://Maps/river.tscn"),
+				preload("res://Maps/food_cooking.tscn"),
+				#preload("res://Maps/volcano.tscn"),
+				preload("res://Maps/tower.tscn")
+			   ]
+	var map = maps[randi_range(0, maps.size()-1)].instantiate()
+	
+	spawn = PolygonRandomPointGenerator.new(map.get_node("spawn").get_child(0).polygon)
+	print(map.get_node("spawn").get_child(0).polygon)
+	$map.add_child(map)
+	
+	
+	for i in range(global.activePlayer):
 		var newPlayer = player.instantiate()
-		goToRandomPosition(newPlayer)
 		
 		var tank_node = newPlayer.get_node("tank")
-		tank_node.player = i+1
+		tank_node.player = i + 1
 		tank_node.setColor(global.playersColors[i])
 		
 		get_node("players").add_child(newPlayer)
@@ -22,7 +46,12 @@ func _ready() -> void:
 	musicManager.play_music(preload("res://Musics/Fight.mp3"))
 	setup_intermission()
 	for i in range(4):
-		global.playersData[i].state = global.playerStates.IN_FIGHT
+		if i >= global.activePlayer:#not in game
+			global.playersData[i].state = global.playerStates.NOT_IN_GAME
+		else:
+			global.playersData[i].state = global.playerStates.IN_FIGHT
+	newRound()
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -37,55 +66,96 @@ func unpause_game() -> void:
 
 func _physics_process(delta):
 	var alives = 0
-	for child in $players.get_children():
-		if child.get_node("tank").visible:
+	for i in range(4):
+		if global.playersData[i].state == global.playerStates.IN_FIGHT:
 			alives += 1
-	if alives < 2:
-		for child in $players.get_children():
-			if child.get_node("tank").visible:
-				pass
-				go_to_intermission(child.get_node("tank").player)
 	
-	for child in $intermissions.get_children():
-		if child.finished == false or alives > 1:
+	if gameState == gameStates.IN_FIGHT:
+		if alives < 2:
+			var winner: int
+			for tank in tanks:
+				if global.playersData[tank.player-1].state == global.playerStates.IN_FIGHT:
+					winner = tank.player
+			go_to_intermission(winner)
 			return
-	newRound()
+	
+	if gameState == gameStates.INTERMISSION:
+		for child in $intermissions.get_children():
+			if child.finished == false:
+				return
+		newRound()
 	
 func newRound():
+	gameState = gameStates.IN_FIGHT
 	cursorManager.disableCursors()
-	for child in $players.get_children():
-		goToRandomPosition(child)
-		child.get_node("tank").show()
-	$intermissions.hide()
-
-func goToRandomPosition(player: Node2D):
-	var viewport_size = get_viewport().size
-	var random_x = randi_range(0, int(viewport_size.x))
-	var random_y = randi_range(0, int(viewport_size.y))
-	var random_position = Vector2(random_x, random_y)
 	
-	var tank_node = player.get_node("tank")
-	tank_node.global_position = random_position
+	$intermissions.hide()
+	for child in $intermissions.get_children():
+		child.hide()
+	
+	for tank in tanks:
+		if global.playersData[tank.player-1].lives > 0:
+			goToRandomPosition(tank.player)
+			global.playersData[tank.player-1].state = global.playerStates.IN_FIGHT
+			tank.show()
+
+func goToRandomPosition(player: int):
+	var position = spawn.get_random_point()
+	print(position)
+	
+	var tank_node = tanks[player-1]
+	tank_node.global_position = position
 
 func go_to_intermission(winner):
+	gameState = gameStates.INTERMISSION
 	cursorManager.enableCursors()
+	
 	$intermissions.show()
-	var player = 0
-	for child in $intermissions.get_children():
-		player += 1
-		if player != winner:
+	var stillAlive = global.activePlayer
+	for tank in tanks:
+		var player = tank.player
+		deleteAllChildren(tank.get_parent().get_node("bullets"))
+		if player == winner:
+			continue
+		
+		global.playersData[tank.player-1].lives -= 1
+		if global.playersData[tank.player-1].lives > 0:
 			global.playersData[player-1].state = global.playerStates.SELECTING_UPGRADES
-			child.show()
+			tank.get_parent().show()
+			for intermission in $intermissions.get_children():
+				if intermission.player == tank.player:
+					intermission.show()
 		else:
-			global.playersData[player-1].state = global.playerStates.DEAD
+			stillAlive -= 1
+			tank.get_parent().hide()
+			
+	if stillAlive <= 1:		
+		var winningScene = winningScreen.instantiate()
+		winningScene.setup(winner)
+		get_tree().root.add_child(winningScene)
+		get_tree().current_scene.queue_free()
+		get_tree().call_deferred("set_current_scene", winningScene)
 
 func setup_intermission():
 	var screen_size = get_viewport_rect().size
 	var screen_width = get_viewport_rect().size.x
-	for i in range(playerNb):
+	for i in range(global.activePlayer):
 		var newIntermission = intermission.instantiate()
 		newIntermission.set("player", i+1)
 		newIntermission.hide()
 		newIntermission.scale = Vector2(0.5, 0.5)
 		newIntermission.position = Vector2(screen_size.x * int((i % 2) == 1)/2, screen_size.y * int(i > 1)/2 )
 		get_node("intermissions").add_child(newIntermission)
+
+func getIntermissionPlayerNodeIfLost(intermission):
+	for tank in tanks:
+		if tank.player == intermission.player:
+			if global.playersData[tank.player-1].lives <= 0:
+				return tank
+			else:
+				return null
+				
+
+func deleteAllChildren(parentNode: Node):
+	for child in parentNode.get_children():
+		child.queue_free()
