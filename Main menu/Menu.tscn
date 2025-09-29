@@ -156,6 +156,8 @@ theme_override_font_sizes/normal_font_size = 50
 text = "any right: next slide | any left: previous slide | shoot: quit"
 horizontal_alignment = 2
 
+[node name="Node2D" type="Node2D" parent="."]
+
 [connection signal="pressed" from="VBoxContainer/1vs1" to="VBoxContainer" method="_on_vs_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/fight" to="VBoxContainer" method="_on_fight_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controls_goal" to="." method="_on_controls_goal_pressed"]

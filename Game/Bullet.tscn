@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ck0kxnv3xfed0"]
 
 [ext_resource type="Script" uid="uid://cl3kwe0qijuvn" path="res://Game/bullet.gd" id="1_4s4u5"]
-[ext_resource type="Texture2D" uid="uid://b0sghw05p0iy3" path="res://Game/text/costume1 (1) (1).png" id="2_7281b"]
+[ext_resource type="Texture2D" uid="uid://c6vbyinu8d7sc" path="res://Textures/tank/bullet.png" id="2_k4yr6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s4u5"]
 size = Vector2(22, 8)
@@ -10,8 +10,8 @@ size = Vector2(22, 8)
 script = ExtResource("1_4s4u5")
 
 [node name="sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_7281b")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_k4yr6")
 
 [node name="Area2D" type="Area2D" parent="." groups=["bulletHurtbox"]]
 

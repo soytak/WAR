@@ -26,17 +26,14 @@ polygon = PackedVector2Array(242, -702, 270, -702, 305, -462, 299, -224, 286, -1
 position = Vector2(-4, 14)
 
 [node name="1" type="CollisionPolygon2D" parent="spawn"]
-position = Vector2(147, 7)
-polygon = PackedVector2Array(505, 107, 505, 363, 97, 363, 97, 107)
+polygon = PackedVector2Array(732, 108, 766, 362, 97, 363, 97, 107)
 
 [node name="2" type="CollisionPolygon2D" parent="spawn"]
-position = Vector2(1135, 621)
-polygon = PackedVector2Array(505, 107, 505, 363, 97, 363, 97, 107)
+position = Vector2(0, 49)
+polygon = PackedVector2Array(1780, 631, 1793, 927, 1199, 925, 1177, 613)
 
 [node name="3" type="CollisionPolygon2D" parent="spawn"]
-position = Vector2(193, 600)
-polygon = PackedVector2Array(505, 107, 505, 363, 97, 363, 97, 107)
+polygon = PackedVector2Array(763, 658, 736, 977, 98, 951, 125, 712)
 
 [node name="4" type="CollisionPolygon2D" parent="spawn"]
-position = Vector2(1153, -13)
-polygon = PackedVector2Array(505, 107, 505, 363, 97, 363, 97, 107)
+polygon = PackedVector2Array(1834, 108, 1834, 370, 1165, 415, 1230, 119)

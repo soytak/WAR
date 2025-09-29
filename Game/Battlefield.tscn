@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://yxq4r562f751"]
+[gd_scene load_steps=6 format=3 uid="uid://yxq4r562f751"]
 
 [ext_resource type="Script" uid="uid://cnwso8pstlqmi" path="res://Game/battlefield.gd" id="1_8kptf"]
 [ext_resource type="PackedScene" uid="uid://dss3fec3hncs7" path="res://Game/pause/PauseMenu.tscn" id="2_8kptf"]
+[ext_resource type="Script" uid="uid://bwsf3ck7afo6v" path="res://Game/countdown.gd" id="2_d2vlk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8aveg"]
 size = Vector2(1920, 204.25)
@@ -63,6 +64,19 @@ offset_right = 1912.0
 offset_bottom = 1072.0
 
 [node name="intermissions" type="Node2D" parent="."]
+
+[node name="countdown" type="Node2D" parent="."]
+script = ExtResource("2_d2vlk")
+
+[node name="counter" type="Label" parent="countdown"]
+unique_name_in_owner = true
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/outline_size = 100
+theme_override_font_sizes/font_size = 600
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="pauseMenu" parent="." instance=ExtResource("2_8kptf")]
 visible = false

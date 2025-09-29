@@ -1,8 +1,7 @@
 extends Node2D
 
 #todo
-#if number, player spawn
-#good end message
+#evolution tree (core of game, so hard)
 
 var player = preload("res://Game/Player.tscn")
 var intermission = preload("res://Game/intermission/intermission.tscn")
@@ -10,10 +9,10 @@ var winningScreen = preload("res://Winning menu/Winning menu.tscn")
 @onready var pause_menu = $pauseMenu
 var tanks: Array = []
 
-enum gameStates {IN_FIGHT, INTERMISSION}
-var gameState = gameStates.IN_FIGHT
+enum gameStates {IN_FIGHT, INTERMISSION, COUNTDOWN}
+var gameState = gameStates.COUNTDOWN
 
-var spawn
+var spawns: Array = []
 
 func _ready() -> void:
 	cursorManager.disableCursors()
@@ -23,15 +22,18 @@ func _ready() -> void:
 	
 	var maps = [preload("res://Maps/river.tscn"),
 				preload("res://Maps/food_cooking.tscn"),
-				#preload("res://Maps/volcano.tscn"),
-				preload("res://Maps/tower.tscn")
+				preload("res://Maps/volcano.tscn"),
+				preload("res://Maps/tower.tscn"),
+				preload("res://Maps/sacred_bird.tscn"),
 			   ]
 	var map = maps[randi_range(0, maps.size()-1)].instantiate()
 	
-	spawn = PolygonRandomPointGenerator.new(map.get_node("spawn").get_child(0).polygon)
-	print(map.get_node("spawn").get_child(0).polygon)
+	if not map.get_node("spawn").get_child(0).name in ["1", "2", "3", "4"]:
+		spawns.append(PolygonRandomPointGenerator.new(map.get_node("spawn").get_child(0).polygon))
+	else:
+		for i in range(global.activePlayer):
+			spawns.append(PolygonRandomPointGenerator.new(map.get_node("spawn").get_node(str(i+1)).polygon))
 	$map.add_child(map)
-	
 	
 	for i in range(global.activePlayer):
 		var newPlayer = player.instantiate()
@@ -86,10 +88,9 @@ func _physics_process(delta):
 		newRound()
 	
 func newRound():
-	gameState = gameStates.IN_FIGHT
+	gameState = gameStates.COUNTDOWN
 	cursorManager.disableCursors()
 	
-	$intermissions.hide()
 	for child in $intermissions.get_children():
 		child.hide()
 	
@@ -98,19 +99,23 @@ func newRound():
 			goToRandomPosition(tank.player)
 			global.playersData[tank.player-1].state = global.playerStates.IN_FIGHT
 			tank.show()
+			
+	$countdown.start_countdown(acceptBullet)
 
 func goToRandomPosition(player: int):
-	var position = spawn.get_random_point()
-	print(position)
+	var randomPosition
+	if spawns.size() == 1:
+		randomPosition = spawns[0].get_random_point()
+	else:
+		randomPosition = spawns[player-1].get_random_point()
 	
 	var tank_node = tanks[player-1]
-	tank_node.global_position = position
+	tank_node.global_position = randomPosition
 
 func go_to_intermission(winner):
 	gameState = gameStates.INTERMISSION
 	cursorManager.enableCursors()
 	
-	$intermissions.show()
 	var stillAlive = global.activePlayer
 	for tank in tanks:
 		var player = tank.player
@@ -159,3 +164,6 @@ func getIntermissionPlayerNodeIfLost(intermission):
 func deleteAllChildren(parentNode: Node):
 	for child in parentNode.get_children():
 		child.queue_free()
+
+func acceptBullet():
+	gameState = gameStates.IN_FIGHT

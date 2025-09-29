@@ -20,5 +20,5 @@ polygon = PackedVector2Array(45, 0, 1372, 0, 1445, 73, 1445, 847, 1372, 920, 44,
 
 [node name="spawn" type="Node2D" parent="."]
 
-[node name="1" type="CollisionPolygon2D" parent="spawn"]
+[node name="ssd" type="CollisionPolygon2D" parent="spawn"]
 polygon = PackedVector2Array(1437, 300, 1437, 790, 446, 801, 476, 266)

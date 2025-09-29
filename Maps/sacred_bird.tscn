@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxj2ud1ictfc8"]
+
+[ext_resource type="Texture2D" uid="uid://m5qxmqhyh7tj" path="res://Maps/sacred_bird.png" id="1_tshvd"]
+
+[node name="Sacred_bird" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.563626, 0.563626, 0.563626, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_tshvd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(734, 6)
+polygon = PackedVector2Array(-390, 382, -354, 334, -322, 314, -274, 302, -146, 238, -106, 226, -70, 238, -46, 290, 26, 282, 82, 302, 130, 374, 174, 446, 210, 510, 218, 538, 214, 554, 202, 562, 150, 562, 138, 586, 110, 610, 54, 630, -2, 642, -82, 650, -226, 650, -322, 634, -362, 622, -398, 602, -438, 570, -462, 530, -466, 486, -442, 434, -410, 398)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(687, 847)
+polygon = PackedVector2Array(777, -579, 813, -563, 833, -539, 861, -531, 889, -507, 905, -475, 909, -443, 901, -407, 889, -395, 937, -367, 965, -323, 973, -283, 961, -227, 933, -191, 889, -171, 865, -163, 857, -111, 833, -79, 817, -67, 793, -59, 761, -55, 729, -67, 697, -99, 689, -135, 661, -131, 637, -135, 617, -147, 597, -167, 585, -187, 577, -215, 577, -243, 589, -267, 577, -287, 577, -315, 593, -339, 609, -351, 625, -355, 633, -375, 625, -399, 621, -431, 629, -459, 641, -479, 669, -499, 677, -531, 697, -559, 721, -575, 745, -583)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(734, 6)
+polygon = PackedVector2Array(1186, 158, 1150, 186, 1110, 194, 1066, 178, 1038, 150, 1026, 118, 1026, 82, 1010, 86, 982, 78, 958, 62, 938, 38, 922, -6, 1186, -6)
+
+[node name="spawn" type="Node2D" parent="."]
+position = Vector2(-4, 14)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="spawn"]
+polygon = PackedVector2Array(180, 66, 235, 450, 235, 703, 1711, 839, 1686, 334, 1494, 213, 1260.68, 199.997, 1206, 754, 978, 738, 988.586, 184.833, 220, 142, 220, 26, 1539, 11, 1711, 127, 1848, 223, 1888, 1023, 1483, 1023, 670, 991, 69, 961, 60, 38)

@@ -7,7 +7,7 @@ func _ready() -> void:
 	for i in range(4):
 		var newCursor = cursora.instantiate()
 		newCursor.player = i+1
-		add_child(newCursor)
+		#add_child(newCursor)
 
 func disableCursors():
 	for child in get_children():

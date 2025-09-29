@@ -6,9 +6,10 @@ var _triangles: PackedInt32Array
 var _cumulated_triangle_areas: Array
 
 var _rand: RandomNumberGenerator
-
+var init: bool = false
 
 func _init(polygon: PackedVector2Array) -> void:
+	init = true
 	_polygon = polygon
 	_triangles = Geometry2D.triangulate_polygon(_polygon)
 	_rand = RandomNumberGenerator.new()

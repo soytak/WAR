@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://duyn13baadi8m"]
+
+[ext_resource type="Script" uid="uid://bdn65d1n70dqi" path="res://Game/tank maker/tank_maker.gd" id="1_6xno2"]
+[ext_resource type="Texture2D" uid="uid://bwf7f3rp8kj6o" path="res://Textures/tank/tank_base.png" id="2_30pss"]
+[ext_resource type="Texture2D" uid="uid://bh0risfyvarlk" path="res://Textures/tank/arrow.png" id="2_xsbpc"]
+[ext_resource type="Texture2D" uid="uid://4hhbrjstcsxg" path="res://Textures/tank/turret.png" id="3_30pss"]
+
+[node name="TankMaker" type="Node2D"]
+script = ExtResource("1_6xno2")
+
+[node name="arrow" type="Sprite2D" parent="."]
+position = Vector2(53.25, 1.43051e-06)
+scale = Vector2(0.356667, 0.427984)
+texture = ExtResource("2_xsbpc")
+
+[node name="base" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_30pss")
+
+[node name="canons" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_30pss")

@@ -6,7 +6,6 @@ var victoryMessages = [
 	"Can't be stopped!",
 	"A born surviver!",
 	"Survived the war!",
-	"The ",
 	"Didn't looked like a competition!",
 	"Didn't cheated!",
 	"Cheated...",
@@ -117,7 +116,9 @@ var victoryMessages = [
 	"That time where I was teleported to another world to find the special game but it was too easy so the anime couldn't be done as we don't have enough watch time... part 6",
 	"Well played!",
 	"Unstoppable!!",
-	"Winning streak!"
+	"Winning streak!",
+	"UPGRADEDUPGRADEDUPGRADEDUPGRADEDUPGRADEDUPGRADEDBASIC is fire!",
+	"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 ]
 
 

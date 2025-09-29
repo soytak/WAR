@@ -7,10 +7,10 @@ var playerInput = [
 	["kp8","kp5","kp4","kp6","kp+"]
 ]
 var playersColors = [
-	Color.WHITE,
-	Color.BLUE,
+	Color.CYAN,
+	Color.ORANGE,
 	Color.GREEN,
-	Color.RED
+	Color.PURPLE
 ]
 
 enum playerStates {NOT_IN_GAME, IN_FIGHT, DEAD, SELECTING_UPGRADES}

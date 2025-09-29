@@ -5,16 +5,16 @@ extends CharacterBody2D
 @export var reload = 1
 @export var player = 1
 
+var color: Color = Color.WHITE
 var rotation_direction = 0
 var reload_timer = reload
 var bullet = preload("res://Game/Bullet.tscn")
 @onready var inputs = global.getPlayerInputs(player)
+var maker
 
 func _ready() -> void:
-	set_hue(0.4)
-	
-func set_hue(shift_amount):
-	$"sprite".modulate = Color.from_hsv(shift_amount, 0, 1)
+	maker = %TankMaker
+	updateSprite()
 		
 func get_input():
 	rotation_direction = Input.get_axis(global.getInputFromInputs(inputs, "left"), global.getInputFromInputs(inputs, "right"))
@@ -23,23 +23,32 @@ func get_input():
 		spawn_bullet()
 
 func spawn_bullet():
-	reload_timer = reload
-	var new_bullet = bullet.instantiate()
-	new_bullet.playerNode = self
-	new_bullet.global_position = global_position
-	new_bullet.global_rotation = global_rotation
-	new_bullet.setColor($sprite.self_modulate)
-	if global.playersData[player-1].upgradesState.biggerBullets:
-		new_bullet.scale += Vector2(0.5 + upgradeUpgraded(0.2), 0.5 + upgradeUpgraded(0.2))
-	if global.playersData[player-1].upgradesState.fasterBullets:
-		new_bullet.speed += 300 + upgradeUpgraded(100)
-	$"../bullets".add_child(new_bullet)
+	reload_timer = reload * maker.cooldownScalar
+	var canons = maker.getCanons()
+	
+	for canon in canons:
+		var new_bullet = bullet.instantiate()
+		#commun settings
+		new_bullet.playerNode = self
+		new_bullet.setColor(maker.modulate)
+		#canon settings
+		new_bullet.rotation = canon.rotation + rotation
+		new_bullet.global_position = canon.global_position
+		new_bullet.speed *= canon.get_meta("speedScalar")
+		new_bullet.scale *= canon.scale/0.3
+		#upgrade
+		if global.playersData[player-1].upgradesState.biggerBullets:
+			new_bullet.scale += Vector2(0.5 + upgradeUpgraded(0.2), 0.5 + upgradeUpgraded(0.2))
+		if global.playersData[player-1].upgradesState.fasterBullets:
+			new_bullet.speed += 300 + upgradeUpgraded(100)
+		$"../bullets".add_child(new_bullet)
 
 func _physics_process(delta):
 	if not visible:
 		return
+	
 	if global.playersData[player-1].upgradesState.smallerTank:
-		$sprite.scale = Vector2(0.075 - upgradeUpgraded(0.01), 0.075 - upgradeUpgraded(0.01))
+		maker.scale = Vector2(0.8 - upgradeUpgraded(0.1), 0.8 - upgradeUpgraded(0.1))
 	if global.playersData[player-1].upgradesState.lessCooldown:
 		reload = 0.8 - upgradeUpgraded(0.1)
 	if global.playersData[player-1].upgradesState.fasterTank:
@@ -61,14 +70,17 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			global.playersData[player-1].state = global.playerStates.DEAD
 			hide()
 
-func setColor(color: Color) -> void:
-	$sprite.self_modulate = color
-	
-
+func setColor(targetedColor: Color) -> void:
+	color = targetedColor
 
 func _on_visibility_changed() -> void:
 	if visible:
+		updateSprite()
 		$Area2D/CollisionShape2D.set_deferred("disabled", false)
 
 func upgradeUpgraded(nb: float = 1) -> float:
 	return nb * int(global.playersData[player-1].upgradesState.upgradeUpgrades)
+
+func updateSprite():
+	%TankMaker.make(global.playersData[player-1].evolutionID)
+	%TankMaker.modulate = color
