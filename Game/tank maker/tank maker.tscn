@@ -23,3 +23,6 @@ unique_name_in_owner = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_30pss")
+
+[node name="decoration" type="Node2D" parent="."]
+scale = Vector2(0.3, 0.3)

@@ -1,5 +1,22 @@
 extends Node
 
+enum decorationsID {
+	MACHINEGUN,
+	UPGRADEDMACHINEGUN,
+	SPRINKLE,
+	HALFSPRINKLER,
+}
+func getDecorationTexturePath(decorationID: int):
+	match decorationID:
+		decorationsID.MACHINEGUN:
+			return "res://Textures/tank/decorations/machine_gun_decoration.png"
+		decorationsID.UPGRADEDMACHINEGUN:
+			return "res://Textures/tank/decorations/upgraded_machine_gun_decoration.png"
+		decorationsID.SPRINKLE:
+			return "res://Textures/tank/decorations/sprinkler_decoration.png"
+		decorationsID.HALFSPRINKLER:
+			return "res://Textures/tank/decorations/halfsprinkler_decoration.png"
+
 enum evolutionsID {BASIC,
 DOUBLEGUN, SNIPER, THREEWAY, DOUBLESHOT, DUAL, BIG, UPGRADEDBASIC, MACHINEGUN, LANDMINE,
 #############################             ################################################
@@ -60,7 +77,7 @@ var evolutionTree = {
 		evolutionsID.UPGRADEDBASIC: {
 			evolutionsID.UPGRADEDUPGRADEDBASIC: [
 				evolutionsID.UPGRADEDUPGRADEDUPGRADEDBASIC,
-				evolutionsID.RNG,
+				#evolutionsID.RNG,
 				evolutionsID.SPRINKLER,
 			],
 			evolutionsID.BACKWARDSHOT: [
@@ -85,16 +102,16 @@ var evolutionTree = {
 			]
 		},
 		
-		evolutionsID.LANDMINE: {
-			evolutionsID.LANDMINEFACTORY: [
-				evolutionsID.GRAVITATIONNALLANDMINEFACTORY,
-				evolutionsID.UPGRADEDLANDMINEFACTORY,
-			],
-			evolutionsID.LANDMINEWITHCANON: [
-				evolutionsID.LANDMINEWITHTHREEWAYCANON,
-				evolutionsID.LANDMINEWITHDOUBLEMINECANON,
-			]
-		},
+		#evolutionsID.LANDMINE: {
+			#evolutionsID.LANDMINEFACTORY: [
+				#evolutionsID.GRAVITATIONNALLANDMINEFACTORY,
+				#evolutionsID.UPGRADEDLANDMINEFACTORY,
+			#],
+			#evolutionsID.LANDMINEWITHCANON: [
+				#evolutionsID.LANDMINEWITHTHREEWAYCANON,
+				#evolutionsID.LANDMINEWITHDOUBLEMINECANON,
+			#]
+		#},
 		
 		evolutionsID.BIG: {
 			evolutionsID.UPGRADEDBIG: [

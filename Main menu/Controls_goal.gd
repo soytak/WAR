@@ -5,7 +5,7 @@ var panelMessages = [
 	Controls:
 	Use the mouse to navigate menu
 	Player 1: arrows for movement and 0 (of keypad) or right control to shoot
-	Player 2: wasd for movement and shift to shoot
+	Player 2: wasd for movement and shift (or space) to shoot
 	Player 3: ijkl for movement and ; to shoot
 	Player 4: 8456 for movement and + to shoot (keypad)
 	",
@@ -14,9 +14,13 @@ var panelMessages = [
 	When only one player is alive, it is time for the intermission!
 	\nIntermission:
 	If nobody exept one has no health, the one who still got life wins.
-	In intermission, deads with lives left can select an upgrade.
+	In intermission, deads with lives left can select an upgrade,
+	and more importantly: an evolution.
+	Evolutions are tree based, so the previous choice matters as well.
 	",
-	"This game has audio.\nHave a good time!"
+	"This game has audio.\n
+	Be aware that bots are in very early state
+	Have a good time!"
 ]
 
 var panelMessageActive = 0

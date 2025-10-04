@@ -27,5 +27,35 @@ shape = SubResource("RectangleShape2D_hiq6t")
 position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_hiq6t")
 
+[node name="front" type="Area2D" parent="tank"]
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tank/front"]
+polygon = PackedVector2Array(0, -40, 224, -40, 224, 40, 0, 40)
+
+[node name="back" type="Area2D" parent="tank"]
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tank/back"]
+polygon = PackedVector2Array(0, -56, -164, -56, -164, 56, 0, 56)
+
+[node name="left side" type="Area2D" parent="tank"]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tank/left side"]
+polygon = PackedVector2Array(0, -52, 192, -96, 192, -24, 0, -24)
+
+[node name="right side" type="Area2D" parent="tank"]
+collision_layer = 0
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tank/right side"]
+polygon = PackedVector2Array(0, 24, 192, 24, 192, 96, 0, 52)
+
 [connection signal="visibility_changed" from="tank" to="tank" method="_on_visibility_changed"]
 [connection signal="area_entered" from="tank/Area2D" to="tank" method="_on_area_2d_area_entered"]

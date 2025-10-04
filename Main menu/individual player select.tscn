@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnpkhbbeklrq2"]
+
+[ext_resource type="Script" uid="uid://duipc3o0ge13p" path="res://Main menu/individual_player_select.gd" id="2_alcto"]
+
+[node name="IndividualPlayerSelect" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_alcto")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

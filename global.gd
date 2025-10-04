@@ -14,6 +14,7 @@ var playersColors = [
 ]
 
 enum playerStates {NOT_IN_GAME, IN_FIGHT, DEAD, SELECTING_UPGRADES}
+enum playerTypes {NONE, PLAYER, BOT}
 
 var upgrades: Array[Upgrade] = [
 	Upgrade.create("Bigger bullets", "res://Textures/bigger_bullets.png", "biggerBullets"),
@@ -27,7 +28,15 @@ var upgrades: Array[Upgrade] = [
 
 
 var playersData: Array[PlayerData] = []
-var activePlayer = 4
+
+func forEachPlayingPlayer(function: Callable):
+	for i in range(4):
+		if playersData[i].playerType == playerTypes.NONE:
+			continue
+		if function.is_valid():
+			function.call(i)
+		else:
+			push_error("Invalid function passed to call_with_arg.")
 
 func _ready() -> void:
 	for i in range(4):
