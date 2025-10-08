@@ -9,6 +9,17 @@ func _ready() -> void:
 	custom_minimum_size = Vector2(1920/2, 1080/2)
 	loadTexture()
 	
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.has_meta("player"):
+			if get_rect().has_point(event.position) and event.get_meta("player") == player:
+				_on_pressed()
+				accept_event()
+		else:
+			if get_rect().has_point(event.position):
+				_on_pressed()
+				accept_event()
+
 func _on_pressed() -> void:
 	match playerData.playerType:
 		global.playerTypes.NONE:

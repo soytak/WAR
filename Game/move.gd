@@ -37,30 +37,45 @@ func get_ai_input():
 	
 	if closestDistance == 10000:
 		return
+		
+	if global.playersData[player-1].evolutionID == evolutionManager.evolutionsID.SPRINKLER:
+		closestDistance -= 150
 			
 	const farDistance = 500
 	const lowDistance = 200
+	const distanceToTurn = 400
 	const enemyBulletAngularAcceptence = 20
 	const angularAcceptence = deg_to_rad(3)
 	var rotationDiff = wrapf(get_angle_to(closestPlayer.position), -PI, PI)
 	var rotationDiffInverse = wrapf(get_angle_to(closestPlayer.position) + PI, -PI, PI)
 	
 	velocity = Vector2.ZERO
-	var front = filterOwnBullets($front.get_overlapping_areas()).size() > 0
-	var back = filterOwnBullets($back.get_overlapping_areas()).size() > 0
-	var left = filterOwnBullets($"left side".get_overlapping_areas()).size() > 0
-	var right = filterOwnBullets($"right side".get_overlapping_areas()).size() > 0
+	var front_bullets = filterOwnBullets($front.get_overlapping_areas())
+	var back_bullets = filterOwnBullets($back.get_overlapping_areas())
+	var left_bullets = filterOwnBullets($"left side".get_overlapping_areas())
+	var right_bullets = filterOwnBullets($"right side".get_overlapping_areas())
+	var front = front_bullets.size() > 0
+	var back = back_bullets.size() > 0
+	var left = left_bullets.size() > 0
+	var right = right_bullets.size() > 0
 	
 	var doQuit: bool = false
 	
 		
 	if front:
+		for bullet in front_bullets:
+			if global_position.distance_to(bullet.global_position) < distanceToTurn / (bullet.speed/500):
+				var diff = wrapf(get_angle_to(bullet.global_position), -PI, PI)
+				if abs(diff - rotation) < 30:
+					rotation_direction = int(left) - int(right)
+					if rotation_direction == 0: rotation_direction = int(diff - rotation > 0)
+					velocity = Vector2.ONE * speed * transform.x
 		velocity = -Vector2.ONE * speed * transform.x
 		tryToShoot()
 		return
 		
 	if back:
-		for bullet in filterOwnBullets($back.get_overlapping_areas()):
+		for bullet in back_bullets:
 			var offAngle = bullet.rotation - (get_angle_to(bullet.position) + deg_to_rad(180))
 			if abs(offAngle) < enemyBulletAngularAcceptence:
 				doQuit = true
@@ -169,8 +184,20 @@ func _physics_process(delta):
 		get_input()
 	else:
 		get_ai_input()
-		#debug_overlaps()
 	rotation += rotation_direction * rotation_speed * delta
+	if velocity != Vector2.ZERO:
+		if not %tank_move.playing:
+			%tank_move.play()
+	else:
+		if %tank_move.playing:
+			%tank_move.stop()
+			
+	if rotation_direction != 0:
+		if not %tank_rotation.playing:
+			%tank_rotation.play()
+	else:
+		if %tank_rotation.playing:
+			%tank_rotation.stop()
 	move_and_slide()
 
 
@@ -180,6 +207,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if bullet_node.playerNode != self:
 			$Area2D/CollisionShape2D.set_deferred("disabled", true)
 			global.playersData[player-1].state = global.playerStates.DEAD
+			%tank_death.play()
 			hide()
 
 func setColor(targetedColor: Color) -> void:
@@ -196,15 +224,3 @@ func upgradeUpgraded(nb: float = 1) -> float:
 func updateSprite():
 	%TankMaker.make(global.playersData[player-1].evolutionID)
 	%TankMaker.modulate = color
-
-func debug_overlaps():
-	var front_areas = $front.get_overlapping_areas()
-	print("--- FRONT overlaps: areas=", front_areas.size())
-	for a in front_areas:
-		print(" area:", a, "class:", a.get_class(), "name:", a.name)
-
-	# same for left / right
-	var la = $"left side".get_overlapping_areas()
-	print("LEFT: areas=", la.size())
-	var ra = $"right side".get_overlapping_areas()
-	print("RIGHT: areas=", ra.size())

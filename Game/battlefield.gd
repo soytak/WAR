@@ -146,8 +146,8 @@ func go_to_intermission(winner):
 			
 	if stillAlive <= 1:		
 		var winningScene = winningScreen.instantiate()
-		winningScene.setup(winner)
 		get_tree().root.add_child(winningScene)
+		winningScene.setup(winner)
 		get_tree().current_scene.queue_free()
 		get_tree().call_deferred("set_current_scene", winningScene)
 

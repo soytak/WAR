@@ -1,13 +1,15 @@
 extends Control
 
 var cursora = preload("res://cursor.tscn")
+var MinAFKTime: float = 5
+var MinAFKTimeEnable: bool = true
 
 func _ready() -> void:
 	z_index = 20
 	for i in range(4):
 		var newCursor = cursora.instantiate()
 		newCursor.player = i+1
-		#add_child(newCursor)
+		add_child(newCursor)
 
 func disableCursors():
 	for child in get_children():

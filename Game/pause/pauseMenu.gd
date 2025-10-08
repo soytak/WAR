@@ -23,6 +23,7 @@ func show_menu() -> void:
 	tween.parallel().tween_property(dim_rect, "color:a", 0.5, 0.5)
 	tween.finished.connect(func():
 		get_tree().paused = true
+		cursorManager.enableCursors()
 	)
 
 func hide_menu() -> void:
@@ -32,6 +33,7 @@ func hide_menu() -> void:
 	tween.parallel().tween_property(dim_rect, "color:a", 0.0, 0.5)
 	tween.finished.connect(func ():
 		hide()
+		cursorManager.disableCursors()
 		get_parent().unpause_game()
 	)
 

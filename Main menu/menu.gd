@@ -33,6 +33,5 @@ func _process(delta):
 	$BG.position = mouse_offset * parallax_strength * -0.7 - Vector2(50,50)
 	position = mouse_offset * parallax_strength * 0.3
 
-
 func _on_controls_goal_pressed() -> void:
 	$controls_goal.show()

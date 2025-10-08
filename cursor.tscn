@@ -10,3 +10,8 @@ mouse_filter = 2
 texture = ExtResource("1_5l68f")
 expand_mode = 1
 script = ExtResource("2_e4vdg")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

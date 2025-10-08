@@ -1,4 +1,6 @@
-extends Node2D
+extends Control
+
+var maker = preload("res://Game/tank maker/tank maker.tscn")
 
 var victoryMessages = [
 	"The others had skill issue!",
@@ -123,12 +125,18 @@ var victoryMessages = [
 
 
 func _ready() -> void:
+	var makerInstance = maker.instantiate()
+	makerInstance.scale = Vector2.ONE * 3
+	#fix  %winningTankPreview.size/2
+	makerInstance.position = %winningTankPreview.size/2 + makerInstance.getBaseSize()/2
+	%winningTankPreview.add_child(makerInstance)
 	victoryMessages.append("I wrote " + str(victoryMessages.size()) + " messages...")
 
 func setup(winner):
-	$PlayerDisp.text = "player " + str(winner)
-	$VictoryMessage.text = "\"" + victoryMessages[randi_range(0, victoryMessages.size()-1)] + "\""
+	%winningTankPreview.get_child(0).modulate = global.playersColors[winner-1]
+	%winningTankPreview.get_child(0).make(global.playersData[winner-1].evolutionID)
+	%PlayerDisp.text = "player " + str(winner)
+	%VictoryMessage.text = "\"" + victoryMessages[randi_range(0, victoryMessages.size()-1)] + "\""
 
-
-func _on_button_button_down() -> void:
+func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main menu/Menu.tscn")

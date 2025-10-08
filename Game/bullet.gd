@@ -10,10 +10,11 @@ func _ready():
 	musicPlayer = AudioStreamPlayer.new()
 	add_child(musicPlayer)
 	musicPlayer.bus = "Master"
-	musicPlayer.volume_db = 1
+	musicPlayer.volume_db = -20
 	musicPlayer.autoplay = false
 	musicPlayer.stream_paused = true
 	musicPlayer.stream = shotSound
+	musicPlayer.bus = "SFX"
 	musicPlayer.play()
 
 func _physics_process(delta):
@@ -31,3 +32,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func setColor(color: Color) -> void:
 	$sprite.self_modulate = color
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is StaticBody2D:
+		queue_free()

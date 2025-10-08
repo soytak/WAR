@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq6duf1jeu043"]
+[gd_scene load_steps=7 format=3 uid="uid://dq6duf1jeu043"]
 
 [ext_resource type="Script" uid="uid://buda6bms8h2l2" path="res://Game/move.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://duyn13baadi8m" path="res://Game/tank maker/tank maker.tscn" id="2_hiq6t"]
+[ext_resource type="AudioStream" uid="uid://ff88xkyhwnmn" path="res://SFX/tank_death.wav" id="3_v0l8u"]
+[ext_resource type="AudioStream" uid="uid://dtxvnhtx3bj1j" path="res://SFX/moving.wav" id="4_jouls"]
+[ext_resource type="AudioStream" uid="uid://dyci366sjnt17" path="res://SFX/rotation.wav" id="5_cxpn3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hiq6t"]
 size = Vector2(68, 64)
@@ -11,7 +14,7 @@ size = Vector2(68, 64)
 [node name="bullets" type="Node2D" parent="."]
 
 [node name="tank" type="CharacterBody2D" parent="."]
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("1_onrkg")
 
 [node name="TankMaker" parent="tank" instance=ExtResource("2_hiq6t")]
@@ -32,7 +35,7 @@ collision_mask = 16
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tank/front"]
-polygon = PackedVector2Array(0, -40, 224, -40, 224, 40, 0, 40)
+polygon = PackedVector2Array(0, -40, 496, -40, 496, 40, 0, 40)
 
 [node name="back" type="Area2D" parent="tank"]
 collision_mask = 16
@@ -56,6 +59,31 @@ monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="tank/right side"]
 polygon = PackedVector2Array(0, 24, 192, 24, 192, 96, 0, 52)
+
+[node name="tank_death" type="AudioStreamPlayer2D" parent="tank"]
+unique_name_in_owner = true
+stream = ExtResource("3_v0l8u")
+attenuation = 1e-05
+max_polyphony = 2
+panning_strength = 2.0
+bus = &"SFX"
+
+[node name="tank_move" type="AudioStreamPlayer2D" parent="tank"]
+unique_name_in_owner = true
+stream = ExtResource("4_jouls")
+volume_db = -10.0
+max_distance = 3115.0
+attenuation = 1e-05
+panning_strength = 2.0
+bus = &"SFX"
+
+[node name="tank_rotation" type="AudioStreamPlayer2D" parent="tank"]
+unique_name_in_owner = true
+stream = ExtResource("5_cxpn3")
+max_distance = 3115.0
+attenuation = 1e-05
+panning_strength = 2.0
+bus = &"SFX"
 
 [connection signal="visibility_changed" from="tank" to="tank" method="_on_visibility_changed"]
 [connection signal="area_entered" from="tank/Area2D" to="tank" method="_on_area_2d_area_entered"]

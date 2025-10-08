@@ -29,6 +29,5 @@ func getActivePlayer() ->int:
 			activePlayer += 1
 	return activePlayer
 
-
 func _on_game_start_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Game/Battlefield.tscn")

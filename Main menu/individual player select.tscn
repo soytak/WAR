@@ -6,5 +6,3 @@
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_alcto")
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

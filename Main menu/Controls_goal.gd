@@ -29,16 +29,21 @@ func _ready() -> void:
 	setPanelTo(panelMessageActive)
 
 func _input(event: InputEvent) -> void:
+	if not visible: return
 	if event is InputEventKey:
 		for i in range(4):
 			if event.pressed and Input.is_action_pressed(global.getPlayerInput(i, "right")):
 				panelMessageActive += 1
 				setPanelTo(panelMessageActive)
+				accept_event()
 			if event.pressed and Input.is_action_pressed(global.getPlayerInput(i, "left")):
 				panelMessageActive -= 1
 				setPanelTo(panelMessageActive)
-			if event.pressed and Input.is_action_pressed(global.getPlayerInput(i, "shoot")):
-				hide()
+				accept_event()
+				
+	if event is InputEventMouseButton and event.pressed:
+		hide()
+		accept_event()
 				
 func setPanelTo(panelMessage: int):
 	$VBoxContainer/instruction.text = panelMessages[panelMessage % panelMessages.size()]

@@ -1,14 +1,16 @@
 extends Node
 
-@export var default_volume_db: float = 0.0
+@export var default_volume_db: float = 0
 @export var fade_duration: float = 1.0
+
+var musicVolumeShift: float = 1
 
 var music_player: AudioStreamPlayer
 
 func _ready():
 	music_player = AudioStreamPlayer.new()
 	add_child(music_player)
-	music_player.bus = "Master"
+	music_player.bus = "BGM"
 	music_player.volume_db = default_volume_db
 	music_player.autoplay = false
 	music_player.stream_paused = true
@@ -39,3 +41,11 @@ func fade_in_music():
 
 func _on_fade_out_finished(new_stream: AudioStream):
 	start_music(new_stream)
+
+func setVolume(volume):
+	musicVolumeShift = volume
+	var bus = AudioServer.get_bus_index("BGM")
+	AudioServer.set_bus_volume_db(
+		bus,
+		linear_to_db(musicVolumeShift)
+	)

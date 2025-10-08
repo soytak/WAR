@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=3 uid="uid://btti4yhvq13ba"]
+
+[ext_resource type="Script" uid="uid://iwshqgs1q77s" path="res://Main menu/settings.gd" id="1_g7jev"]
+[ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="2_bh0mo"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_g7jev")
+
+[node name="center" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="panel" type="PanelContainer" parent="center"]
+layout_mode = 2
+
+[node name="margin" type="MarginContainer" parent="center/panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Elements" type="VBoxContainer" parent="center/panel/margin"]
+layout_mode = 2
+theme = ExtResource("2_bh0mo")
+theme_override_constants/separation = 50
+
+[node name="BGM" type="Label" parent="center/panel/margin/Elements"]
+layout_mode = 2
+text = "BGM"
+
+[node name="BGM_Slider" type="HSlider" parent="center/panel/margin/Elements"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SFX" type="Label" parent="center/panel/margin/Elements"]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFX_Slider" type="HSlider" parent="center/panel/margin/Elements"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="CHT box" type="HBoxContainer" parent="center/panel/margin/Elements"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="CHT" type="Label" parent="center/panel/margin/Elements/CHT box"]
+layout_mode = 2
+text = "Cursor Hiding Time"
+
+[node name="enable" type="CheckButton" parent="center/panel/margin/Elements/CHT box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="CHT time box" type="HBoxContainer" parent="center/panel/margin/Elements"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="decrease" type="Button" parent="center/panel/margin/Elements/CHT time box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<-"
+
+[node name="slight decrease" type="Button" parent="center/panel/margin/Elements/CHT time box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<"
+
+[node name="time" type="Label" parent="center/panel/margin/Elements/CHT time box"]
+layout_mode = 2
+
+[node name="slight increase" type="Button" parent="center/panel/margin/Elements/CHT time box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ">"
+
+[node name="increase" type="Button" parent="center/panel/margin/Elements/CHT time box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "->"
+
+[node name="Back" type="Button" parent="center/panel/margin/Elements"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="value_changed" from="center/panel/margin/Elements/BGM_Slider" to="." method="_on_bgm_slider_value_changed"]
+[connection signal="value_changed" from="center/panel/margin/Elements/SFX_Slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="toggled" from="center/panel/margin/Elements/CHT box/enable" to="." method="_on_enable_toggled"]
+[connection signal="pressed" from="center/panel/margin/Elements/CHT time box/decrease" to="." method="_on_decrease_pressed"]
+[connection signal="pressed" from="center/panel/margin/Elements/CHT time box/slight decrease" to="." method="_on_slight_decrease_pressed"]
+[connection signal="pressed" from="center/panel/margin/Elements/CHT time box/slight increase" to="." method="_on_slight_increase_pressed"]
+[connection signal="pressed" from="center/panel/margin/Elements/CHT time box/increase" to="." method="_on_increase_pressed"]
+[connection signal="pressed" from="center/panel/margin/Elements/Back" to="." method="_on_back_pressed"]

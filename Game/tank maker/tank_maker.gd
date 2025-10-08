@@ -13,6 +13,9 @@ var cooldownScalar = 1
 func _ready() -> void:
 	pass
 	
+func getBaseSize() -> Vector2:
+	return $base.texture.get_size() * $base.scale
+	
 func make(evolutionID: int):
 	cooldownScalar = 1
 	for child in %canons.get_children():

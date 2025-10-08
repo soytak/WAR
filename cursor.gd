@@ -13,29 +13,50 @@ func _process(delta: float) -> void:
 	else:
 		modulate = Color.WHITE
 
-	position.y += Input.get_axis(global.getPlayerInput(player, "foward"), global.getPlayerInput(player, "backward")) * speed
-	position.x += Input.get_axis(global.getPlayerInput(player, "left"), global.getPlayerInput(player, "right")) * speed
-	position.x = clamp(position.x, 0, get_viewport_rect().size.x - size.x)
-	position.y = clamp(position.y, 0, get_viewport_rect().size.y - size.y)
+	var diffY = Input.get_axis(global.getPlayerInput(player, "foward"), global.getPlayerInput(player, "backward")) * speed
+	var diffX = Input.get_axis(global.getPlayerInput(player, "left"), global.getPlayerInput(player, "right")) * speed
+	
+	position.x = clamp(position.x + diffX, 0, get_viewport_rect().size.x - size.x)
+	position.y = clamp(position.y + diffY, 0, get_viewport_rect().size.y - size.y)
 	if press:
 		_simulate_global_click()
+	
+	if not cursorManager.MinAFKTimeEnable: return
+	if press or diffX != 0 or diffY != 0:
+		show()
+		$Timer.paused = true
+	else:
+		if $Timer.paused: 
+			$Timer.paused = false
+			$Timer.start(cursorManager.MinAFKTime)
 
 func _input(event):
 	if event is InputEventMouseButton: 
-		#print(event.position)
 		pass
 	
 func _simulate_global_click() -> void:
-	var clickPos = position + size / 2
-	#clickPos -= get_viewport().get_camera_2d().global_position
+	var viewport := get_viewport()
+	
+	var local_center := size / 2
+	var canvas_xform := get_global_transform_with_canvas()
+
+	var click_pos := canvas_xform * local_center
+	click_pos = viewport.get_final_transform() * click_pos
+
 	var click_press := InputEventMouseButton.new()
 	click_press.button_index = MOUSE_BUTTON_LEFT
 	click_press.pressed = true
-	click_press.position = clickPos
+	click_press.position = click_pos
+	click_press.set_meta("player", player)
 	Input.parse_input_event(click_press)
-	
+
 	var click_release := InputEventMouseButton.new()
 	click_release.button_index = MOUSE_BUTTON_LEFT
 	click_release.pressed = false
-	click_release.position = clickPos
+	click_release.position = click_pos
+	click_release.set_meta("player", player)
 	Input.parse_input_event(click_release)
+
+
+func _on_timer_timeout() -> void:
+	hide()

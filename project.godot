@@ -22,6 +22,8 @@ musicManager="*res://Manager/musicManager.gd"
 cursorManager="*res://cursorManager.tscn"
 RandomPolygonPoint="*res://randomPolygonPoint.gd"
 evolutionManager="*res://evolutions.gd"
+sfxManager="*res://Manager/sfxManager.gd"
+SaveManager="*res://Manager/saveManager.gd"
 
 [display]
 
@@ -158,6 +160,7 @@ click={
 [layer_names]
 
 2d_physics/layer_2="block player"
+2d_physics/layer_3="wall"
 2d_physics/layer_5="bullets"
 
 [rendering]

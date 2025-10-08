@@ -1,24 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://btpkkbmnel5s3"]
+[gd_scene load_steps=9 format=3 uid="uid://btpkkbmnel5s3"]
 
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_t3fg1"]
 [ext_resource type="Script" uid="uid://h7apm5lnpr41" path="res://Main menu/menu.gd" id="1_xds3s"]
 [ext_resource type="Texture2D" uid="uid://cy3g6fou6e2gs" path="res://Maps/tower.png" id="2_3j7fk"]
 [ext_resource type="Script" uid="uid://jn6lj2l1yil6" path="res://Main menu/buttonsr.gd" id="3_xds3s"]
 [ext_resource type="Script" uid="uid://bwqyc4xint3pl" path="res://Main menu/Controls_goal.gd" id="5_3j7fk"]
+[ext_resource type="PackedScene" uid="uid://btti4yhvq13ba" path="res://Main menu/settings.tscn" id="6_xds3s"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3j7fk"]
 texture = ExtResource("2_3j7fk")
 modulate_color = Color(1, 1, 1, 0.145098)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xds3s"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsikn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny5mr"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri0r6"]
 bg_color = Color(1, 1, 1, 0.643137)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 shadow_size = 5
 shadow_offset = Vector2(20, 20)
 
@@ -54,9 +52,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -993.0
-offset_top = -69.0
+offset_top = -234.0
 offset_right = 81.0
-offset_bottom = 775.0
+offset_bottom = 610.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 40
@@ -65,34 +63,21 @@ script = ExtResource("3_xds3s")
 [node name="fight" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_xds3s")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_nsikn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ny5mr")
 text = "Play!"
 
 [node name="Controls_goal" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_xds3s")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_nsikn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ny5mr")
 text = "Controls / goal"
+
+[node name="settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_t3fg1")
+text = "settings"
 
 [node name="quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_xds3s")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_nsikn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ny5mr")
 text = "Exit"
 
 [node name="Title" type="RichTextLabel" parent="."]
@@ -135,6 +120,7 @@ offset_right = 679.5
 offset_bottom = 321.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_t3fg1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ri0r6")
 script = ExtResource("5_3j7fk")
 
@@ -159,6 +145,11 @@ horizontal_alignment = 2
 
 [node name="Node2D" type="Node2D" parent="."]
 
+[node name="Settings" parent="." instance=ExtResource("6_xds3s")]
+unique_name_in_owner = true
+layout_mode = 1
+
 [connection signal="pressed" from="VBoxContainer/fight" to="VBoxContainer" method="_on_fight_pressed"]
 [connection signal="pressed" from="VBoxContainer/Controls_goal" to="." method="_on_controls_goal_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="VBoxContainer" method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="VBoxContainer" method="_on_quit_pressed"]
