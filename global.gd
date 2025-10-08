@@ -26,6 +26,13 @@ var upgrades: Array[Upgrade] = [
 	Upgrade.create("Makes upgrade stats better", "res://Textures/upgrade_upgrades.png", "upgradeUpgrades"),
 ]
 
+var maps = [preload("res://Maps/river.tscn"),
+			preload("res://Maps/food_cooking.tscn"),
+			preload("res://Maps/volcano.tscn"),
+			preload("res://Maps/tower.tscn"),
+			preload("res://Maps/sacred_bird.tscn"),
+		   ]
+
 
 var playersData: Array[PlayerData] = []
 

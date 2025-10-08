@@ -20,13 +20,7 @@ func _ready() -> void:
 	for player in global.playersData:
 		player.reset(player)
 	
-	var maps = [preload("res://Maps/river.tscn"),
-				preload("res://Maps/food_cooking.tscn"),
-				preload("res://Maps/volcano.tscn"),
-				preload("res://Maps/tower.tscn"),
-				preload("res://Maps/sacred_bird.tscn"),
-			   ]
-	var map = maps[randi_range(0, maps.size()-1)].instantiate()
+	var map = global.maps[randi_range(0, global.maps.size()-1)].instantiate()
 	
 	if not map.get_node("spawn").get_child(0).name in ["1", "2", "3", "4"]:
 		spawns.append(PolygonRandomPointGenerator.new(map.get_node("spawn").get_child(0).polygon))

@@ -30,16 +30,15 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.392157)
 
-[node name="HSplitContainer" type="HSplitContainer" parent="Panel"]
+[node name="HSplitContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
-drag_area_margin_begin = 100
-drag_area_margin_end = 1000
 
 [node name="Left" type="MarginContainer" parent="Panel/HSplitContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Left"]
 layout_mode = 2
@@ -65,6 +64,7 @@ columns = 3
 [node name="Right" type="MarginContainer" parent="Panel/HSplitContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 7
 

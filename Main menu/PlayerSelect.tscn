@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0tusywmes4ve" path="res://Main menu/game_start_button.gd" id="1_3gagv"]
 [ext_resource type="Script" uid="uid://b28mg4t5dcoya" path="res://Main menu/player_select.gd" id="1_h6cis"]
-[ext_resource type="Texture2D" uid="uid://cvoj1rixiwi10" path="res://Textures/player select/startWAR.png" id="2_heesk"]
+[ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="2_heesk"]
 
 [node name="PlayerSelect" type="Control"]
 layout_mode = 3
@@ -26,16 +26,12 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 columns = 2
 
-[node name="Game Start Button" type="TextureButton" parent="."]
-visible = false
+[node name="Game Start Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 183.0
-offset_top = 1214.0
-offset_right = 1013.0
-offset_bottom = 1726.0
-button_mask = 5
-texture_normal = ExtResource("2_heesk")
-stretch_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("2_heesk")
+text = "Ready for battle"
 script = ExtResource("1_3gagv")
 
 [connection signal="pressed" from="Game Start Button" to="." method="_on_game_start_button_pressed"]

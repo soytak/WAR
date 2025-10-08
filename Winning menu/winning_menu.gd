@@ -19,7 +19,7 @@ var victoryMessages = [
 	"The enemies will remember this...",
 	"Gamer for life!",
 	"Be me: exist = win",
-	"I have a life I promised",
+	"I have a life I promise",
 	"Can't belive it!",
 	"What a game!",
 	"Was it close?",
@@ -47,7 +47,7 @@ var victoryMessages = [
 	"Master of the controls!",
 	"Picked all the OP power ups!",
 	"Blinded the oponents!",
-	"They couln't see it comming!",
+	"They couln't see it coming!",
 	"Played many bullets hell before!",
 	"The project of the ouest uh?",
 	"The game is alive",
@@ -127,8 +127,6 @@ var victoryMessages = [
 func _ready() -> void:
 	var makerInstance = maker.instantiate()
 	makerInstance.scale = Vector2.ONE * 3
-	#fix  %winningTankPreview.size/2
-	makerInstance.position = %winningTankPreview.size/2 + makerInstance.getBaseSize()/2
 	%winningTankPreview.add_child(makerInstance)
 	victoryMessages.append("I wrote " + str(victoryMessages.size()) + " messages...")
 
