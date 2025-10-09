@@ -14,20 +14,27 @@ var gameState = gameStates.COUNTDOWN
 
 var spawns: Array = []
 
+var map = null
+
+func setMap(mapToSet):
+	if !is_instance_valid(map):
+		map = mapToSet
+	
 func _ready() -> void:
 	cursorManager.disableCursors()
 	
 	for player in global.playersData:
 		player.reset(player)
 	
-	var map = global.maps[randi_range(0, global.maps.size()-1)].instantiate()
+	setMap(global.maps[randi_range(0, global.maps.size()-1)])
+	var mapNode = map.instantiate()
 	
-	if not map.get_node("spawn").get_child(0).name in ["1", "2", "3", "4"]:
-		spawns.append(PolygonRandomPointGenerator.new(map.get_node("spawn").get_child(0).polygon))
+	if not mapNode.get_node("spawn").get_child(0).name in ["1", "2", "3", "4"]:
+		spawns.append(PolygonRandomPointGenerator.new(mapNode.get_node("spawn").get_child(0).polygon))
 	else:
 		for i in range(4):
-			spawns.append(PolygonRandomPointGenerator.new(map.get_node("spawn").get_node(str(i+1)).polygon))
-	$map.add_child(map)
+			spawns.append(PolygonRandomPointGenerator.new(mapNode.get_node("spawn").get_node(str(i+1)).polygon))
+	$map.add_child(mapNode)
 	
 	global.forEachPlayingPlayer(func(i):
 		var newPlayer = player.instantiate()

@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 	$"Game Start Button".modulate = Color.from_hsv(fmod(hueShift, 1.0), 1.0, 1.0, 0.8)
 	$ColorRect.modulate = Color.from_hsv(fmod(hueShift+0.5, 1.0), 1.0, 1.0, 0.8)
 
-func getActivePlayer() ->int:
+func getActivePlayer() -> int:
 	var activePlayer = 0
 	for i in range(4):
 		if global.playersData[i].playerType != global.playerTypes.NONE:
@@ -30,4 +30,4 @@ func getActivePlayer() ->int:
 	return activePlayer
 
 func _on_game_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Game/Battlefield.tscn")
+	get_tree().change_scene_to_file("res://Main menu/Map Select.tscn")#"res://Game/Battlefield.tscn")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://77yfj8hhyv4j"]
+[gd_scene load_steps=3 format=3 uid="uid://77yfj8hhyv4j"]
 
+[ext_resource type="Texture2D" uid="uid://cvoj1rixiwi10" path="res://Textures/player select/startWAR.png" id="1_4xnsg"]
 [ext_resource type="Script" uid="uid://1kft753n1a4w" path="res://Main menu/map_previews.gd" id="1_xylol"]
 
 [node name="MapSelect" type="Control"]
@@ -11,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -101.0
 offset_top = -55.0
@@ -31,6 +33,13 @@ size_flags_horizontal = 3
 
 [node name="placeholder" type="Container" parent="MarginContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WAR" type="TextureButton" parent="MarginContainer/HSplitContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("1_4xnsg")
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HSplitContainer"]
 layout_mode = 2
@@ -42,3 +51,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 columns = 2
 script = ExtResource("1_xylol")
+
+[connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/WAR" to="MarginContainer/HSplitContainer/CenterContainer/map previews" method="_on_war_pressed"]
