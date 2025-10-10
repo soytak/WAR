@@ -80,3 +80,4 @@ vertical_alignment = 1
 
 [node name="pauseMenu" parent="." instance=ExtResource("2_8kptf")]
 visible = false
+hidingCursor = true

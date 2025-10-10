@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://2xyxvpfhe51y"]
+[gd_scene load_steps=5 format=3 uid="uid://2xyxvpfhe51y"]
 
 [ext_resource type="Script" uid="uid://c0tusywmes4ve" path="res://Main menu/game_start_button.gd" id="1_3gagv"]
 [ext_resource type="Script" uid="uid://b28mg4t5dcoya" path="res://Main menu/player_select.gd" id="1_h6cis"]
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="2_heesk"]
+[ext_resource type="PackedScene" uid="uid://dss3fec3hncs7" path="res://Game/pause/PauseMenu.tscn" id="4_uugju"]
 
 [node name="PlayerSelect" type="Control"]
 layout_mode = 3
@@ -34,5 +35,9 @@ offset_bottom = 8.0
 theme = ExtResource("2_heesk")
 text = "Ready for battle"
 script = ExtResource("1_3gagv")
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_uugju")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="Game Start Button" to="." method="_on_game_start_button_pressed"]

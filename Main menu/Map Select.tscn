@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://77yfj8hhyv4j"]
+[gd_scene load_steps=4 format=3 uid="uid://77yfj8hhyv4j"]
 
 [ext_resource type="Texture2D" uid="uid://cvoj1rixiwi10" path="res://Textures/player select/startWAR.png" id="1_4xnsg"]
 [ext_resource type="Script" uid="uid://1kft753n1a4w" path="res://Main menu/map_previews.gd" id="1_xylol"]
+[ext_resource type="PackedScene" uid="uid://dss3fec3hncs7" path="res://Game/pause/PauseMenu.tscn" id="3_f6736"]
 
 [node name="MapSelect" type="Control"]
 layout_mode = 3
@@ -51,5 +52,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 columns = 2
 script = ExtResource("1_xylol")
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_f6736")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/WAR" to="MarginContainer/HSplitContainer/CenterContainer/map previews" method="_on_war_pressed"]
