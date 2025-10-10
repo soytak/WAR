@@ -2,6 +2,7 @@ extends TextureRect
 
 var player: int
 var speed: int = 10
+var canShow: bool = true
 
 func _ready() -> void:
 	self_modulate = global.playersColors[player - 1]
@@ -23,12 +24,16 @@ func _process(delta: float) -> void:
 	
 	if not cursorManager.MinAFKTimeEnable: return
 	if press or diffX != 0 or diffY != 0:
-		show()
+		if canShow: show()
 		$Timer.paused = true
 	else:
 		if $Timer.paused: 
 			$Timer.paused = false
 			$Timer.start(cursorManager.MinAFKTime)
+			
+	if not canShow and visible:
+		hide()
+	
 
 func _input(event):
 	if event is InputEventMouseButton: 
@@ -60,3 +65,9 @@ func _simulate_global_click() -> void:
 
 func _on_timer_timeout() -> void:
 	hide()
+
+func enable():
+	canShow = true
+
+func disable():
+	canShow = false

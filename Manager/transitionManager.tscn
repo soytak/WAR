@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://xnx535u6rp4s"]
+
+[ext_resource type="Script" uid="uid://bbim3afpi7gqw" path="res://Manager/transition_manager.gd" id="1_tjfxj"]
+[ext_resource type="Shader" uid="uid://be5tgf6y7vvsu" path="res://Manager/transitionManager.gdshader" id="1_xjjcq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tjfxj"]
+shader = ExtResource("1_xjjcq")
+shader_parameter/TransparentDot = false
+shader_parameter/AspectRatio = 1.5
+shader_parameter/Dots = 25.0
+shader_parameter/_min = 0.0
+shader_parameter/_max = 2.0
+shader_parameter/height = 0.0
+
+[node name="TransitionManager" type="Control"]
+z_index = 19
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tjfxj")
+
+[node name="transition" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_tjfxj")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0

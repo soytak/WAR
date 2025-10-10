@@ -120,7 +120,19 @@ var victoryMessages = [
 	"Unstoppable!!",
 	"Winning streak!",
 	"UPGRADEDUPGRADEDUPGRADEDUPGRADEDUPGRADEDUPGRADEDBASIC is fire!",
-	"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+	"https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+	"Walked the walk",
+	"Incredible!",
+	"Just like the 80s",
+	"Just before Y2K",
+	"Killing spree",
+	"Tomorrow, more tanks will fall, where are we even going?..",
+	"See you after life",
+	"Gamed like a gamer",
+	"Good aim?",
+	"Flawless",
+	"Standing above all!",
+	"No contest"
 ]
 
 

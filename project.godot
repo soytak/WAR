@@ -24,6 +24,7 @@ RandomPolygonPoint="*res://randomPolygonPoint.gd"
 evolutionManager="*res://evolutions.gd"
 sfxManager="*res://Manager/sfxManager.gd"
 SaveManager="*res://Manager/saveManager.gd"
+TransitionManager="*res://Manager/transitionManager.tscn"
 
 [display]
 
