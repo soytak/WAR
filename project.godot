@@ -13,6 +13,9 @@ config_version=5
 config/name="WAR"
 run/main_scene="uid://btpkkbmnel5s3"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0.617455, 0.617455, 0.617455, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://cvoj1rixiwi10"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -25,6 +28,7 @@ evolutionManager="*res://evolutions.gd"
 sfxManager="*res://Manager/sfxManager.gd"
 SaveManager="*res://Manager/saveManager.gd"
 TransitionManager="*res://Manager/transitionManager.tscn"
+PauseMenu="*res://Game/pause/PauseMenu.tscn"
 
 [display]
 

@@ -27,6 +27,7 @@ offset_bottom = 1080.0
 columns = 2
 
 [node name="Game Start Button" type="Button" parent="."]
+process_priority = -1
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0

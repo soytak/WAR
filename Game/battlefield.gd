@@ -1,8 +1,5 @@
 extends Node2D
 
-#todo
-#a scene to select player number
-
 var player = preload("res://Game/Player.tscn")
 var intermission = preload("res://Game/intermission/intermission.tscn")
 var winningScreen = preload("res://Winning menu/Winning menu.tscn")
@@ -66,11 +63,7 @@ func _input(event: InputEvent) -> void:
 		if get_tree().paused and pause_menu.visible:
 			pause_menu.hide_menu()
 		else:
-			get_tree().paused = true
 			pause_menu.show_menu()
-
-func unpause_game() -> void:
-	get_tree().paused = false
 
 func _physics_process(delta):
 	var alives = 0

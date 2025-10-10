@@ -43,6 +43,7 @@ func _on_back_pressed() -> void:
 
 func _on_enable_toggled(toggled_on: bool) -> void:
 	cursorManager.MinAFKTimeEnable = toggled_on
+	cursorManager.enableCursors()
 
 
 func _on_decrease_pressed() -> void:

@@ -22,17 +22,18 @@ func _process(delta: float) -> void:
 	if press:
 		_simulate_global_click()
 	
-	if not cursorManager.MinAFKTimeEnable: return
-	if press or diffX != 0 or diffY != 0:
-		if canShow: show()
-		$Timer.paused = true
-	else:
-		if $Timer.paused: 
-			$Timer.paused = false
-			$Timer.start(cursorManager.MinAFKTime)
-			
+	if cursorManager.MinAFKTimeEnable:
+		if press or diffX != 0 or diffY != 0:
+			if canShow: show()
+			$Timer.paused = true
+		else:
+			if $Timer.paused: 
+				$Timer.paused = false
+				$Timer.start(cursorManager.MinAFKTime)
+		
 	if not canShow and visible:
 		hide()
+			
 	
 
 func _input(event):
@@ -68,6 +69,11 @@ func _on_timer_timeout() -> void:
 
 func enable():
 	canShow = true
+	if not cursorManager.MinAFKTimeEnable:
+		show()
+	else:
+		$Timer.paused = false
+		$Timer.start(cursorManager.MinAFKTime)
 
 func disable():
 	canShow = false
