@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmyyc5ac08u6s"]
+
+[ext_resource type="Texture2D" uid="uid://csh5ejq7qtewe" path="res://Maps/mines_base.png" id="1_4d0ye"]
+[ext_resource type="Script" uid="uid://dxydsuwwxmccp" path="res://Maps/mines.gd" id="2_lr0a5"]
+[ext_resource type="Texture2D" uid="uid://c3si3xdpa3e8k" path="res://Maps/minecart.png" id="3_w4qt8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5hi8"]
+size = Vector2(272, 424)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d0ye"]
+size = Vector2(272, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr0a5"]
+size = Vector2(816, 39)
+
+[node name="Tower" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.563626, 0.563626, 0.563626, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_4d0ye")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(252, 80)
+polygon = PackedVector2Array(-334, 1127, -350, 195, -236, 333, -162, 530, -153, 579, -121, 649, -143, 721, -94, 754, -34, 855, -53, 954, -42, 1011)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(252, 80)
+polygon = PackedVector2Array(1693, 1006, 1654, 936, 1650, 826, 1674, 773, 1644, 762, 1622, 648, 1578, 436, 1569, 209, 1547, 6, 1531, -80, 1897, -94, 2020, 985)
+
+[node name="spawn" type="Node2D" parent="."]
+
+[node name="ssd" type="CollisionPolygon2D" parent="spawn"]
+polygon = PackedVector2Array(1647, 110, 1719, 977, 340, 966, 101, 110)
+
+[node name="minecart" type="CharacterBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("2_lr0a5")
+
+[node name="sprite" type="Sprite2D" parent="minecart"]
+texture = ExtResource("3_w4qt8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="minecart"]
+shape = SubResource("RectangleShape2D_f5hi8")
+
+[node name="Area2D" type="Area2D" parent="minecart"]
+collision_layer = 0
+monitorable = false
+
+[node name="up" type="CollisionShape2D" parent="minecart/Area2D"]
+position = Vector2(0, -216)
+shape = SubResource("RectangleShape2D_4d0ye")
+
+[node name="down" type="CollisionShape2D" parent="minecart/Area2D"]
+position = Vector2(0, 216)
+shape = SubResource("RectangleShape2D_4d0ye")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(1028, -20)
+shape = SubResource("RectangleShape2D_lr0a5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(1028, 1100)
+shape = SubResource("RectangleShape2D_lr0a5")
+
+[connection signal="body_entered" from="minecart/Area2D" to="minecart" method="_on_area_2d_body_entered"]

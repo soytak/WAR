@@ -31,6 +31,7 @@ var maps = [preload("res://Maps/river.tscn"),
 			preload("res://Maps/volcano.tscn"),
 			preload("res://Maps/tower.tscn"),
 			preload("res://Maps/sacred_bird.tscn"),
+			preload("res://Maps/mines.tscn")
 		   ]
 
 

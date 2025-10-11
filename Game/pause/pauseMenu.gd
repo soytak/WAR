@@ -58,3 +58,7 @@ func _on_unpause_pressed() -> void:
 func _on_exit_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(mainMenu)
+
+
+func _on_settings_pressed() -> void:
+	%Settings.activate()
