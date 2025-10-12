@@ -206,6 +206,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var bullet_node = area.get_parent()
 		if bullet_node.playerNode != self:
 			$Area2D/CollisionShape2D.set_deferred("disabled", true)
+			$"map collision".set_deferred("disabled", true)
 			global.playersData[player-1].state = global.playerStates.DEAD
 			%tank_death.play()
 			hide()
@@ -216,6 +217,7 @@ func setColor(targetedColor: Color) -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		updateSprite()
+		$"map collision".set_deferred("disabled", false)
 		$Area2D/CollisionShape2D.set_deferred("disabled", false)
 
 func upgradeUpgraded(nb: float = 1) -> float:

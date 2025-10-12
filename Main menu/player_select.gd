@@ -14,12 +14,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if getActivePlayer() > 1:
-		$"Game Start Button".show()
+		%"Game Start Button".show()
 	else:
-		$"Game Start Button".hide()
+		%"Game Start Button".hide()
 		
 	hueShift += delta/10
-	$"Game Start Button".modulate = Color.from_hsv(fmod(hueShift, 1.0), 1.0, 1.0, 0.8)
+	%"Game Start Button".modulate = Color.from_hsv(fmod(hueShift, 1.0), 1.0, 1.0, 0.8)
 	$ColorRect.modulate = Color.from_hsv(fmod(hueShift+0.5, 1.0), 1.0, 1.0, 0.8)
 
 func getActivePlayer() -> int:
