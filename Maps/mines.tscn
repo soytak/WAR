@@ -8,12 +8,12 @@
 size = Vector2(272, 424)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4d0ye"]
-size = Vector2(272, 16)
+size = Vector2(272, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr0a5"]
 size = Vector2(816, 39)
 
-[node name="Tower" type="Node2D"]
+[node name="Mines" type="Node2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(0.563626, 0.563626, 0.563626, 1)
@@ -22,7 +22,7 @@ offset_bottom = 40.0
 texture = ExtResource("1_4d0ye")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 4
+collision_layer = 6
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -52,29 +52,28 @@ shape = SubResource("RectangleShape2D_f5hi8")
 
 [node name="Area2D" type="Area2D" parent="minecart"]
 collision_layer = 0
+collision_mask = 42
 monitorable = false
 
 [node name="up" type="CollisionShape2D" parent="minecart/Area2D"]
-position = Vector2(0, -216)
+position = Vector2(0, -212)
 shape = SubResource("RectangleShape2D_4d0ye")
 
 [node name="down" type="CollisionShape2D" parent="minecart/Area2D"]
-position = Vector2(0, 216)
+position = Vector2(0, 212)
 shape = SubResource("RectangleShape2D_4d0ye")
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
+[node name="guards" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-
-[node name="Area2D2" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="guards"]
 position = Vector2(1028, -20)
 shape = SubResource("RectangleShape2D_lr0a5")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="guards"]
 position = Vector2(1028, 1100)
 shape = SubResource("RectangleShape2D_lr0a5")
 
+[connection signal="area_entered" from="minecart/Area2D" to="minecart" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="minecart/Area2D" to="minecart" method="_on_area_2d_body_entered"]

@@ -22,18 +22,18 @@ func _physics_process(delta):
 	var move_vec = direction * speed
 	global_position += move_vec * delta
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("deadzone"):
-		queue_free()
-	if area.is_in_group("playerHitbox"):
-		var char_node = area.get_parent()
-		if char_node != playerNode:
-			queue_free()
-
 func setColor(color: Color) -> void:
 	$sprite.self_modulate = color
 
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	_on_area_2d_body_entered(area)
 
+	
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is StaticBody2D:
+	if body.get_collision_layer_value(4):
+		if body != playerNode:
+			queue_free()
+	else:
 		queue_free()
+	#if body is StaticBody2D:
+		#queue_free()

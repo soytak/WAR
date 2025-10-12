@@ -132,7 +132,8 @@ var victoryMessages = [
 	"Good aim?",
 	"Flawless",
 	"Standing above all!",
-	"No contest"
+	"No contest",
+	"The real goal was the friends we made along the way"
 ]
 
 

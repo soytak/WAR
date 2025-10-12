@@ -202,7 +202,7 @@ func _physics_process(delta):
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("bulletHurtbox"):
+	if area.get_collision_layer_value(5):
 		var bullet_node = area.get_parent()
 		if bullet_node.playerNode != self:
 			$Area2D/CollisionShape2D.set_deferred("disabled", true)

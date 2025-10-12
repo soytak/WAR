@@ -3,7 +3,7 @@ extends Control
 var height = -0.5
 	
 func _process(delta: float) -> void:
-	$transition.material.set("shader_param/height",height)
+	$transition.material.set_shader_parameter("height",height)
 
 func setColor(color: Color):
 	$transition.modulate = color

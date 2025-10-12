@@ -55,6 +55,5 @@ script = ExtResource("1_xylol")
 
 [node name="PauseMenu" parent="." instance=ExtResource("3_f6736")]
 visible = false
-layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/HSplitContainer/VBoxContainer/WAR" to="MarginContainer/HSplitContainer/CenterContainer/map previews" method="_on_war_pressed"]

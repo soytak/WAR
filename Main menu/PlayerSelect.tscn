@@ -38,6 +38,5 @@ script = ExtResource("1_3gagv")
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_uugju")]
 visible = false
-layout_mode = 1
 
 [connection signal="pressed" from="Game Start Button" to="." method="_on_game_start_button_pressed"]
