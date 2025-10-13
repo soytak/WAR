@@ -35,3 +35,7 @@ func _process(delta):
 
 func _on_controls_goal_pressed() -> void:
 	$controls_goal.show()
+
+
+func _on_dictionary_pressed() -> void:
+	$TankDictionary.show()

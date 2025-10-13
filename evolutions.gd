@@ -30,7 +30,7 @@ QUADRIPLESHOT, VDOUBLESHOT,
 
 #done UPGRADEDBASIC
 UPGRADEDUPGRADEDBASIC,#1
-UPGRADEDUPGRADEDUPGRADEDBASIC, RNG, #SPRINKLER
+UPGRADEDUPGRADEDUPGRADEDBASIC, #RNG, #SPRINKLER
 BACKWARDSHOT, #2
 BACKWARDSHOTSNIPER, BACKWARDSIXWAY,
 DROPPER, #3
@@ -64,12 +64,107 @@ SIXWAY, #FOURWAYSNIPER BACKWARDSIXWAY
 UPGRADEDBIG,
 UPGRADEDBIGTWOWAY,#BIGQUATERNARY
 
-#landmine done
-LANDMINEFACTORY,#1
-GRAVITATIONNALLANDMINEFACTORY,UPGRADEDLANDMINEFACTORY,
-LANDMINEWITHCANON,#2
-LANDMINEWITHTHREEWAYCANON,LANDMINEWITHDOUBLEMINECANON, #LANDMINEONDROPPER
+##landmine done
+#LANDMINEFACTORY,#1
+#GRAVITATIONNALLANDMINEFACTORY,UPGRADEDLANDMINEFACTORY,
+#LANDMINEWITHCANON,#2
+#LANDMINEWITHTHREEWAYCANON,LANDMINEWITHDOUBLEMINECANON, #LANDMINEONDROPPER
 }
+
+func getEvolutionIdName(id):
+	match id:
+		evolutionsID.BASIC:
+			return "Basic"
+		evolutionsID.DOUBLEGUN:
+			return "Double gun"
+		evolutionsID.SNIPER:
+			return "Sniper"
+		evolutionsID.THREEWAY:
+			return "Three way"
+		evolutionsID.DOUBLESHOT:
+			return "Double shot"
+		evolutionsID.DUAL:
+			return "Dual"
+		evolutionsID.BIG:
+			return "Big"
+		evolutionsID.UPGRADEDBASIC:
+			return "Upgraded basic"
+		evolutionsID.MACHINEGUN:
+			return "Machine gun"
+		evolutionsID.LANDMINE:
+			return "Landmine"
+		evolutionsID.TRIPLESHOT:
+			return "Triple shot"
+		evolutionsID.QUADRIPLESHOT:
+			return "Quadriple shot"
+		evolutionsID.VDOUBLESHOT:
+			return "V Ddouble shot"
+		evolutionsID.UPGRADEDUPGRADEDBASIC:
+			return "Upgraded upgraded basic"
+		evolutionsID.UPGRADEDUPGRADEDUPGRADEDBASIC:
+			return "Upgraded upgraded upgraded basic"
+		#evolutionsID.RNG:
+			#return "RNG"
+		evolutionsID.BACKWARDSHOT:
+			return "Backward shot"
+		evolutionsID.BACKWARDSHOTSNIPER:
+			return "Backward shot sniper"
+		evolutionsID.BACKWARDSIXWAY:
+			return "Backward six way"
+		evolutionsID.DROPPER:
+			return "Dropper"
+		evolutionsID.UPGRADEDDROPPER:
+			return "Upgraded dropper"
+		evolutionsID.LANDMINEONDROPPER:
+			return "Landmine on dropper"
+		evolutionsID.TSNIPER:
+			return "T Sniper"
+		evolutionsID.TYSNIPER:
+			return "TY Sniper"
+		evolutionsID.FOURWAYSNIPER:
+			return "Four way sniper"
+		evolutionsID.YSNIPER:
+			return "Y sniper"
+		evolutionsID.UPGRADEDYSNIPER:
+			return "Upgraded sniper"
+		evolutionsID.VYSNIPER:
+			return "VY sniper"
+		evolutionsID.FOURGUN:
+			return "Four gun"
+		evolutionsID.SIXGUN:
+			return "Six gun"
+		evolutionsID.SMALLSPRINKLERONMACHINEGUN:
+			return "Small sprinkle on machinegun"
+		evolutionsID.SPRINKLER:
+			return "Sprinkler"
+		evolutionsID.QUATERNARY:
+			return "Quaternary"
+		evolutionsID.BIGQUATERNARY:
+			return "Big quaternary"
+		evolutionsID.OCTAL:
+			return "Octal"
+		evolutionsID.FIVEWAY:
+			return "Five way"
+		evolutionsID.SIXWAY:
+			return "Six way"
+		evolutionsID.UPGRADEDMACHINEGUN:
+			return "Upgraded machinegun"
+		evolutionsID.UPGRADEDBIG:
+			return "Upgraded big"
+		evolutionsID.UPGRADEDBIGTWOWAY:
+			return "Upgraded big two way"
+		#evolutionsID.LANDMINEFACTORY:
+			#return "Landmine factory"
+		#evolutionsID.GRAVITATIONNALLANDMINEFACTORY:
+			#return "Gravitationnal landmine factory"
+		#evolutionsID.UPGRADEDLANDMINEFACTORY:
+			#return "Upgraded landmine factory"
+		#evolutionsID.LANDMINEWITHCANON:
+			#return "Landmine with canon"
+		#evolutionsID.LANDMINEWITHTHREEWAYCANON:
+			#return "Landmine with three way canon"
+		#evolutionsID.LANDMINEWITHDOUBLEMINECANON:
+			#return "Landmine with double mine canon"
 
 var evolutionTree = {
 	evolutionsID.BASIC: {

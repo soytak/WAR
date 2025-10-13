@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpl02bgg5hyp8"]
+
+[ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_0tj7d"]
+[ext_resource type="Script" uid="uid://dftags0bt0e4l" path="res://Game/tank maker/tank_dictionary.gd" id="1_uggm4"]
+[ext_resource type="PackedScene" uid="uid://duyn13baadi8m" path="res://Game/tank maker/tank maker.tscn" id="3_lg2nh"]
+
+[node name="TankDictionary" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uggm4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.415686, 0.415686, 0.415686, 0.537255)
+
+[node name="content" type="CenterContainer" parent="."]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("1_0tj7d")
+
+[node name="MarginContainer" type="MarginContainer" parent="content"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="vbox" type="VBoxContainer" parent="content/MarginContainer"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 2
+
+[node name="Tank name" type="Label" parent="content/MarginContainer/vbox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_0tj7d")
+text = "Tank dictionary"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="center" type="HBoxContainer" parent="content/MarginContainer/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="previous" type="Button" parent="content/MarginContainer/vbox/center"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_0tj7d")
+text = "<-"
+
+[node name="CenterContainer" type="CenterContainer" parent="content/MarginContainer/vbox/center"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="content/MarginContainer/vbox/center/CenterContainer"]
+layout_mode = 2
+
+[node name="TankMaker" parent="content/MarginContainer/vbox/center/CenterContainer/Control" instance=ExtResource("3_lg2nh")]
+unique_name_in_owner = true
+position = Vector2(-318, -178)
+
+[node name="next" type="Button" parent="content/MarginContainer/vbox/center"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_0tj7d")
+text = "->"
+
+[node name="Exit" type="Button" parent="content/MarginContainer/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_0tj7d")
+text = "Exit"
+
+[connection signal="pressed" from="content/MarginContainer/vbox/center/previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="content/MarginContainer/vbox/center/next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="content/MarginContainer/vbox/Exit" to="." method="_on_exit_pressed"]
