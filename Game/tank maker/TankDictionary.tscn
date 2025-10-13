@@ -16,69 +16,105 @@ grow_vertical = 2
 script = ExtResource("1_uggm4")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0.415686, 0.415686, 0.415686, 0.537255)
-
-[node name="content" type="CenterContainer" parent="."]
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
-theme = ExtResource("1_0tj7d")
+color = Color(0.415686, 0.415686, 0.415686, 0.784314)
 
-[node name="MarginContainer" type="MarginContainer" parent="content"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_bottom = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="vbox" type="VBoxContainer" parent="content/MarginContainer"]
-custom_minimum_size = Vector2(1920, 1080)
+[node name="vbox" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Tank name" type="Label" parent="content/MarginContainer/vbox"]
+[node name="Tank name" type="Label" parent="MarginContainer/vbox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_0tj7d")
+theme_override_font_sizes/font_size = 100
 text = "Tank dictionary"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="center" type="HBoxContainer" parent="content/MarginContainer/vbox"]
+[node name="center" type="HBoxContainer" parent="MarginContainer/vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Upgrade tree" type="HBoxContainer" parent="MarginContainer/vbox/center"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/vbox/center/Upgrade tree"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Previous upgrades" type="GridContainer" parent="MarginContainer/vbox/center/Upgrade tree/CenterContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 150
+theme_override_constants/v_separation = 150
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/vbox/center/Upgrade tree"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/vbox/center/Upgrade tree/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Control" type="Control" parent="MarginContainer/vbox/center/Upgrade tree/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TankMaker" parent="MarginContainer/vbox/center/Upgrade tree/VBoxContainer/CenterContainer/Control" instance=ExtResource("3_lg2nh")]
+unique_name_in_owner = true
+position = Vector2(-318, -178)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/vbox/center/Upgrade tree/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="previous" type="Button" parent="content/MarginContainer/vbox/center"]
+[node name="previous" type="Button" parent="MarginContainer/vbox/center/Upgrade tree/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_0tj7d")
 text = "<-"
 
-[node name="CenterContainer" type="CenterContainer" parent="content/MarginContainer/vbox/center"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Control" type="Control" parent="content/MarginContainer/vbox/center/CenterContainer"]
-layout_mode = 2
-
-[node name="TankMaker" parent="content/MarginContainer/vbox/center/CenterContainer/Control" instance=ExtResource("3_lg2nh")]
-unique_name_in_owner = true
-position = Vector2(-318, -178)
-
-[node name="next" type="Button" parent="content/MarginContainer/vbox/center"]
+[node name="next" type="Button" parent="MarginContainer/vbox/center/Upgrade tree/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_0tj7d")
 text = "->"
 
-[node name="Exit" type="Button" parent="content/MarginContainer/vbox"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/vbox/center/Upgrade tree"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Next upgrades" type="GridContainer" parent="MarginContainer/vbox/center/Upgrade tree/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 150
+theme_override_constants/v_separation = 150
+columns = 3
+
+[node name="Exit" type="Button" parent="MarginContainer/vbox"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_0tj7d")
 text = "Exit"
 
-[connection signal="pressed" from="content/MarginContainer/vbox/center/previous" to="." method="_on_previous_pressed"]
-[connection signal="pressed" from="content/MarginContainer/vbox/center/next" to="." method="_on_next_pressed"]
-[connection signal="pressed" from="content/MarginContainer/vbox/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/VBoxContainer/HBoxContainer/previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/VBoxContainer/HBoxContainer/next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="MarginContainer/vbox/Exit" to="." method="_on_exit_pressed"]

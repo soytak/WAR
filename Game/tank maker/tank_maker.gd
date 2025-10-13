@@ -33,8 +33,8 @@ func make(evolutionID: int):
 			createTurretDecoration(evolutionManager.decorationsID.MACHINEGUN)
 			createCanon(0, 35, 0, Vector2(1, 0.9))
 			cooldownScalar = 0.7
-		e.LANDMINE:
-			pass
+		#e.LANDMINE:
+			#pass
 		e.BIG:
 			createCanon(0, 35, 0, Vector2(1, 1.5))
 		e.DOUBLEGUN:

@@ -18,7 +18,7 @@ func getDecorationTexturePath(decorationID: int):
 			return "res://Textures/tank/decorations/halfsprinkler_decoration.png"
 
 enum evolutionsID {BASIC,
-DOUBLEGUN, SNIPER, THREEWAY, DOUBLESHOT, DUAL, BIG, UPGRADEDBASIC, MACHINEGUN, LANDMINE,
+DOUBLEGUN, SNIPER, THREEWAY, DOUBLESHOT, DUAL, BIG, UPGRADEDBASIC, MACHINEGUN, #LANDMINE,
 #############################             ################################################
 
 #DOUBLESHOT
@@ -91,8 +91,8 @@ func getEvolutionIdName(id):
 			return "Upgraded basic"
 		evolutionsID.MACHINEGUN:
 			return "Machine gun"
-		evolutionsID.LANDMINE:
-			return "Landmine"
+		#evolutionsID.LANDMINE:
+			#return "Landmine"
 		evolutionsID.TRIPLESHOT:
 			return "Triple shot"
 		evolutionsID.QUADRIPLESHOT:
@@ -279,3 +279,26 @@ func getNextEvolutionsID(target: int, tree: Dictionary = evolutionTree) -> Array
 	var result: Array = []
 	search(tree, target, result)
 	return result
+
+func getAllParents(target: int, tree: Dictionary = evolutionTree) -> Array:
+	var parents: Array = []
+	_search_parents(tree, target, parents)
+	
+	var uniqueParents = func remove_duplicates(arr: Array) -> Array:
+		var uniqueElements = []
+		for element in arr:
+			if not uniqueElements.has(element):
+				uniqueElements.append(element)
+		return uniqueElements
+	return uniqueParents.call(parents)
+
+func _search_parents(node: Variant, target: int, parents: Array) -> void:
+	if node is Dictionary:
+		for key in node.keys():
+			var children = node[key]
+			if (children is Array and target in children) or (children is Dictionary and children.has(target)):
+				parents.append(key)
+			_search_parents(children, target, parents)
+	elif node is Array:
+		for child in node:
+			_search_parents(child, target, parents)
