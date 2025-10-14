@@ -23,18 +23,46 @@ func updateName():
 		child.free()
 	
 	for evolution in nextEvolutions:
+		var newContainer = CenterContainer.new()
+		var newButton = Button.new()
+		newButton.self_modulate = Color.TRANSPARENT
+		newButton.custom_minimum_size = Vector2.ONE * 100
 		var newControl = Control.new()
-		var newMaker = maker.instantiate()
-		newMaker.make(evolution)
-		newControl.add_child(newMaker)
-		%"Next upgrades".add_child(newControl)
+		
+		var newTankPreview = maker.instantiate()
+		newTankPreview.make(evolution)
+		
+		if not newButton.pressed.is_connected(tankSelect):
+			newButton.pressed.connect(tankSelect.bind(evolution))
+		
+		newContainer.custom_minimum_size = Vector2.ONE * 100
+		newTankPreview.scale = Vector2.ONE
+		
+		newControl.add_child(newTankPreview)
+		newContainer.add_child(newControl)
+		newContainer.add_child(newButton)
+		%"Next upgrades".add_child(newContainer)
 	
 	for evolution in previousEvolutions:
+		var newContainer = CenterContainer.new()
+		var newButton = Button.new()
+		newButton.self_modulate = Color.TRANSPARENT
+		newButton.custom_minimum_size = Vector2.ONE * 100
 		var newControl = Control.new()
-		var newMaker = maker.instantiate()
-		newMaker.make(evolution)
-		newControl.add_child(newMaker)
-		%"Previous upgrades".add_child(newControl)
+		
+		var newTankPreview = maker.instantiate()
+		newTankPreview.make(evolution)
+		
+		if not newButton.pressed.is_connected(tankSelect):
+			newButton.pressed.connect(tankSelect.bind(evolution))
+		
+		newContainer.custom_minimum_size = Vector2.ONE * 100
+		newTankPreview.scale = Vector2.ONE
+		
+		newControl.add_child(newTankPreview)
+		newContainer.add_child(newControl)
+		newContainer.add_child(newButton)
+		%"Previous upgrades".add_child(newContainer)
 		
 	if nextEvolutions.size() == 0:
 		var newLabel = Label.new()
@@ -68,3 +96,7 @@ func changeCurrentEvolutionId(change: int, setting: bool = false):
 
 func _on_exit_pressed() -> void:
 	$".".hide()
+
+func tankSelect(evolutionId: int):
+	currentEvolutionId = evolutionId
+	updateName()
