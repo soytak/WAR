@@ -21,7 +21,7 @@ func playMusic() -> void:
 	if randi_range(1,100) == 1:
 		musicManager.play_music(preload("res://Vocals/463-001.wav"))
 		return
-	if randi_range(1,10) == 1:
+	if randi_range(1,15) == 1:
 		musicManager.play_music(preload("res://Musics/Title2.wav"))
 		return
 	musicManager.play_music(preload("res://Musics/Title.mp3"))

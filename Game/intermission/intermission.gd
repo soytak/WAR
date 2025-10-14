@@ -38,12 +38,16 @@ func _on_visibility_changed() -> void:
 			newTankPreview.make(evolutionID)
 			var newCountainer = CenterContainer.new()
 			var newControl = Control.new()
-			var newButton = Button.new()
+			var newButton = ButtonForPlayer.new()
 			newButton.self_modulate = Color.TRANSPARENT
 			newButton.custom_minimum_size = Vector2(Vector2.ONE * 200)
 			
-			if not newButton.pressed.is_connected(tankSelect):
-				newButton.pressed.connect(tankSelect.bind(evolutionID))
+			#if not newButton.pressed.is_connected(tankSelect):
+				#newButton.pressed.connect(tankSelect.bind(evolutionID))
+			
+			newButton.onClick.connect(tankSelect.bind(evolutionID))
+			newButton.player = player
+			newButton.alsoMouse = true
 			
 			newTankPreview.modulate = global.playersColors[player-1]
 			newCountainer.custom_minimum_size = Vector2(Vector2.ONE * 200)

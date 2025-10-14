@@ -3,8 +3,16 @@ extends TextureRect
 var player: int
 var speed: int = 10
 var canShow: bool = true
+var clickSound: AudioStreamPlayer
 
 func _ready() -> void:
+	clickSound = AudioStreamPlayer.new()
+	add_child(clickSound)
+	clickSound.bus = "SFX"
+	clickSound.autoplay = false
+	clickSound.stream_paused = true
+	clickSound.stream = preload("res://SFX/click.wav")
+	
 	self_modulate = global.playersColors[player - 1]
 
 func _process(delta: float) -> void:
@@ -41,6 +49,8 @@ func _input(event):
 		pass
 	
 func _simulate_global_click() -> void:
+	if not visible: return
+	clickSound.play()
 	var viewport := get_viewport()
 	
 	var local_center := size / 2
