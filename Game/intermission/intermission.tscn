@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt7ak1jog524q"]
+[gd_scene load_steps=7 format=3 uid="uid://dt7ak1jog524q"]
 
 [ext_resource type="Script" uid="uid://b42o1jcfn1r3e" path="res://Game/intermission/intermission.gd" id="1_ftabm"]
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="2_ftabm"]
+[ext_resource type="PackedScene" uid="uid://cpl02bgg5hyp8" path="res://Game/tank maker/TankDictionary.tscn" id="2_n4wek"]
+[ext_resource type="Script" uid="uid://05uer36o7fcl" path="res://ButtonForPlayer.gd" id="4_anosx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftabm"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -31,10 +33,15 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 2
 
-[node name="Lives bar" type="ProgressBar" parent="Panel/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="Lives bar" type="ProgressBar" parent="Panel/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
@@ -44,10 +51,10 @@ max_value = 4.0
 value = 4.0
 show_percentage = false
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/HBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Lives" type="Label" parent="Panel/MarginContainer/CenterContainer"]
+[node name="Lives" type="Label" parent="Panel/HBoxContainer/MarginContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -55,6 +62,23 @@ size_flags_vertical = 3
 theme = ExtResource("2_ftabm")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "asda"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Dictionary button" type="Button" parent="Panel/HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_ftabm")
+text = "Dictionary"
+script = ExtResource("4_anosx")
+alsoMouse = true
+metadata/_custom_type_script = "uid://05uer36o7fcl"
 
 [node name="HSplitContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 2
@@ -96,5 +120,11 @@ layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
+
+[node name="TankDictionary" parent="." instance=ExtResource("2_n4wek")]
+visible = false
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

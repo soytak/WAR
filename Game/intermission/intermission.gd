@@ -8,6 +8,12 @@ var upgradeChoiceMade: bool = false
 var upgrade_botton = preload("res://Game/intermission/Upgrade_button.tscn")
 
 func _ready() -> void:
+	
+	%"Dictionary button".player = player
+	%"Dictionary button".onClick.connect(clickOnDictionayButton)
+	%"Dictionary button".modulate = global.playersColors[player-1]
+	$TankDictionary.modulate = global.playersColors[player-1]
+	
 	for upgrade in global.upgrades:
 		var newUgrade_button = upgrade_botton.instantiate()
 		newUgrade_button.texture_normal = load(upgrade.texturePath)
@@ -71,5 +77,12 @@ func _on_visibility_changed() -> void:
 
 func tankSelect(evolutionID: int):
 	global.playersData[player-1].evolutionID = evolutionID
+	$TankDictionary.tankSelect(evolutionID)
 	evolutionChoiceMade = true
 	%Left.hide()
+
+func clickOnDictionayButton():
+	if $TankDictionary.visible:
+		$TankDictionary.hide()
+	else:
+		$TankDictionary.show()

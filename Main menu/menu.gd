@@ -2,8 +2,13 @@ extends Control
 
 @export var parallax_strength: Vector2 = Vector2(20, 20)
 var maker = load("res://Game/tank maker/tank maker.tscn")
+@onready var title = $Title
+var initialTitlePosition
+var time: float = 0
 
 func _ready() -> void:
+	initialTitlePosition = title.position
+	
 	var makerInstance = maker.instantiate()
 	makerInstance.modulate = global.playersColors[randi_range(0,3)]
 	makerInstance.scale = Vector2.ONE * 2
@@ -28,6 +33,8 @@ func playMusic() -> void:
 
 
 func _process(delta):
+	time += delta
+	title.position = initialTitlePosition + Vector2(0, sin(time)*10)
 	var viewport_center = get_viewport_rect().size / 2
 	var mouse_offset = (get_viewport().get_mouse_position() - viewport_center) / viewport_center
 	$BG.position = mouse_offset * parallax_strength * -0.7 - Vector2(50,50)

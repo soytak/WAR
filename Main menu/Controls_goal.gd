@@ -12,7 +12,8 @@ var panelMessages = [
 	"Goal: Be the last one standing each round
 	Round: Use your tank to eliminate the others.
 	When only one player is alive, it is time for the intermission!
-	\nIntermission:
+	",
+	"Intermission:
 	If nobody exept one has no health, the one who still got life wins.
 	In intermission, deads with lives left can select an upgrade,
 	and more importantly: an evolution.

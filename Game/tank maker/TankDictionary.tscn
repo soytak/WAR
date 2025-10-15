@@ -19,7 +19,7 @@ script = ExtResource("1_uggm4")
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.415686, 0.415686, 0.415686, 0.784314)
+color = Color(0.235294, 0.235294, 0.235294, 0.901961)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
