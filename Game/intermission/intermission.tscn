@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt7ak1jog524q"]
+[gd_scene load_steps=5 format=3 uid="uid://dt7ak1jog524q"]
 
 [ext_resource type="Script" uid="uid://b42o1jcfn1r3e" path="res://Game/intermission/intermission.gd" id="1_ftabm"]
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="2_ftabm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftabm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g11ur"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Intermission" type="Control"]
 layout_mode = 3
@@ -15,25 +19,46 @@ grow_vertical = 2
 script = ExtResource("1_ftabm")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ftabm")
-
-[node name="ColorRect" type="ColorRect" parent="Panel"]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-color = Color(0, 0, 0, 0.392157)
-
-[node name="HSplitContainer" type="HBoxContainer" parent="Panel"]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
+color = Color(0.6, 0.6, 0.6, 0.490196)
+
+[node name="Panel" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Lives bar" type="ProgressBar" parent="Panel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_ftabm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g11ur")
+max_value = 4.0
+value = 4.0
+show_percentage = false
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Lives" type="Label" parent="Panel/MarginContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_ftabm")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "asda"
+
+[node name="HSplitContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Left" type="MarginContainer" parent="Panel/HSplitContainer"]
 unique_name_in_owner = true
@@ -42,12 +67,6 @@ size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HSplitContainer/Left"]
 layout_mode = 2
-
-[node name="Lives" type="Label" parent="Panel/HSplitContainer/Left/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("2_ftabm")
-text = "asda"
 
 [node name="CenterContainer" type="CenterContainer" parent="Panel/HSplitContainer/Left/VBoxContainer"]
 custom_minimum_size = Vector2(960, 0)
@@ -77,11 +96,5 @@ layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 2
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-pivot_offset = Vector2(4, 4)
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

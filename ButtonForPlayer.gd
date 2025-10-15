@@ -5,13 +5,9 @@ var player: int = -1
 var alsoMouse: bool = false
 signal onClick
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and get_rect().has_point(get_local_mouse_position()):
-		print("be one")
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and get_rect().has_point((event.position)):
 		if event.has_meta("player") and event.get_meta("player") == player:
-			print("be gone")
 			onClick.emit()
-		elif alsoMouse:
-			print("be gone")
+		elif alsoMouse and not event.has_meta("player"):
 			onClick.emit()
-				#accept_event()

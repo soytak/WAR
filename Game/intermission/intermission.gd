@@ -1,6 +1,6 @@
 extends Control
 
-var player = 0
+var player: int = -1
 var finished: bool = true
 var evolutionChoiceMade: bool = false
 var upgradeChoiceMade: bool = false
@@ -13,6 +13,7 @@ func _ready() -> void:
 		newUgrade_button.texture_normal = load(upgrade.texturePath)
 		newUgrade_button.dispName = upgrade.dispName
 		newUgrade_button.onClick.connect(onUpgradeSelect)
+		newUgrade_button.player = player
 		%UpgradeContainer.add_child(newUgrade_button)
 
 func onUpgradeSelect(dispName: StringName):
@@ -29,6 +30,8 @@ func _process(delta: float) -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
+		for child in %UpgradeContainer.get_children():
+			child.player = player
 		for child in %Evolutions.get_children():
 			child.free()
 		
@@ -41,9 +44,6 @@ func _on_visibility_changed() -> void:
 			var newButton = ButtonForPlayer.new()
 			newButton.self_modulate = Color.TRANSPARENT
 			newButton.custom_minimum_size = Vector2(Vector2.ONE * 200)
-			
-			#if not newButton.pressed.is_connected(tankSelect):
-				#newButton.pressed.connect(tankSelect.bind(evolutionID))
 			
 			newButton.onClick.connect(tankSelect.bind(evolutionID))
 			newButton.player = player
@@ -60,6 +60,8 @@ func _on_visibility_changed() -> void:
 			%Evolutions.add_child(newCountainer)
 		
 		%Lives.text = "Lives: " + str(global.playersData[player-1].lives)
+		%"Lives bar".value = global.playersData[player-1].lives
+
 		%Right.show()
 		%Left.show()
 		upgradeChoiceMade = false
