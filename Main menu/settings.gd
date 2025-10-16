@@ -1,14 +1,19 @@
 extends Control
 
+enum navigationPanels {SOUND, CURSOR}
+
+var navigationPanel: navigationPanels = navigationPanels.SOUND
+
 func _ready() -> void:
+	sfxManager.setVolume(navigationPanels.SOUND)
+	
 	var screen_width = get_viewport_rect().size.x
 	position.x = -screen_width
 	hide()
-	$center/panel/margin/Elements/BGM_Slider.value = musicManager.musicVolumeShift
-	$center/panel/margin/Elements/SFX_Slider.value = sfxManager.sfxVolumeShift
+	%BGM_Slider.value = musicManager.musicVolumeShift
+	%SFX_Slider.value = sfxManager.sfxVolumeShift
 	updateMinAFKTimerLabel()
 	%enable.set_pressed(cursorManager.MinAFKTimeEnable)
-
 
 func activate():
 	show()
@@ -61,4 +66,24 @@ func _on_slight_decrease_pressed() -> void:
 func updateMinAFKTimerLabel(timeChange: float = 0):
 	cursorManager.MinAFKTime += timeChange
 	cursorManager.MinAFKTime = clampf(cursorManager.MinAFKTime, 0.1, 10)
-	$"center/panel/margin/Elements/CHT time box/time".text = str(cursorManager.MinAFKTime)
+	%"cursor time".text = str(cursorManager.MinAFKTime)
+
+
+func _on_bsound_pressed() -> void:
+	setNavigation(navigationPanels.SOUND)
+
+func _on_bcursor_pressed() -> void:
+	setNavigation(navigationPanels.CURSOR)
+
+
+func setNavigation(navigation: navigationPanels) -> void:
+	navigationPanel = navigation
+	for panel in %panels.get_children():
+		if panel == %sideBar: continue
+		panel.hide()
+	
+	match navigation:
+		navigationPanels.SOUND:
+			%sound.show()
+		navigationPanels.CURSOR:
+			%cursor.show()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://btpkkbmnel5s3"]
+[gd_scene load_steps=11 format=3 uid="uid://btpkkbmnel5s3"]
 
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_t3fg1"]
 [ext_resource type="Script" uid="uid://h7apm5lnpr41" path="res://Main menu/menu.gd" id="1_xds3s"]
 [ext_resource type="Texture2D" uid="uid://cy3g6fou6e2gs" path="res://Maps/tower.png" id="2_3j7fk"]
 [ext_resource type="Script" uid="uid://jn6lj2l1yil6" path="res://Main menu/buttonsr.gd" id="3_xds3s"]
 [ext_resource type="Script" uid="uid://bwqyc4xint3pl" path="res://Main menu/Controls_goal.gd" id="5_3j7fk"]
+[ext_resource type="FontFile" uid="uid://bcam8b2ux4ewg" path="res://Textures/menu/MGS4 Brush.ttf" id="5_ny5mr"]
 [ext_resource type="PackedScene" uid="uid://btti4yhvq13ba" path="res://Main menu/settings.tscn" id="6_xds3s"]
 [ext_resource type="PackedScene" uid="uid://cpl02bgg5hyp8" path="res://Game/tank maker/TankDictionary.tscn" id="7_nsikn"]
 
@@ -82,17 +83,21 @@ theme = ExtResource("1_t3fg1")
 text = "Exit"
 
 [node name="Title" type="RichTextLabel" parent="."]
+self_modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -634.5
+offset_top = -35.0
 offset_right = 634.5
-offset_bottom = 332.0
+offset_bottom = 297.0
 grow_horizontal = 2
 tooltip_text = "*do not do it at home"
-theme_override_font_sizes/normal_font_size = 200
+theme_override_fonts/normal_font = ExtResource("5_ny5mr")
+theme_override_font_sizes/normal_font_size = 300
 text = "WAR"
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -161,6 +166,7 @@ horizontal_alignment = 2
 
 [node name="Settings" parent="." instance=ExtResource("6_xds3s")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="TankDictionary" parent="." instance=ExtResource("7_nsikn")]
