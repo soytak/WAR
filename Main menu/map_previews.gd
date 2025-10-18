@@ -45,6 +45,9 @@ func _process(delta: float) -> void:
 	%ColorRect.modulate = Color.from_hsv(fmod(hueShift + 0.5, 1.0), 1.0, 1.0, 0.8)
 
 func _on_war_pressed() -> void:
+	TransitionManager.playTransition(goToBattleField, 1, Color.MEDIUM_AQUAMARINE)
+	
+func goToBattleField() -> void:
 	var battlefield = preload("res://Game/Battlefield.tscn").instantiate()
 	battlefield.setMap(mapSelected)
 	get_tree().root.add_child(battlefield)

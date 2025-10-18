@@ -12,21 +12,17 @@ shader_parameter/_min = 0.0
 shader_parameter/_max = 2.0
 shader_parameter/height = 0.0
 
-[node name="TransitionManager" type="Control"]
-z_index = 19
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TransitionManager" type="CanvasLayer"]
+layer = 100
 script = ExtResource("1_tjfxj")
 
 [node name="transition" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_tjfxj")
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]

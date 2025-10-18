@@ -3,8 +3,7 @@ extends VBoxContainer
 
 func _on_fight_pressed() -> void:
 	$fight.disabled = true
-	TransitionManager.setColor(Color.AQUA)
-	TransitionManager.playTransition(goToPlayerSelect, 1)
+	TransitionManager.playTransition(goToPlayerSelect, 1, Color.LIGHT_SKY_BLUE)
 
 func goToPlayerSelect():
 	$fight.disabled = false

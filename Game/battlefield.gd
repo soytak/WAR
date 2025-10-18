@@ -87,6 +87,10 @@ func _physics_process(delta):
 		newRound()
 	
 func newRound():
+	var newTween = create_tween()
+	newTween.tween_property(%modulationOfCRT, "color", Color.from_rgba8(255,255,255,0), 2/2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	
+	
 	gameState = gameStates.COUNTDOWN
 	cursorManager.disableCursors()
 	
@@ -144,7 +148,10 @@ func go_to_intermission(winner):
 		winningScene.setup(winner)
 		get_tree().current_scene.queue_free()
 		get_tree().call_deferred("set_current_scene", winningScene)
-
+	else:
+		var newTween = create_tween()
+		newTween.tween_property(%modulationOfCRT, "color", Color.from_rgba8(255,255,255,50), 2/2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+		
 func setup_intermission():
 	var screen_size = get_viewport_rect().size
 	var screen_width = get_viewport_rect().size.x

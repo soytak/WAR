@@ -1,14 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://yxq4r562f751"]
+[gd_scene load_steps=8 format=3 uid="uid://yxq4r562f751"]
 
 [ext_resource type="Script" uid="uid://cnwso8pstlqmi" path="res://Game/battlefield.gd" id="1_8kptf"]
 [ext_resource type="PackedScene" uid="uid://dss3fec3hncs7" path="res://Game/pause/PauseMenu.tscn" id="2_8kptf"]
 [ext_resource type="Script" uid="uid://bwsf3ck7afo6v" path="res://Game/countdown.gd" id="2_d2vlk"]
+[ext_resource type="Shader" uid="uid://cpfmdl3st4ft4" path="res://Game/bars.gdshader" id="4_d2vlk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8aveg"]
 size = Vector2(1920, 204.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogjlr"]
 size = Vector2(168, 1488)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qydka"]
+shader = ExtResource("4_d2vlk")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/vignette_amount = 0.5
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.2
 
 [node name="Battlefield" type="Node2D"]
 script = ExtResource("1_8kptf")
@@ -84,3 +94,20 @@ vertical_alignment = 1
 [node name="pauseMenu" parent="." instance=ExtResource("2_8kptf")]
 visible = false
 hidingCursor = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_qydka")
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="modulationOfCRT" type="CanvasModulate" parent="CanvasLayer"]
+unique_name_in_owner = true
+color = Color(1, 1, 1, 0)

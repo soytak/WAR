@@ -30,4 +30,7 @@ func getActivePlayer() -> int:
 	return activePlayer
 
 func _on_game_start_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Main menu/Map Select.tscn")#"res://Game/Battlefield.tscn")
+	TransitionManager.playTransition(goToMapSelect, 1, Color.AQUAMARINE, TransitionManager.transitionTypes.CERCLEDOWN)
+
+func goToMapSelect() -> void:
+	get_tree().change_scene_to_file("res://Main menu/Map Select.tscn")
