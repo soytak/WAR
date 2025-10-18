@@ -1,6 +1,6 @@
 extends Control
 
-enum navigationPanels {SOUND, CURSOR}
+enum navigationPanels {SOUND, CURSOR, CREDITS}
 
 var navigationPanel: navigationPanels = navigationPanels.SOUND
 
@@ -75,6 +75,8 @@ func _on_bsound_pressed() -> void:
 func _on_bcursor_pressed() -> void:
 	setNavigation(navigationPanels.CURSOR)
 
+func _on_bcredits_pressed() -> void:
+	setNavigation(navigationPanels.CREDITS)
 
 func setNavigation(navigation: navigationPanels) -> void:
 	navigationPanel = navigation
@@ -87,3 +89,5 @@ func setNavigation(navigation: navigationPanels) -> void:
 			%sound.show()
 		navigationPanels.CURSOR:
 			%cursor.show()
+		navigationPanels.CREDITS:
+			%credits.show()
