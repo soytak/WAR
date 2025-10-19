@@ -18,7 +18,7 @@ func _ready() -> void:
 		var newUgrade_button = upgrade_botton.instantiate()
 		newUgrade_button.texture_normal = load(upgrade.texturePath)
 		newUgrade_button.dispName = upgrade.dispName
-		newUgrade_button.onClick.connect(onUpgradeSelect)
+		newUgrade_button.selected.connect(onUpgradeSelect)
 		newUgrade_button.player = player
 		%UpgradeContainer.add_child(newUgrade_button)
 

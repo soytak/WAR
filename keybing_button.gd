@@ -33,4 +33,4 @@ func update(value: StringName):
 
 func _on_button_pressed() -> void:
 	remapping = true
-	update("___")
+	#update("___")
