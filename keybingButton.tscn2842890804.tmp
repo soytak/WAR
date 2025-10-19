@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnu6r3ejjb16e"]
+
+[ext_resource type="Script" uid="uid://bj6as3tms24gp" path="res://keybing_button.gd" id="1_lkijv"]
+[ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_rfip2"]
+
+[node name="MarginContainer" type="MarginContainer"]
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+script = ExtResource("1_lkijv")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_rfip2")
+theme_override_font_sizes/font_size = 90
+text = " "
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_rfip2")
+text = "Foward / Up:"
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_rfip2")
+text = "w"
+horizontal_alignment = 2
+vertical_alignment = 1

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1jm5psnb20vn"]
+
+[ext_resource type="Script" uid="uid://864s5o53lf4o" path="res://player_tab.gd" id="1_5ab3o"]
+
+[node name="MarginContainer" type="MarginContainer"]
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+script = ExtResource("1_5ab3o")
+
+[node name="PlayerTab" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "P1"
+
+[connection signal="pressed" from="PlayerTab" to="." method="_on_player_tab_pressed"]

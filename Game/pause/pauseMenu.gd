@@ -40,7 +40,7 @@ func hide_menu() -> void:
 	)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("pause"):
 		if get_tree().paused and visible:
 			hide_menu()
 		else:

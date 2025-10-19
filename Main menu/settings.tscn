@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://btti4yhvq13ba"]
+[gd_scene load_steps=8 format=3 uid="uid://btti4yhvq13ba"]
 
 [ext_resource type="Script" uid="uid://iwshqgs1q77s" path="res://Main menu/settings.gd" id="1_g7jev"]
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="2_bh0mo"]
 [ext_resource type="FontFile" uid="uid://dabtu488ld2ke" path="res://Textures/menu/aAsianHiro.ttf" id="3_c8lwl"]
 [ext_resource type="Texture2D" uid="uid://cag3jy31ljdv2" path="res://Textures/menu/sound.png" id="3_uaskp"]
 [ext_resource type="Texture2D" uid="uid://cvmp8uorbkr7i" path="res://Textures/cursor.png" id="4_c8lwl"]
+[ext_resource type="PackedScene" uid="uid://bnu6r3ejjb16e" path="res://keybingButton.tscn" id="4_xj7b6"]
 
 [sub_resource type="FontVariation" id="FontVariation_xj7b6"]
 base_font = ExtResource("3_c8lwl")
@@ -82,56 +83,6 @@ alignment = 2
 layout_mode = 2
 text = "Back"
 
-[node name="credits" type="PanelContainer" parent="center/panels"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(1080, 1080)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="margin" type="MarginContainer" parent="center/panels/credits"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="RichTextLabel" type="RichTextLabel" parent="center/panels/credits/margin"]
-clip_contents = false
-layout_mode = 2
-theme = ExtResource("2_bh0mo")
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 50
-theme_override_fonts/normal_font = SubResource("FontVariation_xj7b6")
-theme_override_font_sizes/normal_font_size = 75
-bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1]Made by [color=#FF1286]Soytak [/color]
-Made in [color=#478cbf]Godot[/color][/wave]
-[font_size=40]
-Font used:
-[color=#ff5500]aAsianHiro[/color]
-[color=#0055ff]MGS4 Brush[/color]
-
-Music/Transition used made by others:[color=#879284]
-incompetech.com
-https://zacksly.itch.io/half-tone-comic-shader-for-godot[/color][/font_size]
-[wave amp=25.0 freq=1.0 connected=1][color=#eebb33][font_size=50]
-To everyone who shaped the coder inside me
-[/font_size]
-[/color]
-[/wave]"
-scroll_active = false
-tab_size = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="center/panels/credits/margin"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_bh0mo")
-alignment = 2
-
-[node name="Back" type="Button" parent="center/panels/credits/margin/VBoxContainer"]
-layout_mode = 2
-text = "Back"
-
 [node name="cursor" type="PanelContainer" parent="center/panels"]
 unique_name_in_owner = true
 visible = false
@@ -203,6 +154,131 @@ alignment = 2
 layout_mode = 2
 text = "Back"
 
+[node name="credits" type="PanelContainer" parent="center/panels"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(1080, 1080)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="margin" type="MarginContainer" parent="center/panels/credits"]
+layout_mode = 2
+theme = ExtResource("2_bh0mo")
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="RichTextLabel" type="RichTextLabel" parent="center/panels/credits/margin"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("2_bh0mo")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/normal_font = SubResource("FontVariation_xj7b6")
+theme_override_font_sizes/normal_font_size = 75
+bbcode_enabled = true
+text = "[wave amp=40.0 freq=4.0 connected=1]Made by [color=#FF1286]Soytak [/color]
+Made in [color=#478cbf]Godot[/color][/wave]
+[font_size=40]
+Font used:
+[color=#ff5500]aAsianHiro[/color]
+[color=#0055ff]MGS4 Brush[/color]
+Music/Transition used made by others:[color=#879284]
+incompetech.com
+https://zacksly.itch.io/half-tone-comic-shader-for-godot[/color][/font_size]
+[wave amp=25.0 freq=1.0 connected=1][color=#eebb33][font_size=50]
+To everyone who shaped the coder inside me
+[/font_size]
+[/color]
+[/wave]"
+scroll_active = false
+tab_size = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="center/panels/credits/margin"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Back" type="Button" parent="center/panels/credits/margin/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="bindings" type="PanelContainer" parent="center/panels"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(1300, 1080)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="margin" type="MarginContainer" parent="center/panels/bindings"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="center/panels/bindings/margin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_bh0mo")
+alignment = 2
+
+[node name="playerTabs" type="HBoxContainer" parent="center/panels/bindings/margin/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="center/panels/bindings/margin/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="up" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("4_xj7b6")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="down" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("4_xj7b6")]
+unique_name_in_owner = true
+layout_mode = 2
+action = 1
+
+[node name="primary" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("4_xj7b6")]
+unique_name_in_owner = true
+layout_mode = 2
+action = 4
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="left" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer/HBoxContainer2" instance=ExtResource("4_xj7b6")]
+unique_name_in_owner = true
+layout_mode = 2
+action = 2
+
+[node name="right" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer/HBoxContainer2" instance=ExtResource("4_xj7b6")]
+unique_name_in_owner = true
+layout_mode = 2
+action = 3
+
+[node name="esc" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer/HBoxContainer2" instance=ExtResource("4_xj7b6")]
+unique_name_in_owner = true
+layout_mode = 2
+action = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="center/panels/bindings/margin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Back" type="Button" parent="center/panels/bindings/margin/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Back"
+
 [node name="sideBar" type="VBoxContainer" parent="center/panels"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -257,16 +333,38 @@ layout_mode = 2
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="CenterContainer4" type="CenterContainer" parent="center/panels/sideBar"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="center/panels/sideBar/CenterContainer4"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[node name="Label" type="Label" parent="center/panels/sideBar/CenterContainer4"]
+layout_mode = 2
+theme = ExtResource("2_bh0mo")
+theme_override_font_sizes/font_size = 50
+text = "Keys"
+
+[node name="Bkey" type="TextureButton" parent="center/panels/sideBar/CenterContainer4"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+ignore_texture_size = true
+stretch_mode = 0
+
 [connection signal="value_changed" from="center/panels/sound/margin/Elements/BGM_Slider" to="." method="_on_bgm_slider_value_changed"]
 [connection signal="value_changed" from="center/panels/sound/margin/Elements/SFX_Slider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="center/panels/sound/margin/Elements/VBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="center/panels/credits/margin/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="center/panels/cursor/margin/Elements/CHT box/enable" to="." method="_on_enable_toggled"]
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/CHT time box/decrease" to="." method="_on_decrease_pressed"]
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/CHT time box/slight decrease" to="." method="_on_slight_decrease_pressed"]
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/CHT time box/slight increase" to="." method="_on_slight_increase_pressed"]
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/CHT time box/increase" to="." method="_on_increase_pressed"]
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="center/panels/credits/margin/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="center/panels/bindings/margin/VBoxContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="center/panels/sideBar/CenterContainer/Bsound" to="." method="_on_bsound_pressed"]
 [connection signal="pressed" from="center/panels/sideBar/CenterContainer2/Bcursor" to="." method="_on_bcursor_pressed"]
 [connection signal="pressed" from="center/panels/sideBar/CenterContainer3/Bcredits" to="." method="_on_bcredits_pressed"]
+[connection signal="pressed" from="center/panels/sideBar/CenterContainer4/Bkey" to="." method="_on_bkey_pressed"]

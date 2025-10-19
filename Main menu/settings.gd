@@ -1,10 +1,14 @@
 extends Control
 
-enum navigationPanels {SOUND, CURSOR, CREDITS}
+enum navigationPanels {SOUND, CURSOR, BINDINGS, CREDITS}
 
 var navigationPanel: navigationPanels = navigationPanels.SOUND
 
+var playerTab = preload("res://playerTab.tscn")
+var currentPlayerTab: int = -1
+
 func _ready() -> void:
+	onPlayerTabSelect(1)
 	sfxManager.setVolume(navigationPanels.SOUND)
 	
 	var screen_width = get_viewport_rect().size.x
@@ -14,6 +18,12 @@ func _ready() -> void:
 	%SFX_Slider.value = sfxManager.sfxVolumeShift
 	updateMinAFKTimerLabel()
 	%enable.set_pressed(cursorManager.MinAFKTimeEnable)
+	
+	for i in range(4):
+		var newPlayerTab = playerTab.instantiate()
+		newPlayerTab.player = i+1
+		newPlayerTab.onClick.connect(onPlayerTabSelect)
+		%playerTabs.add_child(newPlayerTab)
 
 func activate():
 	show()
@@ -75,8 +85,12 @@ func _on_bsound_pressed() -> void:
 func _on_bcursor_pressed() -> void:
 	setNavigation(navigationPanels.CURSOR)
 
+func _on_bkey_pressed() -> void:
+	setNavigation(navigationPanels.BINDINGS)
+
 func _on_bcredits_pressed() -> void:
 	setNavigation(navigationPanels.CREDITS)
+
 
 func setNavigation(navigation: navigationPanels) -> void:
 	navigationPanel = navigation
@@ -91,3 +105,14 @@ func setNavigation(navigation: navigationPanels) -> void:
 			%cursor.show()
 		navigationPanels.CREDITS:
 			%credits.show()
+		navigationPanels.BINDINGS:
+			%bindings.show()
+
+func onPlayerTabSelect(player: int):
+	currentPlayerTab = player
+	%up.update(global.playerInput[player-1][0])
+	%down.update(global.playerInput[player-1][1])
+	%left.update(global.playerInput[player-1][2])
+	%right.update(global.playerInput[player-1][3])
+	%primary.update(global.playerInput[player-1][4])
+	%esc.update("esc")
