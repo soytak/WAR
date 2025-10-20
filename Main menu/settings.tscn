@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://btti4yhvq13ba"]
+[gd_scene load_steps=9 format=3 uid="uid://btti4yhvq13ba"]
 
 [ext_resource type="Script" uid="uid://iwshqgs1q77s" path="res://Main menu/settings.gd" id="1_g7jev"]
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="2_bh0mo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cag3jy31ljdv2" path="res://Textures/menu/sound.png" id="3_uaskp"]
 [ext_resource type="Texture2D" uid="uid://cvmp8uorbkr7i" path="res://Textures/cursor.png" id="4_c8lwl"]
 [ext_resource type="PackedScene" uid="uid://bnu6r3ejjb16e" path="res://keybingButton.tscn" id="4_xj7b6"]
+[ext_resource type="Script" uid="uid://bl5g0ns2perrj" path="res://Main menu/rebind_popup.gd" id="7_7j17w"]
 
 [sub_resource type="FontVariation" id="FontVariation_xj7b6"]
 base_font = ExtResource("3_c8lwl")
@@ -270,6 +271,12 @@ unique_name_in_owner = true
 layout_mode = 2
 action = 5
 
+[node name="Label" type="Label" parent="center/panels/bindings/margin/VBoxContainer"]
+layout_mode = 2
+text = "Can't rebind yet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="center/panels/bindings/margin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -352,6 +359,50 @@ custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="rebind popup" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -614.5
+offset_top = -64.0
+offset_right = 614.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bh0mo")
+script = ExtResource("7_7j17w")
+
+[node name="MarginContainer" type="MarginContainer" parent="rebind popup"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="rebind popup/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="rebind popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.227451, 0.227451, 0.227451, 1)
+text = "Enter the key to bind to"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="rebind popup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.227451, 0.227451, 0.227451, 1)
+theme_override_font_sizes/font_size = 100
+text = "waiting input"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="value_changed" from="center/panels/sound/margin/Elements/BGM_Slider" to="." method="_on_bgm_slider_value_changed"]
 [connection signal="value_changed" from="center/panels/sound/margin/Elements/SFX_Slider" to="." method="_on_sfx_slider_value_changed"]

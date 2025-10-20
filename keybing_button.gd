@@ -3,7 +3,7 @@ extends MarginContainer
 enum actions {UP, DOWN, LEFT, RIGHT, PRIMARYBUTTON, ESC}
 
 @export var action: actions
-var remapping: bool = false
+signal remap
 
 func _ready() -> void:
 	match action:
@@ -32,5 +32,6 @@ func update(value: StringName):
 
 
 func _on_button_pressed() -> void:
-	remapping = true
+	#remap.emit(%value.text)
 	#update("___")
+	pass

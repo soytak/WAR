@@ -6,6 +6,16 @@ var playerInput = [
 	["i","k","j","l",";"],
 	["kp8","kp5","kp4","kp6","kp+"]
 ]
+
+func getActionsPrettyString(string: StringName) -> StringName:
+	
+	var playerPrefixRule : RegEx = RegEx.new()
+	playerPrefixRule.compile("P[1-4]")
+	playerPrefixRule.sub(string, "", true)
+	
+	string.replace('_', ' ')
+	return string
+
 var playersColors = [
 	Color.CYAN,
 	Color.ORANGE,

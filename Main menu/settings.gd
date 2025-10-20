@@ -9,6 +9,11 @@ var currentPlayerTab: int = -1
 
 func _ready() -> void:
 	onPlayerTabSelect(1)
+	for child in $center/panels/bindings/margin/VBoxContainer/HBoxContainer.get_children():
+		for keybinds in child.get_children():
+			keybinds.remap.connect(%"rebind popup".rebind)
+	
+	
 	sfxManager.setVolume(navigationPanels.SOUND)
 	
 	var screen_width = get_viewport_rect().size.x
