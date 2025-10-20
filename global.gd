@@ -1,19 +1,19 @@
 extends Node
 
 var playerInput = [
-	["up","down","left","right","kp0"],
-	["w","s","a","d","leftShift"],
-	["i","k","j","l",";"],
-	["kp8","kp5","kp4","kp6","kp+"]
+	["P1 up","P1 down","P1 left","P1 right","P1 enter"],
+	["P2 up","P2 down","P2 left","P2 right","P2 enter"],
+	["P3 up","P3 down","P3 left","P3 right","P3 enter"],
+	["P4 up","P4 down","P4 left","P4 right","P4 enter"]
 ]
 
 func getActionsPrettyString(string: StringName) -> StringName:
 	
 	var playerPrefixRule : RegEx = RegEx.new()
 	playerPrefixRule.compile("P[1-4]")
-	playerPrefixRule.sub(string, "", true)
+	string = playerPrefixRule.sub(string, "", true)
 	
-	string.replace('_', ' ')
+	string = string.replace('_', ' ')
 	return string
 
 var playersColors = [

@@ -23,7 +23,6 @@ func show_menu() -> void:
 	control.position = Vector2(-control.size.x, screen_size.y / 2 - control.size.y / 2)
 	var tween = create_tween()
 	tween.tween_property(control, "position:x", 0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	#tween.parallel().tween_property(dim_rect, "color:a", 0.5, 0.5)
 	tween.finished.connect(func():
 		cursorManager.enableCursors()
 	)
@@ -32,7 +31,6 @@ func hide_menu() -> void:
 	var screen_width = control.get_viewport_rect().size.x
 	var tween = create_tween()
 	tween.tween_property(control, "position:x", -screen_width, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	#tween.parallel().tween_property(dim_rect, "color:a", 0.0, 0.5)
 	tween.finished.connect(func ():
 		hide()
 		if hidingCursor: cursorManager.disableCursors()

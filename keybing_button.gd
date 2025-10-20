@@ -27,11 +27,13 @@ func _ready() -> void:
 			%"secondairy name".text = ""
 
 func update(value: StringName):
-	%value.text = value
+	%value.text = global.getActionsPrettyString(value)
 	pass
 
 
 func _on_button_pressed() -> void:
-	#remap.emit(%value.text)
-	#update("___")
+	var actionName = %action.text
+	if actionName == "Select": actionName = "enter"
+	remap.emit(actionName, %value.text, update)
+	update("___")
 	pass
