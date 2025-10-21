@@ -115,9 +115,9 @@ func setNavigation(navigation: navigationPanels) -> void:
 
 func onPlayerTabSelect(player: int):
 	currentPlayerTab = player
-	%up.update(global.playerInput[player-1][0])
-	%down.update(global.playerInput[player-1][1])
-	%left.update(global.playerInput[player-1][2])
-	%right.update(global.playerInput[player-1][3])
-	%primary.update(global.playerInput[player-1][4])
-	%esc.update("esc")
+	%up.update(player)
+	%down.update(player)
+	%left.update(player)
+	%right.update(player)
+	%primary.update(player)
+	%esc.update(player)

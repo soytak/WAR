@@ -7,6 +7,28 @@ var playerInput = [
 	["P4 up","P4 down","P4 left","P4 right","P4 enter"]
 ]
 
+var actionInputDisplay: Dictionary = {
+	"up": "Up",
+	"down": "Down",
+	"left": "Left",
+	"right": "Right",
+	"enter": "Select",
+	"pause": "Pause"
+}
+
+func actionInputToDisplay(string: StringName) -> String:
+	string = getActionsPrettyString(string)
+	string = actionInputDisplay[string]
+	return string
+
+func actionDisplayToInput(string: StringName, player: int) -> String:
+	print(string)
+	string = invertDictionary(actionInputDisplay)[string]
+	#string = actionInputDisplay.invert()[string]
+	if string == "pause": return string
+	string = 'P' + str(player) + ' ' + string
+	return string
+
 func getActionsPrettyString(string: StringName) -> StringName:
 	
 	var playerPrefixRule : RegEx = RegEx.new()
@@ -14,7 +36,16 @@ func getActionsPrettyString(string: StringName) -> StringName:
 	string = playerPrefixRule.sub(string, "", true)
 	
 	string = string.replace('_', ' ')
+	string = string.replace("Kp", "keypad")
+	
 	return string
+	
+func invertDictionary(original: Dictionary) -> Dictionary:
+	var result: Dictionary = {}
+	for key in original:
+		result[original[key]] = key
+	return result
+
 
 var playersColors = [
 	Color.CYAN,
@@ -57,6 +88,7 @@ func forEachPlayingPlayer(function: Callable):
 			push_error("Invalid function passed to call_with_arg.")
 
 func _ready() -> void:
+	InputMap.load_from_project_settings()
 	SaveManager.loadSettings()
 	for i in range(4):
 		var data := PlayerData.create(upgrades)

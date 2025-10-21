@@ -25,15 +25,19 @@ func _ready() -> void:
 		actions.ESC:
 			%action.text = "Pause"
 			%"secondairy name".text = ""
+			
 
-func update(value: StringName):
+func setValue(value: StringName):
 	%value.text = global.getActionsPrettyString(value)
 	pass
+	
+func update(player: int):
+	var actionName = global.actionDisplayToInput(%action.text, player)
+	%value.text = (InputMap.action_get_events(actionName)[0] as InputEventKey).as_text_key_label()
+	
 
 
 func _on_button_pressed() -> void:
-	var actionName = %action.text
-	if actionName == "Select": actionName = "enter"
-	remap.emit(actionName, %value.text, update)
-	update("___")
+	remap.emit(%action.text, %value.text, setValue)
+	setValue("___")
 	pass
