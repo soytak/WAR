@@ -22,9 +22,7 @@ func actionInputToDisplay(string: StringName) -> String:
 	return string
 
 func actionDisplayToInput(string: StringName, player: int) -> String:
-	print(string)
 	string = invertDictionary(actionInputDisplay)[string]
-	#string = actionInputDisplay.invert()[string]
 	if string == "pause": return string
 	string = 'P' + str(player) + ' ' + string
 	return string
@@ -36,6 +34,7 @@ func getActionsPrettyString(string: StringName) -> StringName:
 	string = playerPrefixRule.sub(string, "", true)
 	
 	string = string.replace('_', ' ')
+	string = string.replace(" (Physical)", '')
 	string = string.replace("Kp", "keypad")
 	
 	return string

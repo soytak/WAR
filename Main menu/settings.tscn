@@ -271,12 +271,6 @@ unique_name_in_owner = true
 layout_mode = 2
 action = 5
 
-[node name="Label" type="Label" parent="center/panels/bindings/margin/VBoxContainer"]
-layout_mode = 2
-text = "Can't rebind yet"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="center/panels/bindings/margin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

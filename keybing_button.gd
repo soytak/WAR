@@ -29,12 +29,15 @@ func _ready() -> void:
 
 func setValue(value: StringName):
 	%value.text = global.getActionsPrettyString(value)
-	pass
 	
 func update(player: int):
 	var actionName = global.actionDisplayToInput(%action.text, player)
-	%value.text = (InputMap.action_get_events(actionName)[0] as InputEventKey).as_text_key_label()
 	
+	var events = InputMap.action_get_events(actionName)
+	if events[0] is InputEventKey:
+		var key_event := events[0] as InputEventKey
+		var string = key_event.as_text()
+		setValue(string)
 
 
 func _on_button_pressed() -> void:
