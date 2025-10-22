@@ -33,8 +33,9 @@ func finishRebind(actionName: StringName, update: Callable) -> void:
 	
 func markAsAlreadyTaken(string: StringName) -> void:
 	var prettyString = global.getActionsPrettyString(string)
-	%status.text = "waiting input: " + prettyString + " is already took"
+	%status.text = "waiting input: " + prettyString + " is already taken"
 	%status.self_modulate = Color.RED
+
 func markAsWaiting() -> StringName:
 	%status.text = "waiting input"
 	%status.self_modulate = Color.hex(0x3a3a3a)

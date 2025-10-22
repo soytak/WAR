@@ -34,6 +34,7 @@ func update(player: int):
 	var actionName = global.actionDisplayToInput(%action.text, player)
 	
 	var events = InputMap.action_get_events(actionName)
+	if events.size() <= 0: return
 	if events[0] is InputEventKey:
 		var key_event := events[0] as InputEventKey
 		var string = key_event.as_text()
