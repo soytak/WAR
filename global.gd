@@ -39,6 +39,18 @@ func getActionsPrettyString(string: StringName) -> StringName:
 	
 	return string
 	
+func getNbOfSameInput(string: StringName) -> int:
+	var occurences: int = 0
+	var prettyString = getActionsPrettyString(string)
+	for action in InputMap.get_actions():
+		if action.contains("ui"): continue
+		for button in InputMap.action_get_events(action):
+			if button is InputEventKey:
+				var key_event := button as InputEventKey
+				if getActionsPrettyString(key_event.as_text()) == prettyString:
+					occurences += 1
+	return occurences
+	
 func invertDictionary(original: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
 	for key in original:
