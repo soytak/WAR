@@ -127,7 +127,6 @@ theme = ExtResource("1_t3fg1")
 text = "Tank dictionary"
 
 [node name="controls_goal" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -144,10 +143,16 @@ theme = ExtResource("1_t3fg1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ri0r6")
 script = ExtResource("5_3j7fk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="controls_goal"]
+[node name="MarginContainer" type="MarginContainer" parent="controls_goal"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="controls_goal/MarginContainer"]
 layout_mode = 2
 
-[node name="instruction" type="RichTextLabel" parent="controls_goal/VBoxContainer"]
+[node name="instruction" type="RichTextLabel" parent="controls_goal/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
@@ -155,7 +160,7 @@ theme_override_font_sizes/normal_font_size = 50
 text = "I am error
 "
 
-[node name="how_to_navigate" type="RichTextLabel" parent="controls_goal/VBoxContainer"]
+[node name="how_to_navigate" type="RichTextLabel" parent="controls_goal/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 theme = ExtResource("1_t3fg1")

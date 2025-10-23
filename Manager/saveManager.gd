@@ -53,7 +53,8 @@ func save_input_map(path: String = "user://input_map.json") -> void:
 
 		var events: Array = []
 		for event in InputMap.action_get_events(action_name):
-			events.append(event.as_text())
+			if event is not InputEventKey: continue
+			events.append((event as InputEventKey))
 		data[action_name] = events
 
 	var file := FileAccess.open(path, FileAccess.WRITE)
@@ -66,9 +67,29 @@ func save_input_map(path: String = "user://input_map.json") -> void:
 func loadInputMap(path: String = "user://input_map.json") -> void:
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file:
+		for action in InputMap.get_actions():
+			InputMap.erase_action(action)
+		
 		var string = file.get_as_text()
 		file.close()
 		
 		var newJson = JSON.new()
 		newJson.parse(string)
+		var actions: Dictionary = newJson.data
+		
+		for actionName: String in actions.keys():
+			InputMap.add_action(actionName)
+
+			for eventData in actions[actionName]:
+				var event := InputEventKey.new()
+
+				var keycodeRegEx := RegEx.new()
+				keycodeRegEx.compile(r"keycode=(\d+)")
+				var result = keycodeRegEx.search(eventData)
+				if result:
+					event.keycode = int(result.get_string(1))
+
+				InputMap.action_add_event(actionName, event)
+	else:
+		InputMap.load_from_project_settings()
 	

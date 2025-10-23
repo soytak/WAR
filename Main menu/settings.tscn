@@ -177,7 +177,7 @@ theme = ExtResource("2_bh0mo")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 50
 theme_override_fonts/normal_font = SubResource("FontVariation_xj7b6")
-theme_override_font_sizes/normal_font_size = 75
+theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
 text = "[wave amp=40.0 freq=4.0 connected=1]Made by [color=#FF1286]Soytak [/color]
 Made in [color=#478cbf]Godot[/color][/wave]

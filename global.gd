@@ -99,7 +99,6 @@ func forEachPlayingPlayer(function: Callable):
 			push_error("Invalid function passed to call_with_arg.")
 
 func _ready() -> void:
-	InputMap.load_from_project_settings()
 	SaveManager.loadSettings()
 	for i in range(4):
 		var data := PlayerData.create(upgrades)
