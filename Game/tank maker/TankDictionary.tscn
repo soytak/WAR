@@ -134,6 +134,14 @@ text = "Exit"
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
+scroll_offset = Vector2(-768, -432)
+grid_pattern = 1
+right_disconnects = true
+zoom = 0.3
+zoom_min = 0.1
+zoom_max = 0.8
+zoom_step = 0.1
+show_zoom_label = true
 
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/previous" to="." method="_on_previous_pressed"]
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/next" to="." method="_on_next_pressed"]

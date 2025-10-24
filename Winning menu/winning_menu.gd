@@ -133,7 +133,15 @@ var victoryMessages = [
 	"Flawless",
 	"Standing above all!",
 	"No contest",
-	"The real goal was the friends we made along the way"
+	"The real goal was the friends we made along the way",
+	"No way!",
+	"Demolished!",
+	"Good ending",
+	"Bad ending",
+	"Secret ending???",
+	"4561737921",
+	"See you later",
+	"What have you done?"
 ]
 
 

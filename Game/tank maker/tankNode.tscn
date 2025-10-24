@@ -11,7 +11,6 @@ offset_right = 580.0
 offset_bottom = 981.0
 mouse_filter = 1
 theme = ExtResource("1_hyyn1")
-position_offset = Vector2(280, 293)
 title = "Basic"
 slot/0/left_enabled = true
 slot/0/left_type = 0
