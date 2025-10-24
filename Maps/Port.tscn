@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmk2r2oiw1ux5"]
+
+[ext_resource type="Texture2D" uid="uid://csh5ejq7qtewe" path="res://Maps/mines_base.png" id="1_qrx2n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go2r7"]
+size = Vector2(1774, 252)
+
+[node name="Mines" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.563626, 0.563626, 0.563626, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_qrx2n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 6
+collision_mask = 0
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(252, 80)
+polygon = PackedVector2Array(1693, 1006, 1654, 936, 1650, 826, 1674, 773, 1644, 762, 1622, 648, 1578, 436, 1569, 209, 1547, 6, 1531, -80, 1897, -94, 2020, 985)
+
+[node name="spawn" type="Node2D" parent="."]
+
+[node name="ssd" type="CollisionPolygon2D" parent="spawn"]
+polygon = PackedVector2Array(1647, 110, 1719, 977, 340, 966, 101, 110)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(907, 1431)
+shape = SubResource("RectangleShape2D_go2r7")

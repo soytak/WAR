@@ -6,6 +6,7 @@ var maker = preload("res://Game/tank maker/tank maker.tscn")
 
 func _ready() -> void:
 	updateName()
+	setupGraph()
 
 func updateName():
 	var name = evolutionManager.getEvolutionIdName(currentEvolutionId)
@@ -100,3 +101,12 @@ func _on_exit_pressed() -> void:
 func tankSelect(evolutionId: int):
 	currentEvolutionId = evolutionId
 	updateName()
+
+
+func setupGraph():
+	var node = preload("res://Game/tank maker/tankNode.tscn")
+	for evolutionId in evolutionManager.evolutionsID.size():
+		var newNode = node.instantiate()
+		newNode.setTo(evolutionId)
+		$GraphView.add_child(newNode)
+	pass
