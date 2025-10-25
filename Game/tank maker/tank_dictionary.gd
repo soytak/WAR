@@ -1,6 +1,6 @@
 extends Control
 
-var nodesRef: Dictionary[int,GraphNode]
+var nodesRef: Dictionary[int,MarginContainer]
 var currentEvolutionId: int = 0
 @onready var preview = %TankMaker
 var maker = preload("res://Game/tank maker/tank maker.tscn")
@@ -107,16 +107,8 @@ func tankSelect(evolutionId: int):
 func setupGraph():
 	nodesRef.clear()
 	var node = preload("res://Game/tank maker/tankNode.tscn")
-	for evolutionId in evolutionManager.evolutionsID.size():
+	for evolutionId in evolutionManager.getNextEvolutionsID(0):
 		var newNode = node.instantiate()
 		newNode.setTo(evolutionId)
-		$GraphView.add_child(newNode)
+		$SubViewportContainer/SubViewport.add_child(newNode)
 		nodesRef[evolutionId] = newNode
-	for child in $GraphView.get_children():
-		if child is not GraphNode: continue
-		child.setConnections(connectAll)
-		
-		
-func connectAll(evStart: int, evEnd: int):
-	print(nodesRef[evStart].title)
-	#$GraphView.connect_node(nodesRef[evStart].title, 0, nodesRef[evEnd].title, 0)

@@ -1,42 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj0sofvvvvraf"]
+[gd_scene load_steps=5 format=3 uid="uid://cj0sofvvvvraf"]
 
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_hyyn1"]
 [ext_resource type="Script" uid="uid://bnqbdx2ltw6c6" path="res://Game/tank maker/TankGraphNode.gd" id="2_thoo6"]
 [ext_resource type="PackedScene" uid="uid://duyn13baadi8m" path="res://Game/tank maker/tank maker.tscn" id="3_n0vdn"]
+[ext_resource type="Script" uid="uid://05uer36o7fcl" path="res://ButtonForPlayer.gd" id="4_thoo6"]
 
-[node name="GraphNode" type="GraphNode"]
-offset_left = 280.0
-offset_top = 293.0
-offset_right = 580.0
-offset_bottom = 981.0
-mouse_filter = 1
+[node name="CenterContainer" type="MarginContainer"]
+custom_minimum_size = Vector2(500, 800)
+offset_right = 500.0
+offset_bottom = 800.0
 theme = ExtResource("1_hyyn1")
-title = "Basic"
-slot/0/left_enabled = true
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
-slot/0/left_icon = null
-slot/0/right_enabled = true
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
-slot/0/right_icon = null
-slot/0/draw_stylebox = true
 script = ExtResource("2_thoo6")
 
-[node name="GraphFrame" type="GraphFrame" parent="."]
-layout_mode = 2
-offset_left = 18.0
-offset_top = 140.0
-offset_right = 282.0
-offset_bottom = 676.0
-
-[node name="ColorRect" type="ColorRect" parent="GraphFrame"]
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="GraphFrame"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TankMaker" parent="GraphFrame/Control" instance=ExtResource("3_n0vdn")]
-scale = Vector2(2, 2)
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.380392, 0.380392, 0.380392, 0.568627)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.138034, 0.138034, 0.138034, 1)
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Basic"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TankMaker" parent="MarginContainer/VBoxContainer/CenterContainer/Control" instance=ExtResource("3_n0vdn")]
+
+[node name="ButtonForPlayer" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+script = ExtResource("4_thoo6")
+alsoMouse = true
+metadata/_custom_type_script = "uid://05uer36o7fcl"
