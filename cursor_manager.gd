@@ -19,3 +19,9 @@ func disableCursors():
 func enableCursors():
 	for child in $Control.get_children():
 		child.enable()
+
+func getCursorPosition(player: int) -> Vector2:
+	for child in $Control.get_children():
+		if child.player == player:
+			return child.position
+	return Vector2.ZERO

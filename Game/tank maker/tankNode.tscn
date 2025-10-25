@@ -52,10 +52,13 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="TankMaker" parent="MarginContainer/VBoxContainer/CenterContainer/Control" instance=ExtResource("3_n0vdn")]
+scale = Vector2(2.5, 2.5)
 
 [node name="ButtonForPlayer" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 script = ExtResource("4_thoo6")
 alsoMouse = true
+anyPlayer = true
+getBackEvent = true
 metadata/_custom_type_script = "uid://05uer36o7fcl"
