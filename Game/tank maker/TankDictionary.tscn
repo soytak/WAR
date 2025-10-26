@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpl02bgg5hyp8"]
+[gd_scene load_steps=5 format=3 uid="uid://cpl02bgg5hyp8"]
 
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_0tj7d"]
 [ext_resource type="Script" uid="uid://dftags0bt0e4l" path="res://Game/tank maker/tank_dictionary.gd" id="1_uggm4"]
 [ext_resource type="PackedScene" uid="uid://duyn13baadi8m" path="res://Game/tank maker/tank maker.tscn" id="3_lg2nh"]
+[ext_resource type="Script" uid="uid://dwvreuhk4s5ik" path="res://TextureButtonForPlayer.gd" id="4_lmpdj"]
 
 [node name="TankDictionary" type="Control"]
 layout_mode = 3
@@ -144,6 +145,25 @@ grow_vertical = 2
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 694.0
+offset_top = 648.0
+offset_right = 1483.0
+offset_bottom = 835.0
+
+[node name="Button" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_lmpdj")
+metadata/_custom_type_script = "uid://dwvreuhk4s5ik"
+
+[node name="Button2" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_lmpdj")
+metadata/_custom_type_script = "uid://dwvreuhk4s5ik"
 
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/previous" to="." method="_on_previous_pressed"]
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/next" to="." method="_on_next_pressed"]

@@ -18,6 +18,7 @@ func _ready() -> void:
 	$ButtonForPlayer.onClick.connect(click)
 	
 func click(event: InputEventMouse):
+	get_parent().move_child(self, get_parent().get_child_count() - 1)
 	heldedEvent = event
 	helded = true
 	heldPosition = event.global_position - position

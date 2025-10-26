@@ -3,6 +3,7 @@ extends Control
 var nodesRef: Dictionary[int,MarginContainer]
 var currentEvolutionId: int = 0
 @onready var preview = %TankMaker
+const EvolutionCards = preload("res://Game/tank maker/tankNode.tscn")
 var maker = preload("res://Game/tank maker/tank maker.tscn")
 
 func _ready() -> void:
@@ -106,9 +107,26 @@ func tankSelect(evolutionId: int):
 
 func setupGraph():
 	nodesRef.clear()
-	var node = preload("res://Game/tank maker/tankNode.tscn")
-	for evolutionId in evolutionManager.getNextEvolutionsID(0):
-		var newNode = node.instantiate()
-		newNode.setTo(evolutionId)
+	var newNode = Control.new()
+	var pos = Vector2($SubViewportContainer/SubViewport.size/2)
+	setupCard(pos, 0, [0])
+
+
+func setupNextEvolutionsOf(evolutionParent: Control) -> void:
+	var nextEvolutions: Array = evolutionManager.getNextEvolutionsID(evolutionParent.evolutionId)
+	var i: int = 0
+	for evolutionId in nextEvolutions:
+		setupCard(evolutionParent.position, i, nextEvolutions)
+		i+=1
+
+func setupCard(offset: Vector2, i: int, nextEvolutions: Array):
+		var newNode = EvolutionCards.instantiate()
+		newNode.scale = Vector2.ONE * 0.4
+		const margin = 50
+		var yOffset = (i-((nextEvolutions.size()-1)/2)) * (newNode.size.y*newNode.scale.y + margin)
+		newNode.setTo(nextEvolutions[i])
+		newNode.position = offset - newNode.size*newNode.scale/2
+		newNode.position.y += yOffset
 		$SubViewportContainer/SubViewport.add_child(newNode)
-		nodesRef[evolutionId] = newNode
+		nodesRef[nextEvolutions[i]] = newNode
+		setupNextEvolutionsOf(newNode)
