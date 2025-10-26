@@ -109,24 +109,30 @@ func setupGraph():
 	nodesRef.clear()
 	var newNode = Control.new()
 	var pos = Vector2($SubViewportContainer/SubViewport.size/2)
-	setupCard(pos, 0, [0])
+	setupCard(pos, 0, 0, [0])
 
 
-func setupNextEvolutionsOf(evolutionParent: Control) -> void:
+func setupNextEvolutionsOf(evolutionParent: Control, dir: float) -> void:
 	var nextEvolutions: Array = evolutionManager.getNextEvolutionsID(evolutionParent.evolutionId)
 	var i: int = 0
 	for evolutionId in nextEvolutions:
-		setupCard(evolutionParent.position, i, nextEvolutions)
+		var angleRange = 60
+		const dist = 400
+		if nextEvolutions.size() == 1: angleRange = 0
+		if nextEvolutions.size() == 8: angleRange = 360
+		var angleOfMovement = dir + deg_to_rad(angleRange/nextEvolutions.size()*i)
+		var Offset = Vector2(cos(angleOfMovement), sin(angleOfMovement)) * dist
+		
+		setupCard(evolutionParent.position+Offset, i, angleOfMovement, nextEvolutions)
 		i+=1
 
-func setupCard(offset: Vector2, i: int, nextEvolutions: Array):
-		var newNode = EvolutionCards.instantiate()
-		newNode.scale = Vector2.ONE * 0.4
-		const margin = 50
-		var yOffset = (i-((nextEvolutions.size()-1)/2)) * (newNode.size.y*newNode.scale.y + margin)
-		newNode.setTo(nextEvolutions[i])
-		newNode.position = offset - newNode.size*newNode.scale/2
-		newNode.position.y += yOffset
-		$SubViewportContainer/SubViewport.add_child(newNode)
-		nodesRef[nextEvolutions[i]] = newNode
-		setupNextEvolutionsOf(newNode)
+func setupCard(offset: Vector2, i: int, dir: float, nextEvolutions: Array):
+	var newNode = EvolutionCards.instantiate()
+	newNode.scale = Vector2.ONE * 0.2
+	
+	newNode.setTo(nextEvolutions[i])
+	newNode.position = offset - newNode.size*newNode.scale/2
+
+	$SubViewportContainer/SubViewport.add_child(newNode)
+	nodesRef[nextEvolutions[i]] = newNode
+	setupNextEvolutionsOf(newNode, dir)
