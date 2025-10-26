@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpl02bgg5hyp8"]
+[gd_scene load_steps=5 format=3 uid="uid://cpl02bgg5hyp8"]
 
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_0tj7d"]
 [ext_resource type="Script" uid="uid://dftags0bt0e4l" path="res://Game/tank maker/tank_dictionary.gd" id="1_uggm4"]
 [ext_resource type="PackedScene" uid="uid://duyn13baadi8m" path="res://Game/tank maker/tank maker.tscn" id="3_lg2nh"]
 [ext_resource type="Script" uid="uid://dwvreuhk4s5ik" path="res://TextureButtonForPlayer.gd" id="4_lmpdj"]
-[ext_resource type="Script" uid="uid://dpys4og1385rn" path="res://Game/tank maker/lineManager.gd" id="4_lq5jd"]
-[ext_resource type="Script" uid="uid://05uer36o7fcl" path="res://ButtonForPlayer.gd" id="6_fpyiy"]
 
 [node name="TankDictionary" type="Control"]
 layout_mode = 3
@@ -133,7 +131,7 @@ size_flags_vertical = 3
 theme = ExtResource("1_0tj7d")
 text = "Exit"
 
-[node name="Graph" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,64 +141,30 @@ offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="viewport" type="SubViewport" parent="Graph"]
-unique_name_in_owner = true
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Cards" type="CanvasLayer" parent="Graph/viewport"]
-unique_name_in_owner = true
-layer = 6
-
-[node name="Lines" type="CanvasLayer" parent="Graph/viewport"]
-layer = 5
-
-[node name="Control" type="Control" parent="Graph/viewport/Lines"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_lq5jd")
-
-[node name="Draw" type="CanvasLayer" parent="Graph/viewport"]
-layer = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Graph/viewport/Draw"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 694.0
 offset_top = 648.0
 offset_right = 1483.0
 offset_bottom = 835.0
 
-[node name="Button" type="TextureButton" parent="Graph/viewport/Draw/HBoxContainer"]
+[node name="Button" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4_lmpdj")
 metadata/_custom_type_script = "uid://dwvreuhk4s5ik"
 
-[node name="Button2" type="TextureButton" parent="Graph/viewport/Draw/HBoxContainer"]
+[node name="Button2" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("4_lmpdj")
 metadata/_custom_type_script = "uid://dwvreuhk4s5ik"
-
-[node name="Switch" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = 1188.0
-offset_right = 1880.0
-offset_bottom = 128.0
-grow_horizontal = 0
-theme = ExtResource("1_0tj7d")
-text = "Switch Mode"
-script = ExtResource("6_fpyiy")
-alsoMouse = true
-anyPlayer = true
-metadata/_custom_type_script = "uid://05uer36o7fcl"
 
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/previous" to="." method="_on_previous_pressed"]
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="MarginContainer/vbox/Exit" to="." method="_on_exit_pressed"]
-[connection signal="onClick" from="Switch" to="." method="switchMode"]

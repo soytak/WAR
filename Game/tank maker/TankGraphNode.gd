@@ -4,8 +4,10 @@ var evolutionId
 var helded: bool = false
 var heldedEvent: InputEventMouseButton
 var heldPosition: Vector2
+var parent: Control = null
 
-func setTo(evolutionId: int) -> void:
+func setTo(evolutionId: int, parent: Control) -> void:
+	self.parent = parent
 	self.evolutionId = evolutionId
 	$MarginContainer/VBoxContainer/CenterContainer/Control/TankMaker.make(evolutionId)
 	%Name.text = evolutionManager.getEvolutionIdName(evolutionId)
@@ -24,6 +26,7 @@ func click(event: InputEventMouse):
 	heldPosition = event.global_position - position
 
 func _process(delta: float) -> void:
+	queue_redraw()
 	if helded:
 		if not heldedEvent.has_meta("player"):
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -37,3 +40,6 @@ func _process(delta: float) -> void:
 				position += (cursorPosition - heldPosition - position) / 5
 			else:
 				helded = false
+
+func get_parent_card() -> Control:
+	return parent

@@ -31,66 +31,73 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xds3s")
 
-[node name="BG" type="Panel" parent="."]
+[node name="paralax" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="Panel" parent="paralax"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1010.0
-offset_top = -590.0
-offset_right = 1010.0
-offset_bottom = 590.0
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 1950.0
+offset_bottom = 1110.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_3j7fk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="paralax"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -993.0
-offset_top = -234.0
-offset_right = 81.0
-offset_bottom = 610.0
+offset_left = 887.0
+offset_top = 286.0
+offset_right = 1961.0
+offset_bottom = 1130.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 40
 script = ExtResource("3_xds3s")
 
-[node name="fight" type="Button" parent="VBoxContainer"]
+[node name="fight" type="Button" parent="paralax/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "Play!"
 
-[node name="Controls_goal" type="Button" parent="VBoxContainer"]
+[node name="Controls_goal" type="Button" parent="paralax/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "Controls / goal"
 
-[node name="settings" type="Button" parent="VBoxContainer"]
+[node name="settings" type="Button" parent="paralax/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "settings"
 
-[node name="quit" type="Button" parent="VBoxContainer"]
+[node name="quit" type="Button" parent="paralax/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "Exit"
 
-[node name="Title" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="paralax"]
+unique_name_in_owner = true
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -634.5
+offset_left = 305.5
 offset_top = -35.0
-offset_right = 634.5
+offset_right = 1574.5
 offset_bottom = 297.0
 grow_horizontal = 2
 tooltip_text = "*do not do it at home"
@@ -102,18 +109,18 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="tankPreview" type="CenterContainer" parent="."]
+[node name="tankPreview" type="CenterContainer" parent="paralax"]
 layout_mode = 0
 offset_left = 106.0
 offset_top = 321.0
 offset_right = 711.0
 offset_bottom = 1023.0
 
-[node name="tankPreviewControl" type="Control" parent="tankPreview"]
+[node name="tankPreviewControl" type="Control" parent="paralax/tankPreview"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="VBoxContainer2" type="VBoxContainer" parent="paralax"]
 layout_mode = 0
 offset_left = -100.0
 offset_top = 900.0
@@ -121,38 +128,39 @@ offset_right = 900.0
 offset_bottom = 1043.0
 theme_override_constants/separation = 40
 
-[node name="dictionary" type="Button" parent="VBoxContainer2"]
+[node name="dictionary" type="Button" parent="paralax/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "Tank dictionary"
 
-[node name="controls_goal" type="PanelContainer" parent="."]
+[node name="controls_goal" type="PanelContainer" parent="paralax"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -679.5
-offset_top = -321.0
-offset_right = 679.5
-offset_bottom = 321.0
+offset_left = 260.5
+offset_top = 123.0
+offset_right = 1619.5
+offset_bottom = 917.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_t3fg1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ri0r6")
 script = ExtResource("5_3j7fk")
 
-[node name="MarginContainer" type="MarginContainer" parent="controls_goal"]
+[node name="MarginContainer" type="MarginContainer" parent="paralax/controls_goal"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="controls_goal/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="paralax/controls_goal/MarginContainer"]
 layout_mode = 2
 
-[node name="instruction" type="RichTextLabel" parent="controls_goal/MarginContainer/VBoxContainer"]
+[node name="instruction" type="RichTextLabel" parent="paralax/controls_goal/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
@@ -160,7 +168,7 @@ theme_override_font_sizes/normal_font_size = 50
 text = "I am error
 "
 
-[node name="how_to_navigate" type="RichTextLabel" parent="controls_goal/MarginContainer/VBoxContainer"]
+[node name="how_to_navigate" type="RichTextLabel" parent="paralax/controls_goal/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
@@ -168,7 +176,7 @@ theme_override_font_sizes/normal_font_size = 50
 text = "any right: next slide | any left: previous slide | shoot: quit"
 horizontal_alignment = 2
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="paralax"]
 
 [node name="Settings" parent="." instance=ExtResource("6_xds3s")]
 unique_name_in_owner = true
@@ -179,8 +187,8 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="VBoxContainer/fight" to="VBoxContainer" method="_on_fight_pressed"]
-[connection signal="pressed" from="VBoxContainer/Controls_goal" to="." method="_on_controls_goal_pressed"]
-[connection signal="pressed" from="VBoxContainer/settings" to="VBoxContainer" method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/quit" to="VBoxContainer" method="_on_quit_pressed"]
-[connection signal="pressed" from="VBoxContainer2/dictionary" to="." method="_on_dictionary_pressed"]
+[connection signal="pressed" from="paralax/VBoxContainer/fight" to="paralax/VBoxContainer" method="_on_fight_pressed"]
+[connection signal="pressed" from="paralax/VBoxContainer/Controls_goal" to="." method="_on_controls_goal_pressed"]
+[connection signal="pressed" from="paralax/VBoxContainer/settings" to="paralax/VBoxContainer" method="_on_settings_pressed"]
+[connection signal="pressed" from="paralax/VBoxContainer/quit" to="paralax/VBoxContainer" method="_on_quit_pressed"]
+[connection signal="pressed" from="paralax/VBoxContainer2/dictionary" to="." method="_on_dictionary_pressed"]

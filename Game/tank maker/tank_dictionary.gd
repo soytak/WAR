@@ -5,10 +5,22 @@ var currentEvolutionId: int = 0
 @onready var preview = %TankMaker
 const EvolutionCards = preload("res://Game/tank maker/tankNode.tscn")
 var maker = preload("res://Game/tank maker/tank maker.tscn")
+var graphMode: bool = true
+
 
 func _ready() -> void:
 	updateName()
 	setupGraph()
+	
+func switchMode() -> void:
+	#print(graphMode)
+	graphMode = not graphMode
+	
+func _process(delta: float) -> void:
+	if graphMode:
+		$Graph.show()
+	else:
+		$Graph.hide()
 
 func updateName():
 	var name = evolutionManager.getEvolutionIdName(currentEvolutionId)
@@ -108,8 +120,8 @@ func tankSelect(evolutionId: int):
 func setupGraph():
 	nodesRef.clear()
 	var newNode = Control.new()
-	var pos = Vector2($SubViewportContainer/SubViewport.size/2)
-	setupCard(pos, 0, 0, [0])
+	var pos = Vector2(%viewport.size/2)
+	setupCard(pos, 0, 0, [0], null)
 
 
 func setupNextEvolutionsOf(evolutionParent: Control, dir: float) -> void:
@@ -123,16 +135,16 @@ func setupNextEvolutionsOf(evolutionParent: Control, dir: float) -> void:
 		var angleOfMovement = dir + deg_to_rad(angleRange/nextEvolutions.size()*i)
 		var Offset = Vector2(cos(angleOfMovement), sin(angleOfMovement)) * dist
 		
-		setupCard(evolutionParent.position+Offset, i, angleOfMovement, nextEvolutions)
+		setupCard(evolutionParent.position+Offset, i, angleOfMovement, nextEvolutions, evolutionParent)
 		i+=1
 
-func setupCard(offset: Vector2, i: int, dir: float, nextEvolutions: Array):
+func setupCard(offset: Vector2, i: int, dir: float, nextEvolutions: Array, parent: Control):
 	var newNode = EvolutionCards.instantiate()
 	newNode.scale = Vector2.ONE * 0.2
 	
-	newNode.setTo(nextEvolutions[i])
+	newNode.setTo(nextEvolutions[i], parent)
 	newNode.position = offset - newNode.size*newNode.scale/2
 
-	$SubViewportContainer/SubViewport.add_child(newNode)
+	%Cards.add_child(newNode)
 	nodesRef[nextEvolutions[i]] = newNode
 	setupNextEvolutionsOf(newNode, dir)
