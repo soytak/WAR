@@ -6,6 +6,7 @@ var currentEvolutionId: int = 0
 const EvolutionCards = preload("res://Game/tank maker/tankNode.tscn")
 var maker = preload("res://Game/tank maker/tank maker.tscn")
 var graphMode: bool = true
+var zoom: float = 1
 
 
 func _ready() -> void:
@@ -13,7 +14,6 @@ func _ready() -> void:
 	setupGraph()
 	
 func switchMode() -> void:
-	#print(graphMode)
 	graphMode = not graphMode
 	
 func _process(delta: float) -> void:
@@ -119,8 +119,9 @@ func tankSelect(evolutionId: int):
 
 func setupGraph():
 	nodesRef.clear()
+	%Cards.offset = Vector2(%viewport.size/2)
 	var newNode = Control.new()
-	var pos = Vector2(%viewport.size/2)
+	var pos = Vector2(0,0)
 	setupCard(pos, 0, 0, [0], null)
 
 
@@ -148,3 +149,15 @@ func setupCard(offset: Vector2, i: int, dir: float, nextEvolutions: Array, paren
 	%Cards.add_child(newNode)
 	nodesRef[nextEvolutions[i]] = newNode
 	setupNextEvolutionsOf(newNode, dir)
+
+
+func zoomOut() -> void:
+	changeZoom(-0.1)
+
+func zoomIn() -> void:
+	changeZoom(0.1)
+
+func changeZoom(zoomAmount: float) -> void:
+	zoom = clampf(zoom+zoomAmount, 0.4, 1.8)
+	%Cards.scale = Vector2.ONE * zoom
+	$Graph/viewport/Control/Lines.scale = Vector2.ONE * zoom

@@ -21,8 +21,8 @@ func _draw() -> void:
 		if parent == null:
 			continue
 
-		var from_global = card.global_position + (card.size * card.scale) / 2.0
-		var to_global = parent.global_position + (parent.size * parent.scale) / 2.0
+		var from_global = card.global_position*%Cards.scale + %Cards.offset + (card.size * card.scale * %Cards.scale) / 2.0
+		var to_global = parent.global_position*%Cards.scale + %Cards.offset + (parent.size * parent.scale * %Cards.scale) / 2.0
 
 		var local_from = get_global_transform_with_canvas().affine_inverse() * from_global
 		var local_to = get_global_transform_with_canvas().affine_inverse() * to_global
