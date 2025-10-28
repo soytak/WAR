@@ -6,7 +6,9 @@ var currentEvolutionId: int = 0
 const EvolutionCards = preload("res://Game/tank maker/tankNode.tscn")
 var maker = preload("res://Game/tank maker/tank maker.tscn")
 var graphMode: bool = true
+var targetZoom: float = 1
 var zoom: float = 1
+var graphTranslation: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -17,6 +19,13 @@ func switchMode() -> void:
 	graphMode = not graphMode
 	
 func _process(delta: float) -> void:
+	zoom += (targetZoom - zoom)/6
+	%Cards.scale = Vector2.ONE * zoom
+	%LineManager.scale = Vector2.ONE * zoom
+	
+	%Cards.position = graphTranslation
+	%LineManager.position = graphTranslation
+	
 	if graphMode:
 		$Graph.show()
 	else:
@@ -119,9 +128,11 @@ func tankSelect(evolutionId: int):
 
 func setupGraph():
 	nodesRef.clear()
-	%Cards.offset = Vector2(%viewport.size/2)
+	%Cards.position = Vector2(%viewport.size/2)
+	%Cards.pivot_offset = Vector2(%viewport.size/2)
+	%LineManager.pivot_offset = Vector2(%viewport.size/2)
 	var newNode = Control.new()
-	var pos = Vector2(0,0)
+	var pos = Vector2(%viewport.size/2)
 	setupCard(pos, 0, 0, [0], null)
 
 
@@ -129,11 +140,11 @@ func setupNextEvolutionsOf(evolutionParent: Control, dir: float) -> void:
 	var nextEvolutions: Array = evolutionManager.getNextEvolutionsID(evolutionParent.evolutionId)
 	var i: int = 0
 	for evolutionId in nextEvolutions:
-		var angleRange = 60
-		const dist = 400
+		var angleRange = 70
+		const dist = 500
 		if nextEvolutions.size() == 1: angleRange = 0
 		if nextEvolutions.size() == 8: angleRange = 360
-		var angleOfMovement = dir + deg_to_rad(angleRange/nextEvolutions.size()*i)
+		var angleOfMovement = dir + deg_to_rad(angleRange/nextEvolutions.size()*i - angleRange/2)
 		var Offset = Vector2(cos(angleOfMovement), sin(angleOfMovement)) * dist
 		
 		setupCard(evolutionParent.position+Offset, i, angleOfMovement, nextEvolutions, evolutionParent)
@@ -158,6 +169,9 @@ func zoomIn() -> void:
 	changeZoom(0.1)
 
 func changeZoom(zoomAmount: float) -> void:
-	zoom = clampf(zoom+zoomAmount, 0.4, 1.8)
-	%Cards.scale = Vector2.ONE * zoom
-	$Graph/viewport/Control/Lines.scale = Vector2.ONE * zoom
+	targetZoom = clampf(targetZoom+zoomAmount, 0.4, 1.8)
+
+
+func detectSlide() -> void:
+	
+	pass # Replace with function body.

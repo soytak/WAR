@@ -154,23 +154,43 @@ render_target_update_mode = 4
 layout_mode = 3
 anchors_preset = 0
 
-[node name="Cards" type="CanvasLayer" parent="Graph/viewport/Control"]
-unique_name_in_owner = true
+[node name="CardsLayer" type="CanvasLayer" parent="Graph/viewport/Control"]
 layer = 6
+
+[node name="Cards" type="Control" parent="Graph/viewport/Control/CardsLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 
 [node name="Lines" type="CanvasLayer" parent="Graph/viewport/Control"]
 layer = 5
 
-[node name="Control" type="Control" parent="Graph/viewport/Control/Lines"]
+[node name="LineManager" type="Control" parent="Graph/viewport/Control/Lines"]
+unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("4_lq5jd")
 
 [node name="Draw" type="CanvasLayer" parent="Graph/viewport/Control"]
 layer = 7
 follow_viewport_enabled = true
+
+[node name="DetectSlide" type="Button" parent="Graph/viewport/Control/Draw"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Graph/viewport/Control/Draw"]
 anchors_preset = 3
@@ -213,6 +233,7 @@ text = "Switch Mode"
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/previous" to="." method="_on_previous_pressed"]
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="MarginContainer/vbox/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Graph/viewport/Control/Draw/DetectSlide" to="." method="detectSlide"]
 [connection signal="pressed" from="Graph/viewport/Control/Draw/HBoxContainer/zoom out" to="." method="zoomOut"]
 [connection signal="pressed" from="Graph/viewport/Control/Draw/HBoxContainer/zoom in" to="." method="zoomIn"]
 [connection signal="pressed" from="Switch" to="." method="switchMode"]
