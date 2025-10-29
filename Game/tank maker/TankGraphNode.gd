@@ -28,6 +28,7 @@ func click(event: InputEventMouse):
 func _process(delta: float) -> void:
 	queue_redraw()
 	if helded:
+		var zoom = Vector2.ONE / get_parent().scale
 		if not heldedEvent.has_meta("player"):
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 				position += (get_viewport().get_mouse_position() - heldPosition - position) / 5
@@ -36,10 +37,11 @@ func _process(delta: float) -> void:
 		else:
 			var cursorPlayer = heldedEvent.get_meta("player")
 			if Input.is_action_pressed(global.getPlayerInput(cursorPlayer,"shoot")):
-				var cursorPosition = cursorManager.getCursorPosition(cursorPlayer)
-				position += (cursorPosition - heldPosition - position) / 5
+				var cursorPosition = cursorManager.getCursorPosition(cursorPlayer) * zoom
+				position += (cursorPosition - heldPosition*zoom - position) / 5
 			else:
 				helded = false
+				
 
 func get_parent_card() -> Control:
 	return parent

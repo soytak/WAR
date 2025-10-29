@@ -4,6 +4,8 @@ var player: int
 var speed: int = 10
 var canShow: bool = true
 var clickSound: AudioStreamPlayer
+var press: bool = false
+var pressed: bool = false
 
 func _ready() -> void:
 	clickSound = AudioStreamPlayer.new()
@@ -16,8 +18,9 @@ func _ready() -> void:
 	self_modulate = global.playersColors[player - 1]
 
 func _process(delta: float) -> void:
-	var press := Input.is_action_just_pressed(global.getPlayerInput(player, "shoot"))
-	if Input.is_action_pressed(global.getPlayerInput(player, "shoot")):
+	press = Input.is_action_just_pressed(global.getPlayerInput(player, "shoot"))
+	pressed = Input.is_action_pressed(global.getPlayerInput(player, "shoot"))
+	if pressed:
 		modulate = Color.DIM_GRAY
 	else:
 		modulate = Color.WHITE

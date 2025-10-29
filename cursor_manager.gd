@@ -25,3 +25,15 @@ func getCursorPosition(player: int) -> Vector2:
 		if child.player == player:
 			return child.position
 	return Vector2.ZERO
+
+func getPressedPlayer() -> int:
+	for child in $Control.get_children():
+		if child.pressed:
+			return child.player
+	return -1
+
+func getCursorPressed(player: int) -> bool:
+	for child in $Control.get_children():
+		if child.player == player:
+			return child.pressed
+	return false

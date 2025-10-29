@@ -9,6 +9,8 @@ var graphMode: bool = true
 var targetZoom: float = 1
 var zoom: float = 1
 var graphTranslation: Vector2 = Vector2.ZERO
+var currentSlidePlayer: int = -2
+var slideStart: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -30,6 +32,17 @@ func _process(delta: float) -> void:
 		$Graph.show()
 	else:
 		$Graph.hide()
+		
+		
+	if currentSlidePlayer >= 1:
+		if cursorManager.getCursorPressed(currentSlidePlayer):
+			var curPosition: Vector2 = cursorManager.getCursorPosition(currentSlidePlayer)
+			var diffPosition: Vector2 = curPosition - slideStart
+			
+			graphTranslation += diffPosition
+			slideStart = curPosition
+		else:
+			currentSlidePlayer = -1
 
 func updateName():
 	var name = evolutionManager.getEvolutionIdName(currentEvolutionId)
@@ -173,5 +186,5 @@ func changeZoom(zoomAmount: float) -> void:
 
 
 func detectSlide() -> void:
-	
-	pass # Replace with function body.
+	currentSlidePlayer = cursorManager.getPressedPlayer()
+	slideStart = cursorManager.getCursorPosition(currentSlidePlayer)
