@@ -1,11 +1,13 @@
 extends Control
 
-enum navigationPanels {SOUND, CURSOR, BINDINGS, CREDITS}
+enum navigationPanels {SOUND, CURSOR, BINDINGS, CREDITS, EXTRA}
 
 var navigationPanel: navigationPanels = navigationPanels.SOUND
 
 var playerTab = preload("res://playerTab.tscn")
 var currentPlayerTab: int = -1
+
+var TTA = 30
 
 func _ready() -> void:
 	updateCSLabel(0)
@@ -87,15 +89,14 @@ func updateMinAFKTimerLabel(timeChange: float = 0):
 
 func _on_bsound_pressed() -> void:
 	setNavigation(navigationPanels.SOUND)
-
 func _on_bcursor_pressed() -> void:
 	setNavigation(navigationPanels.CURSOR)
-
 func _on_bkey_pressed() -> void:
 	setNavigation(navigationPanels.BINDINGS)
-
 func _on_bcredits_pressed() -> void:
 	setNavigation(navigationPanels.CREDITS)
+func _on_bextra_pressed() -> void:
+	setNavigation(navigationPanels.EXTRA)
 
 
 func setNavigation(navigation: navigationPanels) -> void:
@@ -113,6 +114,8 @@ func setNavigation(navigation: navigationPanels) -> void:
 			%credits.show()
 		navigationPanels.BINDINGS:
 			%bindings.show()
+		navigationPanels.EXTRA:
+			%extra.show()
 
 func onPlayerTabSelect(player: int):
 	currentPlayerTab = player
@@ -136,3 +139,7 @@ func _on_CS_increase_pressed() -> void:
 func updateCSLabel(timeChange: float = 0):
 	cursorManager.changeCursorSensibility(timeChange)
 	%"cursor sensibility".text = str(cursorManager.CursorSensibility)
+
+func updateTTALabel(titleTankAmount: int) -> void:
+	TTA = clampi(TTA + titleTankAmount, 0, 100)
+	%"TTA number".text = str(TTA)

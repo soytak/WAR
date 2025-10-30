@@ -12,6 +12,7 @@ func _ready() -> void:
 	%"Dictionary button".player = player
 	%"Dictionary button".onClick.connect(clickOnDictionayButton)
 	%"Dictionary button".modulate = global.playersColors[player-1]
+	%"Lives bar".self_modulate = global.playersColors[player-1]
 	$TankDictionary.modulate = global.playersColors[player-1]
 	
 	for upgrade in global.upgrades:

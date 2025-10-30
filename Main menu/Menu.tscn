@@ -10,13 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://btti4yhvq13ba" path="res://Main menu/settings.tscn" id="6_xds3s"]
 [ext_resource type="PackedScene" uid="uid://cpl02bgg5hyp8" path="res://Game/tank maker/TankDictionary.tscn" id="7_nsikn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwj72"]
-shader = ExtResource("6_ri0r6")
-shader_parameter/move_duration = 1.0
-shader_parameter/idle_duration = 5.0
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_width = 0.02
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3j7fk"]
 texture = ExtResource("2_3j7fk")
 modulate_color = Color(1, 1, 1, 0.145098)
@@ -30,6 +23,13 @@ corner_radius_bottom_left = 10
 shadow_size = 5
 shadow_offset = Vector2(20, 20)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwj72"]
+shader = ExtResource("6_ri0r6")
+shader_parameter/move_duration = 1.0
+shader_parameter/idle_duration = 5.0
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_width = 0.02
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -40,18 +40,6 @@ grow_vertical = 2
 script = ExtResource("1_xds3s")
 
 [node name="paralax" type="CanvasLayer" parent="."]
-
-[node name="shiny overlay" type="ColorRect" parent="paralax"]
-light_mask = 8
-visibility_layer = 8
-material = SubResource("ShaderMaterial_mwj72")
-offset_left = -200.0
-offset_top = -200.0
-offset_right = 1720.0
-offset_bottom = 880.0
-scale = Vector2(1.5, 1.5)
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Control" type="Control" parent="paralax"]
 layout_mode = 3
@@ -68,6 +56,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_3j7fk")
+
+[node name="tankPreview" type="CenterContainer" parent="paralax/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+use_top_left = true
+
+[node name="tankPreviewControl" type="Control" parent="paralax/Control/tankPreview"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="paralax/Control"]
 layout_mode = 1
@@ -124,17 +125,6 @@ text = "WAR"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="tankPreview" type="CenterContainer" parent="paralax/Control"]
-layout_mode = 0
-offset_left = 84.0
-offset_top = 169.0
-offset_right = 689.0
-offset_bottom = 871.0
-
-[node name="tankPreviewControl" type="Control" parent="paralax/Control/tankPreview"]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="paralax/Control"]
 layout_mode = 0
@@ -194,14 +184,28 @@ horizontal_alignment = 2
 
 [node name="Node2D" type="Node2D" parent="paralax/Control"]
 
-[node name="Settings" parent="." instance=ExtResource("6_xds3s")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Settings" parent="CanvasLayer" instance=ExtResource("6_xds3s")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
 
-[node name="TankDictionary" parent="." instance=ExtResource("7_nsikn")]
+[node name="TankDictionary" parent="CanvasLayer" instance=ExtResource("7_nsikn")]
 visible = false
-layout_mode = 1
+
+[node name="shiny overlay" type="ColorRect" parent="CanvasLayer"]
+light_mask = 8
+visibility_layer = 8
+material = SubResource("ShaderMaterial_mwj72")
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 1720.0
+offset_bottom = 880.0
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
 
 [connection signal="pressed" from="paralax/Control/VBoxContainer/fight" to="paralax/Control/VBoxContainer" method="_on_fight_pressed"]
 [connection signal="pressed" from="paralax/Control/VBoxContainer/Controls_goal" to="." method="_on_controls_goal_pressed"]
