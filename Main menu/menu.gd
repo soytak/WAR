@@ -5,6 +5,10 @@ var maker = load("res://Game/tank maker/tank maker.tscn")
 @onready var title = %Title
 var initialTitlePosition
 var time: float = 0
+var vel = {
+	"x" : 1,
+	"y" : 1
+}
 
 func _ready() -> void:
 	initialTitlePosition = title.position
@@ -38,7 +42,15 @@ func _process(delta):
 	var viewport_center = get_viewport_rect().size / 2
 	var mouse_offset = (get_viewport().get_mouse_position() - viewport_center) / viewport_center
 	%BG.position = mouse_offset * parallax_strength * -0.7 - Vector2(50,50)
-	$paralax.position = mouse_offset * parallax_strength * 0.3
+	$paralax.offset = mouse_offset * parallax_strength * 0.3
+	
+	%tankPreviewControl.get_child(0).position.x += vel.x * 5
+	%tankPreviewControl.get_child(0).position.y += vel.y * 5
+	if %tankPreviewControl.get_child(0).position.x > %tankPreviewControl.get_parent().size.x or %tankPreviewControl.get_child(0).position.x < 0:
+		vel.x = vel.x * -1
+	if %tankPreviewControl.get_child(0).position.y > %tankPreviewControl.get_parent().size.y or %tankPreviewControl.get_child(0).position.y < 0:
+		vel.y = vel.y * -1
+	
 
 func _on_controls_goal_pressed() -> void:
 	%controls_goal.show()

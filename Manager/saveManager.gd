@@ -11,7 +11,7 @@ func saveSettings() -> void:
 
 	config.set_value("cursor", "AFKEnabled", cursorManager.MinAFKTimeEnable)
 	config.set_value("cursor", "AFKMinTimer", cursorManager.MinAFKTime)
-
+	config.set_value("cursor", "Sensibility", cursorManager.CursorSensibility)
 	
 
 
@@ -32,11 +32,13 @@ func loadSettings() -> void:
 
 		var cursorEnabled = config.get_value("cursor", "AFKEnabled", cursorManager.MinAFKTimeEnable)
 		var cursorAFKTime = config.get_value("cursor", "AFKMinTimer", cursorManager.MinAFKTime)
+		var cursorSensibility = config.get_value("cursor", "Sensibility", cursorManager.CursorSensibility)
 
 		musicManager.setVolume(bgmVolume)
 		sfxManager.setVolume(sfxVolume)
 		cursorManager.MinAFKTimeEnable = cursorEnabled
 		cursorManager.MinAFKTime = clampf(cursorAFKTime, 0.1, 10)
+		cursorManager.CursorSensibility = clampf(cursorSensibility, 6, 20)
 	else:
 		print("No settings file found. Using defaults.")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://btpkkbmnel5s3"]
+[gd_scene load_steps=13 format=3 uid="uid://btpkkbmnel5s3"]
 
 [ext_resource type="Theme" uid="uid://chhk32s317h3e" path="res://Main menu/text.tres" id="1_t3fg1"]
 [ext_resource type="Script" uid="uid://h7apm5lnpr41" path="res://Main menu/menu.gd" id="1_xds3s"]
@@ -6,8 +6,16 @@
 [ext_resource type="Script" uid="uid://jn6lj2l1yil6" path="res://Main menu/buttonsr.gd" id="3_xds3s"]
 [ext_resource type="Script" uid="uid://bwqyc4xint3pl" path="res://Main menu/Controls_goal.gd" id="5_3j7fk"]
 [ext_resource type="FontFile" uid="uid://bcam8b2ux4ewg" path="res://Textures/menu/MGS4 Brush.ttf" id="5_ny5mr"]
+[ext_resource type="Shader" uid="uid://d0lxis7wmdglg" path="res://Main menu/shiny.gdshader" id="6_ri0r6"]
 [ext_resource type="PackedScene" uid="uid://btti4yhvq13ba" path="res://Main menu/settings.tscn" id="6_xds3s"]
 [ext_resource type="PackedScene" uid="uid://cpl02bgg5hyp8" path="res://Game/tank maker/TankDictionary.tscn" id="7_nsikn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwj72"]
+shader = ExtResource("6_ri0r6")
+shader_parameter/move_duration = 1.0
+shader_parameter/idle_duration = 5.0
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_width = 0.02
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3j7fk"]
 texture = ExtResource("2_3j7fk")
@@ -31,74 +39,82 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xds3s")
 
-[node name="paralax" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="paralax" type="CanvasLayer" parent="."]
 
-[node name="BG" type="Panel" parent="paralax"]
+[node name="shiny overlay" type="ColorRect" parent="paralax"]
+light_mask = 8
+visibility_layer = 8
+material = SubResource("ShaderMaterial_mwj72")
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 1720.0
+offset_bottom = 880.0
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="paralax"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="BG" type="Panel" parent="paralax/Control"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -70.0
-offset_right = 1950.0
-offset_bottom = 1110.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_3j7fk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="paralax"]
+[node name="VBoxContainer" type="VBoxContainer" parent="paralax/Control"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 887.0
-offset_top = 286.0
-offset_right = 1961.0
-offset_bottom = 1130.0
+offset_left = -970.0
+offset_top = -190.0
+offset_right = 104.0
+offset_bottom = 654.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 40
 script = ExtResource("3_xds3s")
 
-[node name="fight" type="Button" parent="paralax/VBoxContainer"]
+[node name="fight" type="Button" parent="paralax/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "Play!"
 
-[node name="Controls_goal" type="Button" parent="paralax/VBoxContainer"]
+[node name="Controls_goal" type="Button" parent="paralax/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "Controls / goal"
 
-[node name="settings" type="Button" parent="paralax/VBoxContainer"]
+[node name="settings" type="Button" parent="paralax/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "settings"
 
-[node name="quit" type="Button" parent="paralax/VBoxContainer"]
+[node name="quit" type="Button" parent="paralax/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "Exit"
 
-[node name="Title" type="RichTextLabel" parent="paralax"]
+[node name="Title" type="RichTextLabel" parent="paralax/Control"]
 unique_name_in_owner = true
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 305.5
-offset_top = -35.0
-offset_right = 1574.5
-offset_bottom = 297.0
+offset_left = -634.5
+offset_right = 634.5
+offset_bottom = 332.0
 grow_horizontal = 2
 tooltip_text = "*do not do it at home"
 theme_override_constants/outline_size = 50
@@ -109,18 +125,18 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="tankPreview" type="CenterContainer" parent="paralax"]
+[node name="tankPreview" type="CenterContainer" parent="paralax/Control"]
 layout_mode = 0
-offset_left = 106.0
-offset_top = 321.0
-offset_right = 711.0
-offset_bottom = 1023.0
+offset_left = 84.0
+offset_top = 169.0
+offset_right = 689.0
+offset_bottom = 871.0
 
-[node name="tankPreviewControl" type="Control" parent="paralax/tankPreview"]
+[node name="tankPreviewControl" type="Control" parent="paralax/Control/tankPreview"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="paralax"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="paralax/Control"]
 layout_mode = 0
 offset_left = -100.0
 offset_top = 900.0
@@ -128,12 +144,12 @@ offset_right = 900.0
 offset_bottom = 1043.0
 theme_override_constants/separation = 40
 
-[node name="dictionary" type="Button" parent="paralax/VBoxContainer2"]
+[node name="dictionary" type="Button" parent="paralax/Control/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 text = "Tank dictionary"
 
-[node name="controls_goal" type="PanelContainer" parent="paralax"]
+[node name="controls_goal" type="PanelContainer" parent="paralax/Control"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -141,26 +157,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 260.5
-offset_top = 123.0
-offset_right = 1619.5
-offset_bottom = 917.0
+offset_left = -679.5
+offset_top = -397.0
+offset_right = 679.5
+offset_bottom = 397.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_t3fg1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ri0r6")
 script = ExtResource("5_3j7fk")
 
-[node name="MarginContainer" type="MarginContainer" parent="paralax/controls_goal"]
+[node name="MarginContainer" type="MarginContainer" parent="paralax/Control/controls_goal"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="paralax/controls_goal/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="paralax/Control/controls_goal/MarginContainer"]
 layout_mode = 2
 
-[node name="instruction" type="RichTextLabel" parent="paralax/controls_goal/MarginContainer/VBoxContainer"]
+[node name="instruction" type="RichTextLabel" parent="paralax/Control/controls_goal/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
@@ -168,7 +184,7 @@ theme_override_font_sizes/normal_font_size = 50
 text = "I am error
 "
 
-[node name="how_to_navigate" type="RichTextLabel" parent="paralax/controls_goal/MarginContainer/VBoxContainer"]
+[node name="how_to_navigate" type="RichTextLabel" parent="paralax/Control/controls_goal/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
@@ -176,7 +192,7 @@ theme_override_font_sizes/normal_font_size = 50
 text = "any right: next slide | any left: previous slide | shoot: quit"
 horizontal_alignment = 2
 
-[node name="Node2D" type="Node2D" parent="paralax"]
+[node name="Node2D" type="Node2D" parent="paralax/Control"]
 
 [node name="Settings" parent="." instance=ExtResource("6_xds3s")]
 unique_name_in_owner = true
@@ -187,8 +203,8 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="paralax/VBoxContainer/fight" to="paralax/VBoxContainer" method="_on_fight_pressed"]
-[connection signal="pressed" from="paralax/VBoxContainer/Controls_goal" to="." method="_on_controls_goal_pressed"]
-[connection signal="pressed" from="paralax/VBoxContainer/settings" to="paralax/VBoxContainer" method="_on_settings_pressed"]
-[connection signal="pressed" from="paralax/VBoxContainer/quit" to="paralax/VBoxContainer" method="_on_quit_pressed"]
-[connection signal="pressed" from="paralax/VBoxContainer2/dictionary" to="." method="_on_dictionary_pressed"]
+[connection signal="pressed" from="paralax/Control/VBoxContainer/fight" to="paralax/Control/VBoxContainer" method="_on_fight_pressed"]
+[connection signal="pressed" from="paralax/Control/VBoxContainer/Controls_goal" to="." method="_on_controls_goal_pressed"]
+[connection signal="pressed" from="paralax/Control/VBoxContainer/settings" to="paralax/Control/VBoxContainer" method="_on_settings_pressed"]
+[connection signal="pressed" from="paralax/Control/VBoxContainer/quit" to="paralax/Control/VBoxContainer" method="_on_quit_pressed"]
+[connection signal="pressed" from="paralax/Control/VBoxContainer2/dictionary" to="." method="_on_dictionary_pressed"]
