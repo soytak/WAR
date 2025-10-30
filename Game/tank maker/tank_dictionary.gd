@@ -26,7 +26,6 @@ func _process(delta: float) -> void:
 	%LineManager.scale = Vector2.ONE * zoom
 	
 	%Cards.position = graphTranslation
-	%LineManager.position = graphTranslation
 	
 	if graphMode:
 		$Graph.show()

@@ -146,6 +146,39 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "->"
 
+[node name="CS" type="Label" parent="center/panels/cursor/margin/Elements"]
+layout_mode = 2
+text = "Cursor Sensibility"
+
+[node name="CS box" type="HBoxContainer" parent="center/panels/cursor/margin/Elements"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="decrease" type="Button" parent="center/panels/cursor/margin/Elements/CS box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<-"
+
+[node name="slight decrease" type="Button" parent="center/panels/cursor/margin/Elements/CS box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<"
+
+[node name="cursor sensibility" type="Label" parent="center/panels/cursor/margin/Elements/CS box"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="slight increase" type="Button" parent="center/panels/cursor/margin/Elements/CS box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ">"
+
+[node name="increase" type="Button" parent="center/panels/cursor/margin/Elements/CS box"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "->"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="center/panels/cursor/margin/Elements"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -416,6 +449,10 @@ vertical_alignment = 1
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/CHT time box/slight decrease" to="." method="_on_slight_decrease_pressed"]
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/CHT time box/slight increase" to="." method="_on_slight_increase_pressed"]
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/CHT time box/increase" to="." method="_on_increase_pressed"]
+[connection signal="pressed" from="center/panels/cursor/margin/Elements/CS box/decrease" to="." method="_on_CS_decrease_pressed"]
+[connection signal="pressed" from="center/panels/cursor/margin/Elements/CS box/slight decrease" to="." method="_on_CS_slight_decrease_pressed"]
+[connection signal="pressed" from="center/panels/cursor/margin/Elements/CS box/slight increase" to="." method="_on_CS_slight_increase_pressed"]
+[connection signal="pressed" from="center/panels/cursor/margin/Elements/CS box/increase" to="." method="_on_CS_increase_pressed"]
 [connection signal="pressed" from="center/panels/cursor/margin/Elements/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="center/panels/credits/margin/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="center/panels/bindings/margin/VBoxContainer/VBoxContainer2/Back" to="." method="_on_back_pressed"]

@@ -8,6 +8,7 @@ var playerTab = preload("res://playerTab.tscn")
 var currentPlayerTab: int = -1
 
 func _ready() -> void:
+	updateCSLabel(0)
 	onPlayerTabSelect(1)
 	for child in $center/panels/bindings/margin/VBoxContainer/HBoxContainer.get_children():
 		for keybinds in child.get_children():
@@ -121,3 +122,17 @@ func onPlayerTabSelect(player: int):
 	%right.update(player)
 	%primary.update(player)
 	%esc.update(player)
+
+
+func _on_CS_decrease_pressed() -> void:
+	updateCSLabel(-4)
+func _on_CS_slight_decrease_pressed() -> void:
+	updateCSLabel(-1)
+func _on_CS_slight_increase_pressed() -> void:
+	updateCSLabel(1)
+func _on_CS_increase_pressed() -> void:
+	updateCSLabel(4)
+
+func updateCSLabel(timeChange: float = 0):
+	cursorManager.changeCursorSensibility(timeChange)
+	%"cursor sensibility".text = str(cursorManager.CursorSensibility)
