@@ -7,11 +7,17 @@ var navigationPanel: navigationPanels = navigationPanels.SOUND
 var playerTab = preload("res://playerTab.tscn")
 var currentPlayerTab: int = -1
 
-var TTA = 30
-
 func _ready() -> void:
 	updateCSLabel(0)
 	onPlayerTabSelect(1)
+	updateTTALabel(0)
+	
+	var info = preload("res://flags scene/Flag builder.tscn")
+	for i in range(info.instantiate().flags.size()):
+		var instance = info.instantiate()
+		instance.make(i)
+		%Languages.add_child(instance)
+	
 	for child in $center/panels/bindings/margin/VBoxContainer/HBoxContainer.get_children():
 		for keybinds in child.get_children():
 			keybinds.remap.connect(%"rebind popup".rebind)
@@ -141,5 +147,5 @@ func updateCSLabel(timeChange: float = 0):
 	%"cursor sensibility".text = str(cursorManager.CursorSensibility)
 
 func updateTTALabel(titleTankAmount: int) -> void:
-	TTA = clampi(TTA + titleTankAmount, 0, 100)
-	%"TTA number".text = str(TTA)
+	SaveManager.TTA = clampi(SaveManager.TTA + titleTankAmount, 0, 100)
+	%"TTA number".text = str(SaveManager.TTA)

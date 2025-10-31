@@ -10,7 +10,7 @@ var vels: Array[Dictionary]
 func _ready() -> void:
 	initialTitlePosition = title.position
 	
-	for i in range(50):
+	for i in range(SaveManager.TTA):
 		createPreview()
 		
 	playMusic()
@@ -52,6 +52,13 @@ func _process(delta):
 	%BG.position = mouse_offset * parallax_strength * -0.7 - Vector2(50,50)
 	$paralax.offset = mouse_offset * parallax_strength * 0.3
 	
+	if %tankPreviewControl.get_children().size() > SaveManager.TTA:
+		for i in range(%tankPreviewControl.get_children().size()-SaveManager.TTA):
+			%tankPreviewControl.get_child(0).queue_free()
+	if %tankPreviewControl.get_children().size() < SaveManager.TTA:
+		for i in range(SaveManager.TTA-%tankPreviewControl.get_children().size()):
+			createPreview()
+	
 	var i = 0
 	for child in %tankPreviewControl.get_children():
 		child.position.x += vels[i].x * 5
@@ -70,4 +77,4 @@ func _on_controls_goal_pressed() -> void:
 
 
 func _on_dictionary_pressed() -> void:
-	$TankDictionary.show()
+	%TankDictionary.show()

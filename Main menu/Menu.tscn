@@ -192,6 +192,7 @@ unique_name_in_owner = true
 visible = false
 
 [node name="TankDictionary" parent="CanvasLayer" instance=ExtResource("7_nsikn")]
+unique_name_in_owner = true
 visible = false
 
 [node name="shiny overlay" type="ColorRect" parent="CanvasLayer"]

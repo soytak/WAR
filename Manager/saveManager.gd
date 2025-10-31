@@ -1,6 +1,7 @@
 extends Node
 
 var path := "user://settings.ini"
+var TTA = 30
 
 func saveSettings() -> void:
 	save_input_map()
@@ -13,7 +14,7 @@ func saveSettings() -> void:
 	config.set_value("cursor", "AFKMinTimer", cursorManager.MinAFKTime)
 	config.set_value("cursor", "Sensibility", cursorManager.CursorSensibility)
 	
-
+	config.set_value("extra", "TTA", TTA)
 
 
 	var error = config.save(path)
@@ -33,6 +34,8 @@ func loadSettings() -> void:
 		var cursorEnabled = config.get_value("cursor", "AFKEnabled", cursorManager.MinAFKTimeEnable)
 		var cursorAFKTime = config.get_value("cursor", "AFKMinTimer", cursorManager.MinAFKTime)
 		var cursorSensibility = config.get_value("cursor", "Sensibility", cursorManager.CursorSensibility)
+
+		TTA = config.get_value("extra", "TTA", 30)
 
 		musicManager.setVolume(bgmVolume)
 		sfxManager.setVolume(sfxVolume)
