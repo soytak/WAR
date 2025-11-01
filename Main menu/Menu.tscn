@@ -89,22 +89,22 @@ script = ExtResource("3_xds3s")
 [node name="fight" type="Button" parent="paralax/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
-text = "Play!"
+text = "PLAY"
 
 [node name="Controls_goal" type="Button" parent="paralax/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
-text = "Controls / goal"
+text = "CONTROLS/GOAL"
 
 [node name="settings" type="Button" parent="paralax/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
-text = "settings"
+text = "SETTINGS"
 
 [node name="quit" type="Button" parent="paralax/Control/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
-text = "Exit"
+text = "EXIT"
 
 [node name="Title" type="RichTextLabel" parent="paralax/Control"]
 unique_name_in_owner = true
@@ -137,7 +137,7 @@ theme_override_constants/separation = 40
 [node name="dictionary" type="Button" parent="paralax/Control/VBoxContainer2"]
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
-text = "Tank dictionary"
+text = "DICTIONARY_OF_TANKS"
 
 [node name="controls_goal" type="PanelContainer" parent="paralax/Control"]
 unique_name_in_owner = true
@@ -171,7 +171,7 @@ custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 theme_override_font_sizes/normal_font_size = 50
-text = "I am error
+text = "ERROR
 "
 
 [node name="how_to_navigate" type="RichTextLabel" parent="paralax/Control/controls_goal/MarginContainer/VBoxContainer"]
@@ -179,7 +179,7 @@ custom_minimum_size = Vector2(100, 70)
 layout_mode = 2
 theme = ExtResource("1_t3fg1")
 theme_override_font_sizes/normal_font_size = 50
-text = "any right: next slide | any left: previous slide | shoot: quit"
+text = "SLIDE_INSTRUCTION"
 horizontal_alignment = 2
 
 [node name="Node2D" type="Node2D" parent="paralax/Control"]

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bmofqlkgpnu4h"
+
+[deps]
+
+files=["res://flags scene/trans.en.translation", "res://flags scene/trans.jp.translation", "res://flags scene/trans.fr.translation"]
+
+source_file="res://flags scene/trans.csv"
+dest_files=["res://flags scene/trans.en.translation", "res://flags scene/trans.jp.translation", "res://flags scene/trans.fr.translation"]
+
+[params]
+
+compress=true
+delimiter=0

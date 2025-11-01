@@ -1,0 +1,112 @@
+﻿key,en,jp,fr
+PLAY,Play!,1,Jouer!
+CONTROLS/GOAL,Controls / goal,1,Controls / but
+SETTINGS,settings,1,paramètre
+EXIT,Exit,1,Quitter
+DICTIONARY_OF_TANKS,Tank dictionary,1,Atlas de tank
+ERROR,I am error,1,Je suis erreur
+SLIDE_INSTRUCTION,any right: next slide | any left: previous slide | shoot: quit,1,droite: prochain | gauche: précédant | tirer: quitter
+PANEL1,"Welcome to WAR
+Controls:
+	Use the mouse to navigate menu or player's cursors
+	Controls are rebindable in settings -> keys
+	
+defaults:
+		Player 1: arrows for movement and 0 (of keypad) or right control to shoot
+		Player 2: wasd for movement and shift (or space) to shoot
+		Player 3: ijkl for movement and ; to shoot
+		Player 4: 8456 for movement and + to shoot (keypad)
+	",1,"Bienvenue à WAR
+Controls :
+	Utilise la souris ou un curseur
+	Les controls sont défénis dans paramètre → touches
+
+Control par défaut :
+	Joueur 1 : flèche pour bouger et 0 (du clavier numérique) ou control droit pour tirer
+	Joueur 2 : WASD pour bouger et touche MAJ (ou espace) pour tirer
+	Joueur 3 : IJKL pour bouger et ; pour tirer
+	Joueur 4 : 8456 pour bouger et + pour tirer (toutes sur clavier numérique)
+"
+PANEL2,"Goal:
+	Be the last one standing each round
+Round:
+	Use your tank to eliminate the others.
+	When only one player is alive, it is time for the intermission!
+
+	",1,"But :
+	Être le dernier en vie chaque match
+Match :
+	Utilise votre tank pour éliminer les autres
+	Quand un seul joueur est en vie, le match se fini et va à l’intermission!
+
+"
+PANEL3,"Intermission:
+	If nobody except one has no health, the one who still got life wins.
+	In intermission, deads with lives left can select an upgrade,
+	and more importantly: an evolution.
+	Evolutions are tree based, so the previous choice matters as well.",,"Intermission :
+	Si une seule personne a des points de vie, celle-ci gagne.
+	En intermission, les morts ayant des points de vie doivent sélectionner une amélioration,
+	et plus important : une évolution.
+	Les évolutions sont en arbre évolutionnaire, alors le choix précédent influence les options."
+PANEL4,"	This game has audio.\n
+	Be aware that bots are in very early state
+	Have a good time!",1,"	Ce jeu a de l’audio.\n
+	Avertissement : les ordinateurs sont très rudimentaire
+	Avec ça, amusez-vous bien !"
+BGM,BGM,1,BGM
+SFX,SFX,1,SFX
+CHT,Cursor Hiding Time,1,⏱️Disparition de curseur
+CS,Cursor Sensibility,1,Sensibilité des curseur
+CREDIT,"[wave amp=40.0 freq=4.0 connected=1]Made by [color=#FF1286]Soytak [/color]
+Made in [color=#478cbf]Godot[/color][/wave]
+[font_size=40]
+Font used:
+[color=#ff5500]aAsianHiro[/color]
+[color=#0055ff]MGS4 Brush[/color]
+Music/Transition used made by others:[color=#879284]
+incompetech.com
+https://zacksly.itch.io/half-tone-comic-shader-for-godot[/color][/font_size]
+[wave amp=25.0 freq=1.0 connected=1][color=#eebb33][font_size=50]
+To everyone who shaped the coder inside me
+[/font_size]
+[/color]
+[/wave]",1,"[wave amp=40.0 freq=4.0 connected=1]Créé par [color=#FF1286]Soytak [/color]
+Créé dans [color=#478cbf]Godot[/color][/wave]
+[font_size=40]
+Police d’écritures:
+[color=#ff5500]aAsianHiro[/color]
+[color=#0055ff]MGS4 Brush[/color]
+Musiques/Transition utilisées:[color=#879284]
+incompetech.com
+https://zacksly.itch.io/half-tone-comic-shader-for-godot[/color][/font_size][wave amp=25.0 freq=1.0 connected=1][color=#eebb33][font_size=50]
+Pour tous ceux qui ont modelé 
+[/font_size]
+[/color]
+[/wave]"
+UP,Up,1,Haut
+DOWN,Down,1,Bas
+LEFT,Left,1,Gauche
+RIGHT,Right,1,Droit
+SELECT,Select,1,Selectionner
+PAUSE,Pause,1,Pause
+FORWARD,Forward,1,Avancer
+BACKWARD,Backward,1,Reculer
+TURN,Turn,1,Tourner
+SHOOT,Shoot,1,Tirer
+TTA,Title tank amount,1,#tank au menu principale
+LANGUAGES,Languages,1,Langages
+ENGLISH,English,1,Anglais
+JAPANESE,Japanese,1,Japonais
+FRENCH,French,1,Français
+CREDITS,Credits,1,Credits
+KEYS,Keys,1,Buttons
+EXTRA,Extra,1,Extra
+REBIND_POPUP,,1,
+,,1,
+,,1,
+,,1,
+,,1,
+,,1,
+,,1,
+,,1,

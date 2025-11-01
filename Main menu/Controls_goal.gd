@@ -1,32 +1,10 @@
 extends PanelContainer
 
 var panelMessages = [
-	"Welcome to WAR
-Controls:
-	Use the mouse to navigate menu or player's cursors
-	Controls are rebindable in settings -> keys
-	
-defaults:
-		Player 1: arrows for movement and 0 (of keypad) or right control to shoot
-		Player 2: wasd for movement and shift (or space) to shoot
-		Player 3: ijkl for movement and ; to shoot
-		Player 4: 8456 for movement and + to shoot (keypad)
-	",
-"Goal:
-	Be the last one standing each round
-Round:
-	Use your tank to eliminate the others.
-	When only one player is alive, it is time for the intermission!
-	",
-	"Intermission:
-	If nobody exept one has no health, the one who still got life wins.
-	In intermission, deads with lives left can select an upgrade,
-	and more importantly: an evolution.
-	Evolutions are tree based, so the previous choice matters as well.
-	",
-	"	This game has audio.\n
-	Be aware that bots are in very early state
-	Have a good time!"
+	"PANEL1",
+	"PANEL2",
+	"PANEL3",
+	"PANEL4"
 ]
 
 var panelMessageActive = 0
@@ -52,4 +30,4 @@ func _input(event: InputEvent) -> void:
 		accept_event()
 				
 func setPanelTo(panelMessage: int):
-	$MarginContainer/VBoxContainer/instruction.text = panelMessages[panelMessage % panelMessages.size()]
+	$MarginContainer/VBoxContainer/instruction.text = tr(panelMessages[panelMessage % panelMessages.size()])

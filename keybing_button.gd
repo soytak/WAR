@@ -8,22 +8,22 @@ signal remap
 func _ready() -> void:
 	match action:
 		actions.UP:
-			%action.text = "Up"
-			%"secondairy name".text = "/Forward"
+			%action.text = tr("UP")
+			%"secondairy name".text = tr("/FORWARD")
 		actions.DOWN:
-			%action.text = "Down"
-			%"secondairy name".text = "/Backward"
+			%action.text = tr("DOWN")
+			%"secondairy name".text = tr("/BACKWARD")
 		actions.LEFT:
-			%action.text = "Left"
-			%"secondairy name".text = "/Turn"
+			%action.text = tr("LEFT")
+			%"secondairy name".text = tr("/TURN")
 		actions.RIGHT:
-			%action.text = "Right"
-			%"secondairy name".text = "/Turn"
+			%action.text = tr("RIGHT")
+			%"secondairy name".text = tr("/TURN")
 		actions.PRIMARYBUTTON:
-			%action.text = "Select"
-			%"secondairy name".text = "/Shoot"
+			%action.text = tr("SELECT")
+			%"secondairy name".text = tr("/SHOOT")
 		actions.ESC:
-			%action.text = "Pause"
+			%action.text = tr("PAUSE")
 			%"secondairy name".text = ""
 			
 

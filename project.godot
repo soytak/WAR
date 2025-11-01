@@ -167,6 +167,10 @@ pause={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://flags scene/trans.en.translation", "res://flags scene/trans.fr.translation", "res://flags scene/trans.jp.translation")
+
 [layer_names]
 
 2d_physics/layer_2="block player"

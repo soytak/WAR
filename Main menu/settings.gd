@@ -16,6 +16,7 @@ func _ready() -> void:
 	for i in range(info.instantiate().flags.size()):
 		var instance = info.instantiate()
 		instance.make(i)
+		instance.onSelect.connect(updateLanguage)
 		%Languages.add_child(instance)
 	
 	for child in $center/panels/bindings/margin/VBoxContainer/HBoxContainer.get_children():
@@ -149,3 +150,6 @@ func updateCSLabel(timeChange: float = 0):
 func updateTTALabel(titleTankAmount: int) -> void:
 	SaveManager.TTA = clampi(SaveManager.TTA + titleTankAmount, 0, 100)
 	%"TTA number".text = str(SaveManager.TTA)
+
+func updateLanguage(flag: int) -> void:
+	print(flag)

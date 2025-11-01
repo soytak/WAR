@@ -82,7 +82,7 @@ alignment = 2
 
 [node name="Back" type="Button" parent="center/panels/sound/margin/Elements/VBoxContainer"]
 layout_mode = 2
-text = "Back"
+text = "BACK"
 
 [node name="cursor" type="PanelContainer" parent="center/panels"]
 unique_name_in_owner = true
@@ -109,7 +109,7 @@ theme_override_constants/separation = 50
 
 [node name="CHT" type="Label" parent="center/panels/cursor/margin/Elements/CHT box"]
 layout_mode = 2
-text = "Cursor Hiding Time"
+text = "CHT"
 
 [node name="enable" type="CheckButton" parent="center/panels/cursor/margin/Elements/CHT box"]
 unique_name_in_owner = true
@@ -148,7 +148,7 @@ text = "->"
 
 [node name="CS" type="Label" parent="center/panels/cursor/margin/Elements"]
 layout_mode = 2
-text = "Cursor Sensibility"
+text = "CS"
 
 [node name="CS box" type="HBoxContainer" parent="center/panels/cursor/margin/Elements"]
 layout_mode = 2
@@ -186,7 +186,7 @@ alignment = 2
 
 [node name="Back" type="Button" parent="center/panels/cursor/margin/Elements/VBoxContainer"]
 layout_mode = 2
-text = "Back"
+text = "BACK"
 
 [node name="credits" type="PanelContainer" parent="center/panels"]
 unique_name_in_owner = true
@@ -212,20 +212,7 @@ theme_override_constants/outline_size = 50
 theme_override_fonts/normal_font = SubResource("FontVariation_xj7b6")
 theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
-text = "[wave amp=40.0 freq=4.0 connected=1]Made by [color=#FF1286]Soytak [/color]
-Made in [color=#478cbf]Godot[/color][/wave]
-[font_size=40]
-Font used:
-[color=#ff5500]aAsianHiro[/color]
-[color=#0055ff]MGS4 Brush[/color]
-Music/Transition used made by others:[color=#879284]
-incompetech.com
-https://zacksly.itch.io/half-tone-comic-shader-for-godot[/color][/font_size]
-[wave amp=25.0 freq=1.0 connected=1][color=#eebb33][font_size=50]
-To everyone who shaped the coder inside me
-[/font_size]
-[/color]
-[/wave]"
+text = "CREDIT"
 scroll_active = false
 tab_size = 2
 
@@ -236,7 +223,7 @@ alignment = 2
 
 [node name="Back" type="Button" parent="center/panels/credits/margin/VBoxContainer"]
 layout_mode = 2
-text = "Back"
+text = "BACK"
 
 [node name="bindings" type="PanelContainer" parent="center/panels"]
 unique_name_in_owner = true
@@ -311,7 +298,7 @@ alignment = 2
 
 [node name="Back" type="Button" parent="center/panels/bindings/margin/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Back"
+text = "BACK"
 
 [node name="extra" type="PanelContainer" parent="center/panels"]
 unique_name_in_owner = true
@@ -334,7 +321,7 @@ theme_override_constants/separation = 75
 
 [node name="TTA" type="Label" parent="center/panels/extra/margin/Elements"]
 layout_mode = 2
-text = "Title tank amount"
+text = "TTA"
 
 [node name="TTA box" type="HBoxContainer" parent="center/panels/extra/margin/Elements"]
 layout_mode = 2
@@ -367,11 +354,14 @@ text = "->"
 
 [node name="Language" type="Label" parent="center/panels/extra/margin/Elements"]
 layout_mode = 2
-text = "Languages"
+text = "LANGUAGES"
 
 [node name="Languages" type="GridContainer" parent="center/panels/extra/margin/Elements"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="center/panels/extra/margin/Elements"]
 layout_mode = 2
@@ -428,7 +418,7 @@ color = Color(0.176471, 0.176471, 0.176471, 1)
 layout_mode = 2
 theme = ExtResource("2_bh0mo")
 theme_override_font_sizes/font_size = 50
-text = "Credits"
+text = "CREDITS"
 
 [node name="Bcredits" type="TextureButton" parent="center/panels/sideBar/CenterContainer3"]
 custom_minimum_size = Vector2(200, 200)
@@ -448,7 +438,7 @@ color = Color(0.176471, 0.176471, 0.176471, 1)
 layout_mode = 2
 theme = ExtResource("2_bh0mo")
 theme_override_font_sizes/font_size = 50
-text = "Keys"
+text = "KEYS"
 
 [node name="Bkey" type="TextureButton" parent="center/panels/sideBar/CenterContainer4"]
 custom_minimum_size = Vector2(200, 200)
@@ -468,7 +458,7 @@ color = Color(0.176471, 0.176471, 0.176471, 1)
 layout_mode = 2
 theme = ExtResource("2_bh0mo")
 theme_override_font_sizes/font_size = 50
-text = "Extra"
+text = "EXTRA"
 
 [node name="Bextra" type="TextureButton" parent="center/panels/sideBar/CenterContainer5"]
 custom_minimum_size = Vector2(200, 200)

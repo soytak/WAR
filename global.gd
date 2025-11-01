@@ -22,7 +22,8 @@ func actionInputToDisplay(string: StringName) -> String:
 	return string
 
 func actionDisplayToInput(string: StringName, player: int) -> String:
-	string = invertDictionary(actionInputDisplay)[string]
+	var m = toEnglish(string)
+	#string = invertDictionary(actionInputDisplay)[global.toEnglish(string)]
 	if string == "pause": return string
 	string = 'P' + str(player) + ' ' + string
 	return string
@@ -124,3 +125,17 @@ func getInputFromInputs(inputs: Array, action: StringName):
 			return inputs[3]
 		"shoot":
 			return inputs[4]
+
+func toEnglish(string: StringName) -> StringName:
+	var trans = TranslationServer.get_translation_object("en")
+	var keyFound = ""
+	for key in trans.get_message_list():
+		if trans.get_message(key) == tr(string):
+			keyFound = key
+			break
+
+	if keyFound != "":
+		return TranslationServer.get_translation_object("en").get_message(keyFound)
+	else:
+		print("No English equivalent found for: ", string)
+	return ""
