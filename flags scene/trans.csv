@@ -19,7 +19,7 @@ defaults:
 	",1,"Bienvenue à WAR
 Controls :
 	Utilise la souris ou un curseur
-	Les controls sont défénis dans paramètre → touches
+	Les controls sont définis dans paramètre → touches
 
 Control par défaut :
 	Joueur 1 : flèche pour bouger et 0 (du clavier numérique) ou control droit pour tirer
@@ -88,7 +88,7 @@ UP,Up,1,Haut
 DOWN,Down,1,Bas
 LEFT,Left,1,Gauche
 RIGHT,Right,1,Droit
-SELECT,Select,1,Selectionner
+SELECT,Select,1,Sélectionner
 PAUSE,Pause,1,Pause
 FORWARD,Forward,1,Avancer
 BACKWARD,Backward,1,Reculer
@@ -99,14 +99,10 @@ LANGUAGES,Languages,1,Langages
 ENGLISH,English,1,Anglais
 JAPANESE,Japanese,1,Japonais
 FRENCH,French,1,Français
-CREDITS,Credits,1,Credits
+CREDITS,Credits,1,Crédits
 KEYS,Keys,1,Buttons
 EXTRA,Extra,1,Extra
-REBIND_POPUP,,1,
-,,1,
-,,1,
-,,1,
-,,1,
-,,1,
-,,1,
-,,1,
+REBIND_POPUP1,Enter the key to bind to,1,Appuyer sur la nouvelle touche
+REBIND_POPUP2,waiting input,1,En attente de touche
+REBIND_POPUP3,Currently set to:,1,Touche actuelle:
+REBIND_POPUP2B,is already taken,1,est déjà assignée

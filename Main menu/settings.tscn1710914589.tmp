@@ -261,6 +261,7 @@ size_flags_horizontal = 3
 [node name="up" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("4_xj7b6")]
 unique_name_in_owner = true
 layout_mode = 2
+action = null
 
 [node name="down" parent="center/panels/bindings/margin/VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("4_xj7b6")]
 unique_name_in_owner = true
@@ -499,7 +500,7 @@ theme_override_constants/separation = 50
 [node name="Label" type="Label" parent="rebind popup/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.227451, 0.227451, 0.227451, 1)
-text = "REBIND_POPUP1"
+text = "Enter the key to bind to"
 horizontal_alignment = 1
 
 [node name="status" type="Label" parent="rebind popup/MarginContainer/VBoxContainer"]
@@ -507,7 +508,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.227451, 0.227451, 0.227451, 1)
 theme_override_font_sizes/font_size = 100
-text = "REBIND_POPUP2"
+text = "waiting input"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -516,7 +517,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.227451, 0.227451, 0.227451, 1)
 theme_override_font_sizes/font_size = 100
-text = "REBIND_POPUP3"
+text = "Currently set to: "
 horizontal_alignment = 1
 vertical_alignment = 1
 

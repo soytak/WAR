@@ -1,5 +1,7 @@
 extends Node
 
+enum actions {UP, DOWN, LEFT, RIGHT, PRIMARYBUTTON, ESC}
+
 var playerInput = [
 	["P1 up","P1 down","P1 left","P1 right","P1 enter"],
 	["P2 up","P2 down","P2 left","P2 right","P2 enter"],
@@ -7,23 +9,22 @@ var playerInput = [
 	["P4 up","P4 down","P4 left","P4 right","P4 enter"]
 ]
 
-var actionInputDisplay: Dictionary = {
-	"up": "Up",
-	"down": "Down",
-	"left": "Left",
-	"right": "Right",
-	"enter": "Select",
-	"pause": "Pause"
+var actionDisplay: Dictionary = {
+	"up": actions.UP,
+	"down": actions.DOWN,
+	"left": actions.LEFT,
+	"right": actions.RIGHT,
+	"enter": actions.PRIMARYBUTTON,
+	"pause": actions.ESC
 }
 
 func actionInputToDisplay(string: StringName) -> String:
 	string = getActionsPrettyString(string)
-	string = actionInputDisplay[string]
+	#string = actionInputDisplay[string]
 	return string
 
-func actionDisplayToInput(string: StringName, player: int) -> String:
-	var m = toEnglish(string)
-	#string = invertDictionary(actionInputDisplay)[global.toEnglish(string)]
+func actionDisplayToInput(action: actions, player: int) -> String:
+	var string = invertDictionary(actionDisplay)[action]
 	if string == "pause": return string
 	string = 'P' + str(player) + ' ' + string
 	return string
@@ -125,17 +126,3 @@ func getInputFromInputs(inputs: Array, action: StringName):
 			return inputs[3]
 		"shoot":
 			return inputs[4]
-
-func toEnglish(string: StringName) -> StringName:
-	var trans = TranslationServer.get_translation_object("en")
-	var keyFound = ""
-	for key in trans.get_message_list():
-		if trans.get_message(key) == tr(string):
-			keyFound = key
-			break
-
-	if keyFound != "":
-		return TranslationServer.get_translation_object("en").get_message(keyFound)
-	else:
-		print("No English equivalent found for: ", string)
-	return ""

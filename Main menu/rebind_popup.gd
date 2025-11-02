@@ -4,9 +4,9 @@ var lastKeyInput: InputEventKey
 var remapping: bool = false
 signal remappingFinished
 
-func rebind(action: StringName, currentValue: StringName, update: Callable) -> void:
+func rebind(action: global.actions, currentValue: StringName, update: Callable) -> void:
 	%"rebind popup".show()
-	%"previous value".text = "Currently set to: " + currentValue
+	%"previous value".text = tr("REBIND_POPUP3")+ " " + currentValue
 	remapping = true
 	
 	await remappingFinished
@@ -33,13 +33,13 @@ func finishRebind(actionName: StringName, update: Callable) -> void:
 	
 func markAsAlreadyTaken(string: StringName) -> void:
 	var prettyString = global.getActionsPrettyString(string)
-	%status.text = "waiting input: " + prettyString + " is already taken"
+	%status.text = tr("REBIND_POPUP2") + ": " + prettyString + " " + tr("REBIND_POPUP2B")
 	%status.self_modulate = Color.RED
 
 func markAsWaiting() -> StringName:
-	%status.text = "waiting input"
+	%status.text = "REBIND_POPUP2"
 	%status.self_modulate = Color.hex(0x3a3a3a)
-	return "waiting input"
+	return "REBIND_POPUP2"
 
 func _input(event: InputEvent) -> void:
 	if not remapping: return

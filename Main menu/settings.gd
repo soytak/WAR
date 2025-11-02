@@ -60,16 +60,13 @@ func deactivate():
 func _on_sfx_slider_value_changed(value: float) -> void:
 	sfxManager.setVolume(value)
 
-
 func _on_bgm_slider_value_changed(value: float) -> void:
 	musicManager.setVolume(value)
 
 
 func _on_back_pressed() -> void:
 	deactivate()
-
-
-
+	
 
 func _on_enable_toggled(toggled_on: bool) -> void:
 	cursorManager.MinAFKTimeEnable = toggled_on
