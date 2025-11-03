@@ -43,7 +43,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme = ExtResource("1_0tj7d")
 theme_override_font_sizes/font_size = 100
-text = "「Tank dictionary」: everything is clickable*"
+text = "TANK_DICTIONARY_TITLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -53,7 +53,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_0tj7d")
 theme_override_font_sizes/font_size = 100
-text = "Tank dictionary"
+text = "DICTIONARY_OF_TANKS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -135,6 +135,7 @@ theme = ExtResource("1_0tj7d")
 text = "Exit"
 
 [node name="Graph" type="SubViewportContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +149,7 @@ grow_vertical = 2
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Control" type="Control" parent="Graph/viewport"]
 layout_mode = 3
@@ -224,6 +225,7 @@ ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Switch" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0.537255)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -233,7 +235,7 @@ offset_right = 1880.0
 offset_bottom = 128.0
 grow_horizontal = 0
 theme = ExtResource("1_0tj7d")
-text = "Switch Mode"
+text = "SWITCH_MODE_GRAPH"
 
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/previous" to="." method="_on_previous_pressed"]
 [connection signal="pressed" from="MarginContainer/vbox/center/Upgrade tree/MarginContainer/VBoxContainer/HBoxContainer/next" to="." method="_on_next_pressed"]

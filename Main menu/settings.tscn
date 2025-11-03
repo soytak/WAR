@@ -370,7 +370,7 @@ alignment = 2
 
 [node name="Back" type="Button" parent="center/panels/extra/margin/Elements/VBoxContainer"]
 layout_mode = 2
-text = "Back"
+text = "BACK"
 
 [node name="sideBar" type="VBoxContainer" parent="center/panels"]
 unique_name_in_owner = true

@@ -74,85 +74,85 @@ UPGRADEDBIGTWOWAY,#BIGQUATERNARY
 func getEvolutionIdName(id):
 	match id:
 		evolutionsID.BASIC:
-			return "Basic"
+			return tr("T_BASIC")
 		evolutionsID.DOUBLEGUN:
-			return "Double gun"
+			return tr("T_DOUBLE_GUN")
 		evolutionsID.SNIPER:
-			return "Sniper"
+			return tr("T_SNIPER")
 		evolutionsID.THREEWAY:
-			return "Three way"
+			return tr("T_THREE_WAY")
 		evolutionsID.DOUBLESHOT:
-			return "Double shot"
+			return tr("T_DOUBLE_SHOT")
 		evolutionsID.DUAL:
-			return "Dual"
+			return tr("T_DUAL")
 		evolutionsID.BIG:
-			return "Big"
+			return tr("T_BIG")
 		evolutionsID.UPGRADEDBASIC:
-			return "Upgraded basic"
+			return tr("T_UPGRADED_BASIC")
 		evolutionsID.MACHINEGUN:
-			return "Machine gun"
+			return tr("T_MACHINE_GUN")
 		#evolutionsID.LANDMINE:
 			#return "Landmine"
 		evolutionsID.TRIPLESHOT:
-			return "Triple shot"
+			return tr("T_TRIPLE_SHOT")
 		evolutionsID.QUADRIPLESHOT:
-			return "Quadriple shot"
+			return tr("T_QUADRIPLE_SHOT")
 		evolutionsID.VDOUBLESHOT:
-			return "V Ddouble shot"
+			return tr("T_V_DOUBLE_SHOT")
 		evolutionsID.UPGRADEDUPGRADEDBASIC:
-			return "Upgraded upgraded basic"
+			return tr("T_UPGRADED_UPGRADED_BASIC")
 		evolutionsID.UPGRADEDUPGRADEDUPGRADEDBASIC:
-			return "Upgraded upgraded upgraded basic"
+			return tr("T_UPGRADED_UPGRADED_UPGRADED_BASIC")
 		#evolutionsID.RNG:
 			#return "RNG"
 		evolutionsID.BACKWARDSHOT:
-			return "Backward shot"
+			return tr("T_BACKWARD_SHOT")
 		evolutionsID.BACKWARDSHOTSNIPER:
-			return "Backward shot sniper"
+			return tr("T_BACKWARD_SHOT_SNIPER")
 		evolutionsID.BACKWARDSIXWAY:
-			return "Backward six way"
+			return tr("T_BACKWARD_SIX_WAY")
 		evolutionsID.DROPPER:
-			return "Dropper"
+			return tr("T_DROPPER")
 		evolutionsID.UPGRADEDDROPPER:
-			return "Upgraded dropper"
+			return tr("T_UPGRADED_DROPPER")
 		evolutionsID.LANDMINEONDROPPER:
-			return "Landmine on dropper"
+			return tr("T_LANDMINE_ON_DROPPER")
 		evolutionsID.TSNIPER:
-			return "T Sniper"
+			return tr("T_T_SNIPER")
 		evolutionsID.TYSNIPER:
-			return "TY Sniper"
+			return tr("T_TY_SNIPER")
 		evolutionsID.FOURWAYSNIPER:
-			return "Four way sniper"
+			return tr("T_FOUR_WAY_SNIPER")
 		evolutionsID.YSNIPER:
-			return "Y sniper"
+			return tr("T_Y_SNIPER")
 		evolutionsID.UPGRADEDYSNIPER:
-			return "Upgraded sniper"
+			return tr("T_UPGRADED_Y_SNIPER")
 		evolutionsID.VYSNIPER:
-			return "VY sniper"
+			return tr("T_VY_SNIPER")
 		evolutionsID.FOURGUN:
-			return "Four gun"
+			return tr("T_FOUR_GUN")
 		evolutionsID.SIXGUN:
-			return "Six gun"
+			return tr("T_SIX_GUN")
 		evolutionsID.SMALLSPRINKLERONMACHINEGUN:
-			return "Small sprinkle on machinegun"
+			return tr("T_SMALL_SPRINKLER_ON_MACHINE_GUN")
 		evolutionsID.SPRINKLER:
-			return "Sprinkler"
+			return tr("T_SPRINKLER")
 		evolutionsID.QUATERNARY:
-			return "Quaternary"
+			return tr("T_QUATERNARY")
 		evolutionsID.BIGQUATERNARY:
-			return "Big quaternary"
+			return tr("T_BIG_QUATERNARY")
 		evolutionsID.OCTAL:
-			return "Octal"
+			return tr("T_OCTAL")
 		evolutionsID.FIVEWAY:
-			return "Five way"
+			return tr("T_FIVE_WAY")
 		evolutionsID.SIXWAY:
-			return "Six way"
+			return tr("T_SIX_WAY")
 		evolutionsID.UPGRADEDMACHINEGUN:
-			return "Upgraded machinegun"
+			return tr("T_UPGRADED_MACHINE_GUN")
 		evolutionsID.UPGRADEDBIG:
-			return "Upgraded big"
+			return tr("T_UPGRADED_BIG")
 		evolutionsID.UPGRADEDBIGTWOWAY:
-			return "Upgraded big two way"
+			return tr("T_UPGRADED_BIG_TWO_WAY")
 		#evolutionsID.LANDMINEFACTORY:
 			#return "Landmine factory"
 		#evolutionsID.GRAVITATIONNALLANDMINEFACTORY:

@@ -1,4 +1,4 @@
-﻿key,en,jp,fr
+﻿key,en,ja,fr
 PLAY,Play!,1,Jouer!
 CONTROLS/GOAL,Controls / goal,1,Controls / but
 SETTINGS,settings,1,paramètre
@@ -106,3 +106,46 @@ REBIND_POPUP1,Enter the key to bind to,1,Appuyer sur la nouvelle touche
 REBIND_POPUP2,waiting input,1,En attente de touche
 REBIND_POPUP3,Currently set to:,1,Touche actuelle:
 REBIND_POPUP2B,is already taken,1,est déjà assignée
+BACK,Back,1,Retour
+SWITCH_MODE_GRAPH,Switch graph mode,1,⇄ Mode graph.
+TANK_DICTIONARY_TITLE,「Tank dictionary」,1,「Tank dictionary」
+T_BASIC,Basic,1,Basique 
+T_DOUBLE_GUN,Double gun,1,Double gun
+T_SNIPER,Sniper,1,Sniper
+T_THREE_WAY,Three way,1,Distributeur tripartite 
+T_DOUBLE_SHOT,Double shot,1,Double tir
+T_DUAL,Dual,1,Dual
+T_BIG,Big,1,Grand
+T_UPGRADED_BASIC,Upgraded basic,1,Basique amélioré
+T_MACHINE_GUN,Machine gun,1,Machine gun
+T_LANDMINE,Landmine,1,Machine à mines terrestres
+T_TRIPLE_SHOT,Triple shot,1,Triple tir
+T_QUADRIPLE_SHOT,Quadruple shot,1,Quadruple tir
+T_V_DOUBLE_SHOT,V Double shot,1,V Double tir
+T_UPGRADED_UPGRADED_BASIC,Upgraded upgraded basic,1,Basique amélioré amélioré
+T_UPGRADED_UPGRADED_UPGRADED_BASIC,Upgraded upgraded upgraded basic,1,Basique amélioré amélioré amélioré
+T_RNG,RNG,1,RNG
+T_BACKWARD_SHOT,Backward shot,1,Tank à l’envers
+T_BACKWARD_SHOT_SNIPER,Backward sniper,1,Sniper à l’envers
+T_BACKWARD_SIX_SHOT,Backward six shot,1,Six tir à l’envers
+T_DROPPER,Dropper,1,Distributeur à haute fréquence
+T_UPGRADED_DROPPER,Upgraded dropper,1,Distributeur à haute fréquence amélioré
+T_LANDMINE_ON_DROPPER,Landmine on dropper,1,Machine à mines terrestres sur distributeur à haute fréquence
+T_T_SNIPER,T Sniper,1,T sniper
+T_TY_SNIPER,TY Sniper,1,TY Sniper
+T_FOUR_WAY_SNIPER,Four way sniper,1,Sniper distributeur quadripartite
+T_Y_SNIPER,Y sniper,1,Y Sniper
+T_UPGRADED_SNIPER,Upgraded sniper,1,Sniper amélioré
+T_VY SNIPER,YV Sniper,1,YV Sniper
+T_FOUR_GUN,Four gun,1,Quatre tir
+T_SIX_GUN,Six gun,1,Six tir
+T_SMALL_SPRINKLER_ON_MACHINE_GUN,Small sprinkler on machine gun,1,Petit arroseur sur machine gun
+T_SPRINKLER,Sprinkler,1,Arroseur
+T_QUATERNARY,Quaternary,1,Quaternaire
+T_BIG_QUATERNARY,Big quaternary,1,Grand Quaternaire
+T_OCTAL,Octal,1,Octal
+T_FIVE_WAY,Five way,1,"Distributeur quintipartite,"
+T_SIX_WAY,Six way,1,"Distributeur hexapartite,"
+T_UPGRADED_MACHINE_GUN,Upgraded machine gun,1,Machine gun amélioré
+T_UPGRADED_BIG,Upgraded big,1,Géant
+T_UPGRADED_BIG_TWO_WAY,Upgraded big two way,1,Géant sur distributeur bipartite
